@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
+using System.Data.Entity.ModelConfiguration.Configuration;
 using iTasks.Models;
 using System.Runtime.Remoting.Contexts;
 
@@ -47,7 +48,6 @@ namespace iTasks.Data
             modelBuilder.Entity<Tarefa>()
                 .Property(t => t.Estado)
                 .HasColumnType("nvarchar")
-                .HasMaxLength(20)
                 .HasDefaultValue("ToDo");
 
             base.OnModelCreating(modelBuilder);

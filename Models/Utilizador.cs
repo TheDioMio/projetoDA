@@ -27,7 +27,7 @@ namespace iTasks.Models
     internal class Utilizador
     {
         public int Id { get; set; }
-        public string User { get; set; }
+        public string Username { get; set; }
         public string Password { get; set; }
         public string Nome { get; set; }
         public TipoUtilizador Tipo { get; set; }
