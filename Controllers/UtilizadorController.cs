@@ -6,39 +6,45 @@ using System.Threading.Tasks;
 using iTasks.Data;
 using iTasks.Models;
 using System.Data.Entity;
+using System.Runtime.Remoting.Contexts;
 
 
 namespace iTasks.Controllers
 {
     internal class UtilizadorController
     {
-        private readonly iTasksContexto _ctx = new iTasksContexto();
+        private readonly iTasksContexto contexto = new iTasksContexto(); //Criação de variável global para aceder ao contexto.
 
-        public List<Utilizador> ObterTodos() =>
-            _ctx.Utilizadores.Include(u => u.Gestor).ToList();  // Inclui gestor associado
+        //MODOS DE PROCURA USERS
+        public List<Utilizador> ObterTodos() => //Obter todos os users com o gestor associado
+            contexto.Utilizadores.Include(utilizadorEncontrado => utilizadorEncontrado.Gestor).ToList();  // Inclui gestor associado
 
-        public Utilizador ObterPorId(int id) =>
-            _ctx.Utilizadores.Find(id);
+        public Utilizador ObterPorId(int id) => //Encontrar utilizador pelo ID
+            contexto.Utilizadores.Find(id);
 
-        public void Criar(Utilizador u)
+        public Utilizador ObterPorUsername(string username) => //Encontrar utilizador pelo USERNAME
+            contexto.Utilizadores.FirstOrDefault(utilizadorEncontrado => utilizadorEncontrado.Username == username);
+
+        public void Criar(Utilizador utilizadorEncontrado)
         {
-            _ctx.Utilizadores.Add(u);
-            _ctx.SaveChanges();
+            contexto.Utilizadores.Add(utilizadorEncontrado);
+            contexto.SaveChanges();
         }
 
-        public void Atualizar(Utilizador u)
+        public void Atualizar(Utilizador utilizadorEncontrado)
         {
-            _ctx.Entry(u).State = EntityState.Modified;
-            _ctx.SaveChanges();
+            contexto.Entry(utilizadorEncontrado).State = EntityState.Modified;
+            contexto.SaveChanges();
         }
 
+        //Eliminar utilizadores
         public void Eliminar(int id)
         {
-            var u = _ctx.Utilizadores.Find(id);
-            if (u != null)
+            var utilizadorEncontrado = contexto.Utilizadores.Find(id);
+            if (utilizadorEncontrado != null)
             {
-                _ctx.Utilizadores.Remove(u);
-                _ctx.SaveChanges();
+                contexto.Utilizadores.Remove(utilizadorEncontrado);
+                contexto.SaveChanges();
             }
         }
     }

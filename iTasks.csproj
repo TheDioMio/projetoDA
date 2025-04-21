@@ -58,6 +58,7 @@
   <ItemGroup>
     <Compile Include="Controllers\UtilizadorController.cs" />
     <Compile Include="Data\DBContext.cs" />
+    <Compile Include="Models\Sessao.cs" />
     <Compile Include="Views\frmConsultarTarefasConcluidas.cs">
       <SubType>Form</SubType>
     </Compile>

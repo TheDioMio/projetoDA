@@ -14,3 +14,8 @@ C:\Users\Diogo Mio\Desktop\projetoDA\obj\Debug\iTasks.csproj.GenerateResource.ca
 C:\Users\Diogo Mio\Desktop\projetoDA\obj\Debug\iTasks.csproj.CoreCompileInputs.cache
 C:\Users\Diogo Mio\Desktop\projetoDA\obj\Debug\iTasks.exe
 C:\Users\Diogo Mio\Desktop\projetoDA\obj\Debug\iTasks.pdb
+C:\Users\Diogo Mio\Desktop\projetoDA\bin\Debug\EntityFramework.dll
+C:\Users\Diogo Mio\Desktop\projetoDA\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Diogo Mio\Desktop\projetoDA\bin\Debug\EntityFramework.xml
+C:\Users\Diogo Mio\Desktop\projetoDA\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Diogo Mio\Desktop\projetoDA\obj\Debug\iTasks.csproj.Up2Date
