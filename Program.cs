@@ -1,4 +1,5 @@
-﻿using System;
+﻿using iTasks.Data;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -17,7 +18,10 @@ namespace iTasks
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new frmLogin()); //Inicia o frmLogin primeiro
-
+            using (var ctx = new iTasksContexto())
+            {
+                var existeAlgo = ctx.Utilizadores.FirstOrDefault(); // Força uma query
+            }
         }
     }
 }

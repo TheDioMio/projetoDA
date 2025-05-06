@@ -9,13 +9,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTasks.Data;
 
 namespace iTasks
 {
     public partial class frmLogin : Form
     {
+        public iTasksContexto Contexto = new iTasksContexto();
         //Dar link do frmlogin à base de dados
-        private UtilizadorController contexto = new UtilizadorController(); 
+        public UtilizadorController contexto = new UtilizadorController(); 
         public frmLogin()
         {
             InitializeComponent();
@@ -23,6 +25,10 @@ namespace iTasks
 
         private void btLogin_Click(object sender, EventArgs e)
         {
+            Utilizador user1 = new Utilizador("Admin", "Admin");
+            Contexto.Utilizadores.Add(user1);
+            Contexto.SaveChanges();
+
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
 
@@ -52,7 +58,7 @@ namespace iTasks
             }
 
             // 4) Login bem‑sucedido
-            Sessao.UtilizadorLogado = user;
+            /*Sessao.UtilizadorLogado = user;*/
             var kanban = new frmKanban();
             this.Hide();
             kanban.Show();

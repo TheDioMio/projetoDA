@@ -11,9 +11,9 @@ using System.Runtime.Remoting.Contexts;
 
 namespace iTasks.Controllers
 {
-    internal class UtilizadorController
+    public class UtilizadorController
     {
-        private readonly iTasksContexto contexto = new iTasksContexto(); //Criação de variável global para aceder ao contexto.
+         iTasksContexto contexto = new iTasksContexto(); //Criação de variável global para aceder ao contexto.
 
         //MODOS DE PROCURA USERS
         public List<Utilizador> ObterTodos() => //Obter todos os users com o gestor associado

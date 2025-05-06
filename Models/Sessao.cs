@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace iTasks.Models
 {
     //Amazena dados globais da sessão do user logado.
-    internal class Sessao
+    public class Sessao
     {
         public static Utilizador UtilizadorLogado { get; set; }
     }

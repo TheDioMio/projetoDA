@@ -1,34 +1,45 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace iTasks.Models
 {
-    internal enum TipoUtilizador
+    public enum TipoUtilizador
     {
         Programador,
         Gestor
     }
 
-    internal enum NivelExperiencia
+    public enum NivelExperiencia
     {
         Junior,
         Senior
     }
 
-    internal enum Departamento
+    public enum Departamento
     {
         IT,
         Marketing,
         Administracao
     }
-    internal class Utilizador
+    public class Utilizador
     {
+        [Required]
         public int Id { get; set; }
+
+
+        [Required]
+        [StringLength(450)]
         public string Username { get; set; }
+
+        [Required]
+        [StringLength(20)]
         public string Password { get; set; }
+
+        [Required]
         public string Nome { get; set; }
         public TipoUtilizador Tipo { get; set; }
         public NivelExperiencia Experiencia { get; set; }
@@ -37,6 +48,14 @@ namespace iTasks.Models
         public Utilizador Gestor { get; set; }
         public ICollection<Tarefa> TarefasCriadas { get; set; }
         public ICollection<Tarefa> TarefasAtribuidas { get; set; }
+
+        public Utilizador(string username, string password)
+        {
+            Username = username;
+            Password = password;
+        }
     }
+
+
 
 }
