@@ -20,48 +20,50 @@ namespace iTasks
         public UtilizadorController contexto = new UtilizadorController(); 
         public frmLogin()
         {
+
             InitializeComponent();
+          
         }
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-            Utilizador user1 = new Utilizador("Admin", "Admin");
-            Contexto.Utilizadores.Add(user1);
-            Contexto.SaveChanges();
+            //Utilizador user1 = new Utilizador("Admin", "Admin");
+            //Contexto.Utilizadores.Add(user1);
+            //Contexto.SaveChanges();
 
-            string username = txtUsername.Text.Trim();
-            string password = txtPassword.Text;
+            //string username = txtUsername.Text.Trim();
+            //string password = txtPassword.Text;
 
-            // 1) Campos obrigatórios
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
-            {
-                MessageBox.Show(
-                    "Preencha todos os campos.",
-                    "Aviso",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Warning);
-                return;
-            }
+            //// 1) Campos obrigatórios
+            //if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
+            //{
+            //    MessageBox.Show(
+            //        "Preencha todos os campos.",
+            //        "Aviso",
+            //        MessageBoxButtons.OK,
+            //        MessageBoxIcon.Warning);
+            //    return;
+            //}
 
-            // 2) Busca o utilizador pelo username
-            var user = contexto.ObterPorUsername(username);
+            //// 2) Busca o utilizador pelo username
+            //var user = contexto.ObterPorUsername(username);
 
-            // 3) Se não encontrar ou a password não bater
-            if (user == null || user.Password != password)
-            {
-                MessageBox.Show(
-                    "Credenciais inválidas",
-                    "Erro",
-                    MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-                return;
-            }
+            //// 3) Se não encontrar ou a password não bater
+            //if (user == null || user.Password != password)
+            //{
+            //    MessageBox.Show(
+            //        "Credenciais inválidas",
+            //        "Erro",
+            //        MessageBoxButtons.OK,
+            //        MessageBoxIcon.Error);
+            //    return;
+            //}
 
-            // 4) Login bem‑sucedido
-            /*Sessao.UtilizadorLogado = user;*/
-            var kanban = new frmKanban();
-            this.Hide();
-            kanban.Show();
+            //// 4) Login bem‑sucedido
+            ///*Sessao.UtilizadorLogado = user;*/
+            //var kanban = new frmKanban();
+            //this.Hide();
+            //kanban.Show();
         }
     }
 }
