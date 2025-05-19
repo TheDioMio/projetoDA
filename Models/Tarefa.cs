@@ -6,7 +6,6 @@ namespace iTasks.Models
 {
     public class Tarefa
     {
-        [Key]
         public int Id { get; set; }
         public string Descricao { get; set; }
         public TipoTarefa TipoTarefa { get; set; }

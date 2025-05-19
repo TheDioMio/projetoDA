@@ -40,3 +40,4 @@ C:\Users\Igor\Desktop\projetoDA-master\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Igor\Desktop\projetoDA-master\bin\Debug\EntityFramework.xml
 C:\Users\Igor\Desktop\projetoDA-master\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Igor\Desktop\projetoDA-master\obj\Debug\iTasks.csproj.Up2Date
+C:\Users\Diogo Mio\Desktop\projetoDA\obj\Debug\iTasks.exe.config

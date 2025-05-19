@@ -1,10 +1,13 @@
-﻿using iTasks.Models;
+﻿using iTasks.Controllers;
+using iTasks.Data;
+using iTasks.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,20 +16,36 @@ namespace iTasks
 {
     public partial class frmKanban : Form
     {
-        public frmKanban()
+        public iTasksContexto Contexto = new iTasksContexto();
+        private List<Tarefa> tarefasToDo;
+        private List<Tarefa> tarefasDoing;
+        private List<Tarefa> tarefasDone;
+
+        public void CarregarTarefas()
         {
-            //InitializeComponent();
-            //labelBemVindo.Text = $"Bem-vindo, {Sessao.UtilizadorLogado.Nome}";
+            var todasTarefas = Contexto.Tarefas.ToList();
 
-            ////Grisa o menu de gestão de users se o utilizador não for gestor. (SE FOR PROGRAMADOR)
-            //if (Sessao.UtilizadorLogado.Tipo == TipoUtilizador.Programador)
-            //{
-            //    utilizadoresToolStripMenuItem.Enabled = false;
-            //} else
-            //{
-            //    utilizadoresToolStripMenuItem.Enabled = true;
-            //}
+            var tarefasToDo = todasTarefas.Where(tarefa => tarefa.EstadoAtual == EstadoAtual.ToDo).ToList();
+            var tarefasDoing = todasTarefas.Where(tarefa => tarefa.EstadoAtual == EstadoAtual.Doing).ToList();
+            var tarefasDone = todasTarefas.Where(tarefa => tarefa.EstadoAtual == EstadoAtual.Done).ToList();
 
+            lstTodo.Items.Add(tarefasToDo);
+            lstDoing.Items.Add(tarefasDoing);
+            lstDone.Items.Add(tarefasDone);
+        }
+        public frmKanban(Utilizador userlogado)
+        {
+            InitializeComponent();
+            labelBemVindo.Text = $"Bem-vindo, {userlogado.Username}";
+            CarregarTarefas();
+        }
+
+
+
+        private void btSetDoing_Click(object sender, EventArgs e)
+        {
+            CarregarTarefas();
+            lstTodo.Items.Add(tarefasToDo);
         }
     }
 }
