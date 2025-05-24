@@ -25,22 +25,34 @@ namespace iTasks
         public frmKanban(Utilizador userLogado)
         {
             InitializeComponent();
+            Tarefa novaTarefa = new Tarefa("Testesla", EstadoAtual.ToDo);
+            controller.Adicionar(novaTarefa);
             labelBemVindo.Text = $"Bem-vindo, {userLogado.Username}";
             CarregarTarefas();
         }
 
         private void btSetDoing_Click(object sender, EventArgs e)
         {
-            Tarefa tarefaSelecionada = lstTodo.SelectedItem as Tarefa;
-            controller.AvancarTarefa(tarefaSelecionada);
-
+            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
+            if (tarefaSelecionada.EstadoAtual == EstadoAtual.Doing)
+            {
+                MessageBox.Show(
+                            "ERRO: Tarefa já está em Doing.",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+            }
+            else
+            {
+                controller.AvancarTarefa(tarefaSelecionada);
+            }
             //Atualizar as listas depois de mudar o estado da tarefa
             CarregarTarefas();
         }
 
         private void btSetTodo_Click(object sender, EventArgs e)
         {
-            Tarefa tarefaSelecionada = lstDoing.SelectedItem as Tarefa;
+            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
             controller.RetrocederTarefa(tarefaSelecionada);
 
             //Atualizar as listas depois de se mudar o estado da tarefa
@@ -49,7 +61,8 @@ namespace iTasks
 
         private void btSetDone_Click(object sender, EventArgs e)
         {
-            Tarefa tarefaSelecionada = lstDoing.SelectedItem as Tarefa;
+
+            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
             controller.AvancarTarefa(tarefaSelecionada);
 
             //Atualizar as listas depois de se mudar o estado da tarefa
@@ -75,6 +88,27 @@ namespace iTasks
             lstTodo.Items.AddRange(tarefasToDo.ToArray());
             lstDoing.Items.AddRange(tarefasDoing.ToArray());
             lstDone.Items.AddRange(tarefasDone.ToArray());
+        }
+
+        public Tarefa verOndeEstaTarefaSelecionada()
+        {
+            if(lstTodo.SelectedItem as Tarefa != null)
+            {
+                Tarefa tarefaSelecionada = lstTodo.SelectedItem as Tarefa;
+                return tarefaSelecionada;
+            } else if(lstDoing.SelectedItem as Tarefa != null)
+            {
+                Tarefa tarefaSelecionada = lstDoing.SelectedItem as Tarefa;
+                return tarefaSelecionada;
+            } else if(lstDone.SelectedItem as Tarefa != null)
+            {
+                Tarefa tarefaSelecionada = lstDone.SelectedItem as Tarefa;
+                return tarefaSelecionada;
+            } else 
+            {
+                return null;
+            }
+
         }
     }
 }

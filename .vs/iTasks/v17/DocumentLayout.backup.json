@@ -3,40 +3,48 @@
   "WorkspaceRootPath": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|c:\\users\\diogo mio\\desktop\\projetoda\\views\\frmdetalhestarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:views\\frmdetalhestarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\views\\frmkanban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:views\\frmkanban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\views\\frmkanban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:views\\frmkanban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|c:\\users\\diogo mio\\desktop\\projetoda\\models\\tarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:models\\tarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\views\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:views\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\data\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:data\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\views\\frmkanban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:views\\frmkanban.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|c:\\users\\diogo mio\\desktop\\projetoda\\views\\frmconsultatarefasemcurso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:views\\frmconsultatarefasemcurso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:controllers\\tarefacontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\models\\utilizador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:models\\utilizador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\models\\tarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:models\\tarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\controllers\\utilizadorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:controllers\\utilizadorcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\models\\estadoatual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:models\\estadoatual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\data\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:data\\dbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\models\\utilizador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:models\\utilizador.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\models\\estadoatual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:models\\estadoatual.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\models\\departamento.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -71,10 +79,6 @@
       "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:views\\frmconsultartarefasconcluidas.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\views\\frmconsultatarefasemcurso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:views\\frmconsultatarefasemcurso.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\views\\frmdetalhestarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{40078359-763C-472D-9D7E-8C252267F6FC}|iTasks.csproj|solutionrelative:views\\frmdetalhestarefa.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
@@ -94,17 +98,17 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "frmKanban.cs",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmKanban.cs",
               "RelativeDocumentMoniker": "Views\\frmKanban.cs",
               "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmKanban.cs",
               "RelativeToolTip": "Views\\frmKanban.cs",
-              "ViewState": "AgIAAB4AAAAAAAAAAAAgwC0AAABGAAAAAAAAAA==",
+              "ViewState": "AgIAAFwAAAAAAAAAAAA9wBwAAAAtAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-19T18:30:07.743Z",
               "IsPinned": true,
@@ -112,13 +116,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 2,
               "Title": "frmLogin.cs",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmLogin.cs",
               "RelativeDocumentMoniker": "Views\\frmLogin.cs",
               "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmLogin.cs",
               "RelativeToolTip": "Views\\frmLogin.cs",
-              "ViewState": "AgIAACEAAAAAAAAAAAAYwC0AAAANAAAAAAAAAA==",
+              "ViewState": "AgIAABwAAAAAAAAAAAAQwC0AAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-12T20:52:39.695Z",
               "IsPinned": true,
@@ -126,7 +130,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "frmKanban.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmKanban.cs",
               "RelativeDocumentMoniker": "Views\\frmKanban.cs",
@@ -139,71 +143,56 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "TarefaController.cs",
-              "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Controllers\\TarefaController.cs",
-              "RelativeDocumentMoniker": "Controllers\\TarefaController.cs",
-              "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Controllers\\TarefaController.cs",
-              "RelativeToolTip": "Controllers\\TarefaController.cs",
-              "ViewState": "AgIAAAwAAAAAAAAAAAAAAD8AAAArAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "frmDetalhesTarefa.cs",
+              "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmDetalhesTarefa.cs",
+              "RelativeDocumentMoniker": "Views\\frmDetalhesTarefa.cs",
+              "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmDetalhesTarefa.cs",
+              "RelativeToolTip": "Views\\frmDetalhesTarefa.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T20:34:58.396Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Tarefa.cs",
-              "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\Tarefa.cs",
-              "RelativeDocumentMoniker": "Models\\Tarefa.cs",
-              "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\Tarefa.cs",
-              "RelativeToolTip": "Models\\Tarefa.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA6wBYAAABBAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T21:09:22.425Z",
+              "WhenOpened": "2025-05-24T18:10:25.409Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "DBContext.cs",
-              "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Data\\DBContext.cs",
-              "RelativeDocumentMoniker": "Data\\DBContext.cs",
-              "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Data\\DBContext.cs",
-              "RelativeToolTip": "Data\\DBContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAARAAAAAAAAAA==",
+              "Title": "TarefaController.cs",
+              "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Controllers\\TarefaController.cs",
+              "RelativeDocumentMoniker": "Controllers\\TarefaController.cs",
+              "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Controllers\\TarefaController.cs",
+              "RelativeToolTip": "Controllers\\TarefaController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAkwDkAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T20:53:04.592Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-19T20:34:58.396Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 6,
               "Title": "Utilizador.cs",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\Utilizador.cs",
               "RelativeDocumentMoniker": "Models\\Utilizador.cs",
               "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\Utilizador.cs",
               "RelativeToolTip": "Models\\Utilizador.cs",
-              "ViewState": "AgIAABkAAAAAAAAAAAAEwCUAAAAPAAAAAAAAAA==",
+              "ViewState": "AgIAABYAAAAAAAAAAAAEwCIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-05-12T20:55:12.363Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 8,
               "Title": "UtilizadorController.cs",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Controllers\\UtilizadorController.cs",
               "RelativeDocumentMoniker": "Controllers\\UtilizadorController.cs",
               "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Controllers\\UtilizadorController.cs",
               "RelativeToolTip": "Controllers\\UtilizadorController.cs",
-              "ViewState": "AgIAAA4AAAAAAAAAAAAuwBUAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABUAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-12T20:53:13.873Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-05-12T20:53:13.873Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 10,
               "Title": "EstadoAtual.cs",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\EstadoAtual.cs",
               "RelativeDocumentMoniker": "Models\\EstadoAtual.cs",
@@ -215,7 +204,43 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "frmConsultaTarefasEmCurso.cs [Design]",
+              "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmConsultaTarefasEmCurso.cs",
+              "RelativeDocumentMoniker": "Views\\frmConsultaTarefasEmCurso.cs",
+              "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmConsultaTarefasEmCurso.cs [Design]",
+              "RelativeToolTip": "Views\\frmConsultaTarefasEmCurso.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-19T18:30:40.751Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 9,
+              "Title": "DBContext.cs",
+              "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Data\\DBContext.cs",
+              "RelativeDocumentMoniker": "Data\\DBContext.cs",
+              "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Data\\DBContext.cs",
+              "RelativeToolTip": "Data\\DBContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwAcAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T20:53:04.592Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Tarefa.cs",
+              "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\Tarefa.cs",
+              "RelativeDocumentMoniker": "Models\\Tarefa.cs",
+              "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\Tarefa.cs",
+              "RelativeToolTip": "Models\\Tarefa.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAA4wBYAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-12T21:09:22.425Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
               "Title": "Departamento.cs",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\Departamento.cs",
               "RelativeDocumentMoniker": "Models\\Departamento.cs",
@@ -227,7 +252,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 12,
               "Title": "TipoTarefa.cs",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\TipoTarefa.cs",
               "RelativeDocumentMoniker": "Models\\TipoTarefa.cs",
@@ -239,7 +264,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 13,
               "Title": "frmLogin.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmLogin.cs",
               "RelativeDocumentMoniker": "Views\\frmLogin.cs",
@@ -251,7 +276,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 14,
               "Title": "Projeto.cs",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\Projeto.cs",
               "RelativeDocumentMoniker": "Models\\Projeto.cs",
@@ -263,7 +288,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 17,
               "Title": "Programador.cs",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\Programador.cs",
               "RelativeDocumentMoniker": "Models\\Programador.cs",
@@ -275,7 +300,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 16,
               "Title": "NivelExperiencia.cs",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\NivelExperiencia.cs",
               "RelativeDocumentMoniker": "Models\\NivelExperiencia.cs",
@@ -287,7 +312,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 15,
               "Title": "Gestor.cs",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Models\\Gestor.cs",
               "RelativeDocumentMoniker": "Models\\Gestor.cs",
@@ -299,18 +324,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "frmDetalhesTarefa.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmDetalhesTarefa.cs",
               "RelativeDocumentMoniker": "Views\\frmDetalhesTarefa.cs",
               "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmDetalhesTarefa.cs [Design]",
               "RelativeToolTip": "Views\\frmDetalhesTarefa.cs [Design]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T18:30:35.066Z"
+              "WhenOpened": "2025-05-19T18:30:35.066Z",
+              "EditorCaption": " [Design]"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 18,
               "Title": "frmConsultarTarefasConcluidas.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmConsultarTarefasConcluidas.cs",
               "RelativeDocumentMoniker": "Views\\frmConsultarTarefasConcluidas.cs",
@@ -321,18 +347,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
-              "Title": "frmConsultaTarefasEmCurso.cs [Design]",
-              "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmConsultaTarefasEmCurso.cs",
-              "RelativeDocumentMoniker": "Views\\frmConsultaTarefasEmCurso.cs",
-              "ToolTip": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmConsultaTarefasEmCurso.cs [Design]",
-              "RelativeToolTip": "Views\\frmConsultaTarefasEmCurso.cs [Design]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-19T18:30:40.751Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "frmGereTiposTarefas.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmGereTiposTarefas.cs",
               "RelativeDocumentMoniker": "Views\\frmGereTiposTarefas.cs",
@@ -343,7 +358,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "frmGereUtilizadores.cs [Design]",
               "DocumentMoniker": "C:\\Users\\Diogo Mio\\Desktop\\projetoDA\\Views\\frmGereUtilizadores.cs",
               "RelativeDocumentMoniker": "Views\\frmGereUtilizadores.cs",
