@@ -40,6 +40,7 @@ C:\Users\Igor\Desktop\projetoDA-master\bin\Debug\EntityFramework.SqlServer.dll
 C:\Users\Igor\Desktop\projetoDA-master\bin\Debug\EntityFramework.xml
 C:\Users\Igor\Desktop\projetoDA-master\bin\Debug\EntityFramework.SqlServer.xml
 C:\Users\Igor\Desktop\projetoDA-master\obj\Debug\iTasks.csproj.Up2Date
+<<<<<<< HEAD
 C:\Users\IPL\Desktop\IPL\DA\ProjetoDA\bin\Debug\iTasks.exe.config
 C:\Users\IPL\Desktop\IPL\DA\ProjetoDA\bin\Debug\iTasks.exe
 C:\Users\IPL\Desktop\IPL\DA\ProjetoDA\bin\Debug\iTasks.pdb
@@ -61,3 +62,6 @@ C:\Users\IPL\Desktop\IPL\DA\ProjetoDA\obj\Debug\iTasks.csproj.CoreCompileInputs.
 C:\Users\IPL\Desktop\IPL\DA\ProjetoDA\obj\Debug\iTasks.csproj.Up2Date
 C:\Users\IPL\Desktop\IPL\DA\ProjetoDA\obj\Debug\iTasks.exe
 C:\Users\IPL\Desktop\IPL\DA\ProjetoDA\obj\Debug\iTasks.pdb
+=======
+C:\Users\Diogo Mio\Desktop\projetoDA\obj\Debug\iTasks.exe.config
+>>>>>>> origin/master
