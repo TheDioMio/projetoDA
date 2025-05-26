@@ -258,5 +258,19 @@ namespace iTasks
                 //POPUP
             }
         }
+
+        private void tarefasTerminadasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConsultarTarefasConcluidas frm = new frmConsultarTarefasConcluidas();
+           
+            frm.ShowDialog();
+        }
+
+        private void tarefasEmCursoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmConsultaTarefasEmCurso frm = new frmConsultaTarefasEmCurso();
+
+            frm.ShowDialog();
+        }
     }
 }

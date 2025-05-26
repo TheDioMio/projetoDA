@@ -157,6 +157,10 @@ namespace iTasks.Controllers
         {
             return Contexto.Tarefas
                   .Where(tarefa => tarefa.EstadoAtual == EstadoAtual.Doing)
+                  .Include(t => t.TipoTarefa)
+                  .Include(t => t.Programador)
+                  .Include(t => t.Gestor)
+                  .Include(t => t.Projeto)
                   .ToList();
         }
 
@@ -165,6 +169,10 @@ namespace iTasks.Controllers
         {
             return Contexto.Tarefas
                   .Where(tarefa => tarefa.EstadoAtual == EstadoAtual.Done)
+                  .Include(t => t.TipoTarefa)
+                  .Include(t => t.Programador)
+                  .Include(t => t.Gestor)
+                  .Include(t => t.Projeto)
                   .ToList();
         }
     }
