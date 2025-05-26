@@ -60,5 +60,13 @@ namespace iTasks
             this.Hide();
             kanban.Show();
         }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e) 
+        {
+            if (e.KeyCode == Keys.Enter) //se o user clicou na tecla ENTER:
+            {
+                btLogin_Click(sender, e);
+            }
+        }
     }
 }

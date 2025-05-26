@@ -25,35 +25,106 @@ namespace iTasks
         public frmKanban(Utilizador userLogado)
         {
             InitializeComponent();
+            //Tarefa novaTarefa = new Tarefa("Testesla", EstadoAtual.ToDo);
+            //controller.Adicionar(novaTarefa);
             labelBemVindo.Text = $"Bem-vindo, {userLogado.Username}";
             CarregarTarefas();
         }
 
-        private void btSetDoing_Click(object sender, EventArgs e)
+        private void btSetDoing_Click(object sender, EventArgs e) //BTN AVANCAR TAREFA
         {
-            Tarefa tarefaSelecionada = lstTodo.SelectedItem as Tarefa;
-            controller.AvancarTarefa(tarefaSelecionada);
+            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
+            switch (tarefaSelecionada.EstadoAtual)
+            {
+                case EstadoAtual.ToDo:
+                    controller.AvancarTarefa(tarefaSelecionada);
+                    CarregarTarefas();
+                break;
 
-            //Atualizar as listas depois de mudar o estado da tarefa
-            CarregarTarefas();
+                case EstadoAtual.Doing:
+                    MessageBox.Show(
+                            "ERRO: Está a tentar avançar uma tarefa que já está em Doing!",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                break;
+
+                case EstadoAtual.Done:
+                    MessageBox.Show(
+                            "ERRO: Está a tentar avançar uma tarefa que já terminou!",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                break;
+
+                default:
+                    MessageBox.Show("Estado desconhecido!");
+                break;
+            }
         }
 
-        private void btSetTodo_Click(object sender, EventArgs e)
+        private void btSetTodo_Click(object sender, EventArgs e) //BTN REINICIAR TAREFA
         {
-            Tarefa tarefaSelecionada = lstDoing.SelectedItem as Tarefa;
-            controller.RetrocederTarefa(tarefaSelecionada);
+            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
+            switch (tarefaSelecionada.EstadoAtual)
+            {
+                case EstadoAtual.ToDo:
+                    MessageBox.Show(
+                            "ERRO: Impossível reiniciar uma tarefa em ToDo!",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                break;
 
-            //Atualizar as listas depois de se mudar o estado da tarefa
-            CarregarTarefas();
+                case EstadoAtual.Doing:
+                    controller.RetrocederTarefa(tarefaSelecionada);
+                    CarregarTarefas();
+                break;
+
+                case EstadoAtual.Done:
+                    MessageBox.Show(
+                            "ERRO: Está a tentar reiniciar uma tarefa que já foi dada como terminada.",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                break;
+
+                default:
+                    MessageBox.Show("Estado desconhecido!");
+                break;
+            }
         }
 
-        private void btSetDone_Click(object sender, EventArgs e)
+        private void btSetDone_Click(object sender, EventArgs e) //BTN TERMINAR TAREFA
         {
-            Tarefa tarefaSelecionada = lstDoing.SelectedItem as Tarefa;
-            controller.AvancarTarefa(tarefaSelecionada);
+            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
+            switch (tarefaSelecionada.EstadoAtual)
+            {
+                case EstadoAtual.ToDo:
+                    MessageBox.Show(
+                            "ERRO: Está a tentar terminar uma tarefa que ainda não foi iniciada!",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                break;
 
-            //Atualizar as listas depois de se mudar o estado da tarefa
-            CarregarTarefas();
+                case EstadoAtual.Doing:
+                    controller.AvancarTarefa(tarefaSelecionada);
+                    CarregarTarefas();
+                break;
+
+                case EstadoAtual.Done: //PQ É QUE NA PRIMEIRA VEZ, DÁ PARA FAZER ISTO, E DPS É QUE APARECE O AVISO?
+                    MessageBox.Show(
+                            "ERRO: Está a tentar terminar uma tarefa que já foi dada como terminada.",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Error);
+                break;
+
+                default:
+                    MessageBox.Show("Estado desconhecido!");
+                    break;
+            }
         }
 
 
@@ -76,5 +147,55 @@ namespace iTasks
             lstDoing.Items.AddRange(tarefasDoing.ToArray());
             lstDone.Items.AddRange(tarefasDone.ToArray());
         }
+
+        public Tarefa verOndeEstaTarefaSelecionada()
+        {
+            if(lstTodo.SelectedItem as Tarefa != null)
+            {
+                Tarefa tarefaSelecionada = lstTodo.SelectedItem as Tarefa;
+                return tarefaSelecionada;
+            } else if(lstDoing.SelectedItem as Tarefa != null)
+            {
+                Tarefa tarefaSelecionada = lstDoing.SelectedItem as Tarefa;
+                return tarefaSelecionada;
+            } else if(lstDone.SelectedItem as Tarefa != null)
+            {
+                Tarefa tarefaSelecionada = lstDone.SelectedItem as Tarefa;
+                return tarefaSelecionada;
+            } else 
+            {
+                return null;
+            }
+
+        }
+
+        //IMPEDIR QUE O USER SELECIONE TAREFAS SIMULTÂNEAS
+        private void lstTodo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstTodo.SelectedIndex != -1)
+            {
+                lstDoing.ClearSelected();
+                lstDone.ClearSelected();
+            }
+        }
+
+        private void lstDoing_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstDoing.SelectedIndex != -1)
+            {
+                lstTodo.ClearSelected();
+                lstDone.ClearSelected();
+            }
+        }
+
+        private void lstDone_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lstDone.SelectedIndex != -1)
+            {
+                lstTodo.ClearSelected();
+                lstDoing.ClearSelected();
+            }
+        }
+        //IMPEDIR QUE O USER SELECIONE TAREFAS SIMULTÂNEAS
     }
 }

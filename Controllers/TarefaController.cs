@@ -29,6 +29,14 @@ namespace iTasks.Controllers
                     case EstadoAtual.Doing:
                         tarefa.EstadoAtual = EstadoAtual.Done;
                         //FALTA VALIDAÇÕES DOS REQUESITOS PARA PASSAR DE DOING -> DONE
+                        if(tarefa.EstadoAtual == EstadoAtual.ToDo)
+                        {
+                            MessageBox.Show(
+                            "ERRO: Tarefa já está concluída",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                        }
                         break;
 
                     case EstadoAtual.Done:
