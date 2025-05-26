@@ -50,6 +50,7 @@
             this.btNova = new System.Windows.Forms.Button();
             this.labelBemVindo = new System.Windows.Forms.Label();
             this.btPrevisao = new System.Windows.Forms.Button();
+            this.btLogout = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -270,12 +271,24 @@
             this.btPrevisao.TabIndex = 10;
             this.btPrevisao.Text = "Ver Previsão de Conclusão";
             this.btPrevisao.UseVisualStyleBackColor = true;
+            this.btPrevisao.Click += new System.EventHandler(this.btPrevisao_Click);
+            // 
+            // btLogout
+            // 
+            this.btLogout.Location = new System.Drawing.Point(1161, 618);
+            this.btLogout.Name = "btLogout";
+            this.btLogout.Size = new System.Drawing.Size(75, 28);
+            this.btLogout.TabIndex = 11;
+            this.btLogout.Text = "Logout";
+            this.btLogout.UseVisualStyleBackColor = true;
+            this.btLogout.Click += new System.EventHandler(this.btLogout_Click);
             // 
             // frmKanban
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1257, 661);
+            this.Controls.Add(this.btLogout);
             this.Controls.Add(this.btPrevisao);
             this.Controls.Add(this.labelBemVindo);
             this.Controls.Add(this.btNova);
@@ -290,6 +303,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmKanban";
             this.Text = "Kanban";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmKanban_FormClosed);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox3.ResumeLayout(false);
@@ -324,5 +338,6 @@
         private System.Windows.Forms.Button btNova;
         private System.Windows.Forms.Label labelBemVindo;
         private System.Windows.Forms.Button btPrevisao;
+        private System.Windows.Forms.Button btLogout;
     }
 }

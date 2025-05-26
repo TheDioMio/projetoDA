@@ -19,15 +19,14 @@ namespace iTasks
         private Utilizador _user;
         public iTasksContexto Contexto = new iTasksContexto();
         public TarefaController controller = new TarefaController();
-        private List<Tarefa> tarefasToDo;
-        private List<Tarefa> tarefasDoing;
-        private List<Tarefa> tarefasDone;
         public frmKanban(Utilizador userLogado)
         {
             InitializeComponent();
             Contexto = new iTasksContexto();
 
+
             _user = userLogado;
+
 
             //Grisa o menu de gestão de users se o utilizador não for gestor. (SE FOR PROGRAMADOR)
             if (_user is Gestor)
@@ -141,9 +140,9 @@ namespace iTasks
         public void CarregarTarefas()
         {
             //Separação das tarefas por estados
-            var tarefasToDo = Contexto.Tarefas.Where(tarefa => tarefa.EstadoAtual == EstadoAtual.ToDo).ToList();
-            var tarefasDoing = Contexto.Tarefas.Where(tarefa => tarefa.EstadoAtual == EstadoAtual.Doing).ToList();
-            var tarefasDone = Contexto.Tarefas.Where(tarefa => tarefa.EstadoAtual == EstadoAtual.Done).ToList();
+            var tarefasToDo = controller.ObterTarefasToDo();
+            var tarefasDoing = controller.ObterTarefasDoing();
+            var tarefasDone = controller.ObterTarefasDone();
 
             //Limpar os items que possam estar na list no início
             lstTodo.Items.Clear();
@@ -227,6 +226,37 @@ namespace iTasks
         {
             frmGereTiposTarefas gereTiposTarefas = new frmGereTiposTarefas();
             gereTiposTarefas.ShowDialog();
+        }
+
+        private void btLogout_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void frmKanban_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if(DialogResult == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+        }
+
+        private void btPrevisao_Click(object sender, EventArgs e)
+        {
+            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
+
+            if(tarefaSelecionada == null)
+            {
+                MessageBox.Show(
+                            "AVISO: Selecione uma tarefa para conseguir ver a sua previsão de conclusão.",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                return;
+            } else {
+                //POPUP
+            }
         }
     }
 }

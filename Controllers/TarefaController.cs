@@ -143,5 +143,29 @@ namespace iTasks.Controllers
             Contexto.Tarefas.Add(tarefa);
             Contexto.SaveChanges();
         }
+
+        //Filtrar tarefas em To-Do
+        public List<Tarefa> ObterTarefasToDo()
+        {
+            return Contexto.Tarefas
+                  .Where(tarefa => tarefa.EstadoAtual == EstadoAtual.ToDo)
+                  .ToList();
+        }
+
+        //Filtrar tarefas em Doing
+        public List<Tarefa> ObterTarefasDoing()
+        {
+            return Contexto.Tarefas
+                  .Where(tarefa => tarefa.EstadoAtual == EstadoAtual.Doing)
+                  .ToList();
+        }
+
+        //Filtrar tarefas em Done
+        public List<Tarefa> ObterTarefasDone()
+        {
+            return Contexto.Tarefas
+                  .Where(tarefa => tarefa.EstadoAtual == EstadoAtual.Done)
+                  .ToList();
+        }
     }
 }

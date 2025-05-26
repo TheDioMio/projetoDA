@@ -79,7 +79,8 @@ namespace iTasks
 
             var kanban = new frmKanban(userLogado);
             this.Hide();
-            kanban.Show();
+            kanban.ShowDialog();
+            this.Show();
         }
 
         private void txtPassword_KeyDown_1(object sender, KeyEventArgs e)
