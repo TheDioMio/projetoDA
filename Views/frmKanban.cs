@@ -16,7 +16,7 @@ namespace iTasks
 {
     public partial class frmKanban : Form
     {
-        private Utilizador _user;
+        public Utilizador _user;
         public iTasksContexto Contexto = new iTasksContexto();
         public TarefaController controller = new TarefaController();
         public frmKanban(Utilizador userLogado)
@@ -39,10 +39,12 @@ namespace iTasks
 
         private void btSetDoing_Click_1(object sender, EventArgs e) //BTN AVANCAR TAREFA
         {
+            var userLogado = _user;
             Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
             switch (tarefaSelecionada.EstadoAtual)
             {
                 case EstadoAtual.ToDo:
+                    if(PodePassarParaDoing(tarefaSelecionada, userLogado, ) == true)
                     controller.AvancarTarefa(tarefaSelecionada);
                     CarregarTarefas();
                     break;
@@ -68,6 +70,51 @@ namespace iTasks
                     break;
             }
         }
+
+        public bool PodePassarParaDoing(Tarefa tarefaSelecionada, Utilizador programadorAVerificar, List<Tarefa> tarefasDoProgramador)
+        {
+            Tarefa tarefaMaxOrdem = controller.ObterMaiorOrdemTarefa(programadorAVerificar, tarefasDoProgramador, "todo");
+
+            if (tarefaSelecionada == null || tarefaSelecionada.Programador.Id != programadorAVerificar.Id) { //FLAG 1
+                return false;
+                } else if (tarefaSelecionada.EstadoAtual != EstadoAtual.ToDo) { //FLAG 2
+                    return false;
+                    } else if (tarefaMaxOrdem.OrdemExecucao > 2) { //FLAG 3
+                        return false;
+                        } else {
+                            return true;
+                        }
+        }
+
+        /*Validações a fazer para passar de ToDo para Doing:
+            1. A tarefa tem de pertencer ao Programador que está logado
+                (CADA PROGRAMADOR SÓ PODE MOVIMENTAR AS SUAS TAREFAS),
+            2. O programador só pode ter no mínimo 2 tarefas no "Doing" ao msm tempo,
+            3. A tarefa tem de estar na ordem de execução correta
+                (1, só depois 2, etc etc etc)*/
+
+        /*Validações a fazer para passar de Doing para Done:
+            1. A tarefa tem de pertencer ao Programador que está logado,
+            2. A tarefa tem de estar no estado Doing,
+            3. A tarefa tem de ser a próxima na ordem de execução*/
+
+        /*OBS IMPORTANTES:
+         Gestor não pode atribuir duas tarefas com a mesma ordem a um programador
+        As datas reais de início e fim são automaticamente atualizadasw:
+        DATA DE INICIO É QUANDO A TAREFA PASSA PARA DOING,
+        DATA DE FIM QUANDO PASSA PARA DONE.*/
+
+
+
+
+
+
+
+
+
+
+
+
 
         private void btSetTodo_Click_1(object sender, EventArgs e) //BTN REINICIAR TAREFA
         {
