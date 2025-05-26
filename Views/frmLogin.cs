@@ -17,12 +17,12 @@ namespace iTasks
     {
         public iTasksContexto Contexto = new iTasksContexto();
         //Dar link do frmlogin à base de dados
-        public UtilizadorController contexto = new UtilizadorController(); 
+        public UtilizadorController contexto = new UtilizadorController();
         public frmLogin()
         {
 
             InitializeComponent();
-          
+
         }
 
         private void btLogin_Click(object sender, EventArgs e)
@@ -78,6 +78,14 @@ namespace iTasks
             var kanban = new frmKanban(user);
             this.Hide();
             kanban.Show();
+        }
+
+        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) //se o user clicou na tecla ENTER:
+            {
+                btLogin_Click(sender, e);
+            }
         }
     }
 }
