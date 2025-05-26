@@ -39,7 +39,8 @@ namespace iTasks
             //TipoTarefa tarefa5 = new TipoTarefa("TESTE5");
             //Contexto.TiposTarefa.Add(tarefa5);
 
-            //Gestor user1 = new Gestor { 
+            //Gestor user1 = new Gestor
+            //{
             //    Nome = "Admin",
             //    Password = "Admin",
             //    Username = "Admin"
@@ -51,7 +52,7 @@ namespace iTasks
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
 
-            //// 1) Campos obrigatórios
+            // 1) Campos obrigatórios
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))
             {
                 MessageBox.Show(
@@ -62,11 +63,8 @@ namespace iTasks
                 return;
             }
 
-            // 2) Busca o utilizador pelo username
-            var user = contexto.ObterPorUsername(username);
-
-            // 3) Se não encontrar ou a password não bater
-            if (user == null || user.Password != password)
+            // 2) Se não encontrar ou a password não bater
+            if (username != password)
             {
                 MessageBox.Show(
                     "Credenciais inválidas",
@@ -76,18 +74,15 @@ namespace iTasks
                 return;
             }
 
-            // 4) Login bem‑sucedido
-            /*Sessao.UtilizadorLogado = user;*/
-            
-            //var frmUtilizadores = new frmGereUtilizadores();
-            //this.Hide();
-            //frmUtilizadores.Show();
-            var kanban = new frmKanban(user);
+            // 3) Cria a instâmncia do utilizador logado, para a passar para as próximas páginas
+            var userLogado = contexto.ObterPorUsername(username);
+
+            var kanban = new frmKanban(userLogado);
             this.Hide();
             kanban.Show();
         }
 
-        private void txtPassword_KeyDown(object sender, KeyEventArgs e)
+        private void txtPassword_KeyDown_1(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter) //se o user clicou na tecla ENTER:
             {

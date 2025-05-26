@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -37,7 +38,7 @@ namespace iTasks
             CarregarTarefas();
         }
 
-        private void btSetDoing_Click(object sender, EventArgs e) //BTN AVANCAR TAREFA
+        private void btSetDoing_Click_1(object sender, EventArgs e) //BTN AVANCAR TAREFA
         {
             Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
             switch (tarefaSelecionada.EstadoAtual)
@@ -69,25 +70,24 @@ namespace iTasks
             }
         }
 
-        private void btSetTodo_Click(object sender, EventArgs e) //BTN REINICIAR TAREFA
+        private void btSetTodo_Click_1(object sender, EventArgs e) //BTN REINICIAR TAREFA
         {
-            utilizadoresToolStripMenuItem.Enabled = false;
+            //utilizadoresToolStripMenuItem.Enabled = false;
             Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
             switch (tarefaSelecionada.EstadoAtual)
             {
-                
                 case EstadoAtual.ToDo:
                     MessageBox.Show(
                             "ERRO: Impossível reiniciar uma tarefa em ToDo!",
                             "Aviso",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                    break;
+                break;
 
                 case EstadoAtual.Doing:
                     controller.RetrocederTarefa(tarefaSelecionada);
                     CarregarTarefas();
-                    break;
+                break;
 
                 case EstadoAtual.Done:
                     MessageBox.Show(
@@ -95,11 +95,11 @@ namespace iTasks
                             "Aviso",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                    break;
+                break;
 
                 default:
                     MessageBox.Show("Estado desconhecido!");
-                    break;
+                break;
             }
         }
 
@@ -191,8 +191,10 @@ namespace iTasks
             var detalhesTarefa = new frmDetalhesTarefa(_user);
             detalhesTarefa.Show();
         }
+
+
         //IMPEDIR QUE O USER SELECIONE TAREFAS SIMULTÂNEAS
-        private void lstTodo_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstTodo_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (lstTodo.SelectedIndex != -1)
             {
@@ -201,7 +203,7 @@ namespace iTasks
             }
         }
 
-        private void lstDoing_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstDoing_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (lstDoing.SelectedIndex != -1)
             {
@@ -210,7 +212,7 @@ namespace iTasks
             }
         }
 
-        private void lstDone_SelectedIndexChanged(object sender, EventArgs e)
+        private void lstDone_SelectedIndexChanged_1(object sender, EventArgs e)
         {
             if (lstDone.SelectedIndex != -1)
             {
@@ -218,12 +220,13 @@ namespace iTasks
                 lstDoing.ClearSelected();
             }
         }
+        //IMPEDIR QUE O USER SELECIONE TAREFAS SIMULTÂNEAS
+
 
         private void gerirTiposDeTarefasToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmGereTiposTarefas gereTiposTarefas = new frmGereTiposTarefas();
             gereTiposTarefas.ShowDialog();
         }
-        //IMPEDIR QUE O USER SELECIONE TAREFAS SIMULTÂNEAS
     }
 }
