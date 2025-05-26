@@ -23,7 +23,7 @@ namespace iTasks.Models
             Username = username;
             Password = password;
             Nome = nome;
-            
+                     
 
         }
 

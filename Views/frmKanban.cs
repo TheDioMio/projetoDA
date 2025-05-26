@@ -218,6 +218,12 @@ namespace iTasks
                 lstDoing.ClearSelected();
             }
         }
+
+        private void gerirTiposDeTarefasToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmGereTiposTarefas gereTiposTarefas = new frmGereTiposTarefas();
+            gereTiposTarefas.ShowDialog();
+        }
         //IMPEDIR QUE O USER SELECIONE TAREFAS SIMULTÂNEAS
     }
 }
