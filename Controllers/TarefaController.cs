@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace iTasks.Controllers
 {
@@ -175,5 +176,34 @@ namespace iTasks.Controllers
                   .Include(t => t.Projeto)
                   .ToList();
         }
+
+        // Exportar tarefas concluidas para .csv
+
+        public void ExportarTarefasConcluidasParaCsv(string caminhoFicheiro)
+        {
+            var tarefas = ObterTarefasDone();
+
+            var sb = new StringBuilder();
+
+            // Cabeçalho correto
+            sb.AppendLine("Programador,Descricao,DataPrevistaInicio,DataPrevista,TipoTarefa,DataRealInicio,DataRealFim");
+
+            foreach (var tarefa in tarefas)
+            {
+                sb.AppendLine(
+                    $"\"{tarefa.Programador?.Nome}\"," +
+                    $"\"{tarefa.Descricao}\"," +
+                    $"{(tarefa.DataPrevistaInicio is DateTime dtPrevIni ? dtPrevIni.ToString("yyyy-MM-dd") : "")}," +
+                    $"{(tarefa.DataPrevistaFim is DateTime dtPrev ? dtPrev.ToString("yyyy-MM-dd") : "")}," +
+                    $"\"{tarefa.TipoTarefa?.Nome}\"," +
+                    $"{(tarefa.DataRealInicio is DateTime dtRealIni ? dtRealIni.ToString("yyyy-MM-dd") : "")}," +
+                    $"{(tarefa.DataRealFim is DateTime dtRealFim ? dtRealFim.ToString("yyyy-MM-dd") : "")}"
+                );
+            }
+
+            File.WriteAllText(caminhoFicheiro, sb.ToString(), Encoding.UTF8);
+        }
+
+
     }
 }

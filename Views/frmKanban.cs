@@ -36,7 +36,7 @@ namespace iTasks
             labelBemVindo.Text = $"Bem-vindo, {userLogado.Username}";
             CarregarTarefas();
         }
-
+        
         private void btSetDoing_Click_1(object sender, EventArgs e) //BTN AVANCAR TAREFA
         {
             var userLogado = _user;
@@ -71,6 +71,8 @@ namespace iTasks
             }
         }
 
+        
+      
         public bool PodePassarParaDoing(Tarefa tarefaSelecionada, Utilizador programadorAVerificar, List<Tarefa> tarefasDoProgramador)
         {
             Tarefa tarefaMaxOrdem = controller.ObterMaiorOrdemTarefa(programadorAVerificar, tarefasDoProgramador, "todo");
@@ -85,6 +87,8 @@ namespace iTasks
                             return true;
                         }
         }
+
+        
 
         /*Validações a fazer para passar de ToDo para Doing:
             1. A tarefa tem de pertencer ao Programador que está logado
@@ -318,6 +322,27 @@ namespace iTasks
             frmConsultaTarefasEmCurso frm = new frmConsultaTarefasEmCurso();
 
             frm.ShowDialog();
+        }
+
+        private void exportarParaCSVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
+            saveFileDialog.Filter = "Ficheiros CSV (*.csv)|*.csv";
+            saveFileDialog.Title = "Guardar tarefas concluídas como CSV";
+            saveFileDialog.FileName = "tarefas_concluidas.csv";
+
+            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    controller.ExportarTarefasConcluidasParaCsv(saveFileDialog.FileName);
+                    MessageBox.Show("Exportação concluída com sucesso!", "Sucesso");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Erro ao exportar: " + ex.Message, "Erro");
+                }
+            }
         }
     }
 }
