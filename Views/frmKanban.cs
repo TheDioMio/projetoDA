@@ -1,4 +1,4 @@
-﻿using iTasks.Data;
+using iTasks.Data;
 using iTasks.Models;
 using iTasks.Controllers;
 using System;
@@ -39,36 +39,36 @@ namespace iTasks
         
         private void btSetDoing_Click_1(object sender, EventArgs e) //BTN AVANCAR TAREFA
         {
-            var userLogado = _user;
-            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
-            switch (tarefaSelecionada.EstadoAtual)
-            {
-                case EstadoAtual.ToDo:
-                    if(PodePassarParaDoing(tarefaSelecionada, userLogado, ) == true)
-                    controller.AvancarTarefa(tarefaSelecionada);
-                    CarregarTarefas();
-                    break;
+            //var userLogado = _user;
+            //Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
+            //switch (tarefaSelecionada.EstadoAtual)
+            //{
+            //    case EstadoAtual.ToDo:
+            //        if(PodePassarParaDoing(tarefaSelecionada, userLogado, ) == true)
+            //        controller.AvancarTarefa(tarefaSelecionada);
+            //        CarregarTarefas();
+            //        break;
 
-                case EstadoAtual.Doing:
-                    MessageBox.Show(
-                            "ERRO: Está a tentar avançar uma tarefa que já está em Doing!",
-                            "Aviso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    break;
+            //    case EstadoAtual.Doing:
+            //        MessageBox.Show(
+            //                "ERRO: Está a tentar avançar uma tarefa que já está em Doing!",
+            //                "Aviso",
+            //                MessageBoxButtons.OK,
+            //                MessageBoxIcon.Error);
+            //        break;
 
-                case EstadoAtual.Done:
-                    MessageBox.Show(
-                            "ERRO: Está a tentar avançar uma tarefa que já terminou!",
-                            "Aviso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    break;
+            //    case EstadoAtual.Done:
+            //        MessageBox.Show(
+            //                "ERRO: Está a tentar avançar uma tarefa que já terminou!",
+            //                "Aviso",
+            //                MessageBoxButtons.OK,
+            //                MessageBoxIcon.Error);
+            //        break;
 
-                default:
-                    MessageBox.Show("Estado desconhecido!");
-                    break;
-            }
+            //    default:
+            //        MessageBox.Show("Estado desconhecido!");
+            //        break;
+            //}
         }
 
         
@@ -77,16 +77,23 @@ namespace iTasks
         {
             Tarefa tarefaMaxOrdem = controller.ObterMaiorOrdemTarefa(programadorAVerificar, tarefasDoProgramador, "todo");
 
-            if (tarefaSelecionada == null || tarefaSelecionada.Programador.Id != programadorAVerificar.Id) { //FLAG 1
-                return false;
-                } else if (tarefaSelecionada.EstadoAtual != EstadoAtual.ToDo) { //FLAG 2
-                    return false;
-                    } else if (tarefaMaxOrdem.OrdemExecucao > 2) { //FLAG 3
-                        return false;
-                        } else {
-                            return true;
-                        }
-        }
+        //    if (tarefaSelecionada == null || tarefaSelecionada.Programador.Id != programadorAVerificar.Id)
+        //    { //FLAG 1
+        //        return false;
+        //    }
+        //    else if (tarefaSelecionada.EstadoAtual != EstadoAtual.ToDo)
+        //    { //FLAG 2
+        //        return false;
+        //    }
+        //    else if (tarefaMaxOrdem.OrdemExecucao > 2)
+        //    { //FLAG 3
+        //        return false;
+        //    }
+        //    else
+        //    {
+        //        return true;
+        //    }
+        //}
 
         
 

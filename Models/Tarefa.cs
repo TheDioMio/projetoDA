@@ -15,8 +15,8 @@ namespace iTasks.Models
         public string Descricao { get; set; }
    
         public TipoTarefa TipoTarefa { get; set; }
-        public Utilizador Gestor { get; set; }
-        public Utilizador Programador { get; set; }
+        public Gestor Gestor { get; set; }
+        public Programador Programador { get; set; }
         
         public Projeto Projeto { get; set; }
         public EstadoAtual EstadoAtual { get; set; }

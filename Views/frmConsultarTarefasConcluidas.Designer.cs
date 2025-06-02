@@ -65,6 +65,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmConsultarTarefasConcluidas";
             this.Text = "frmConsultarTarefasConcluidas";
+            this.Load += new System.EventHandler(this.frmConsultarTarefasConcluidas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.gvTarefasConcluidas)).EndInit();
             this.ResumeLayout(false);
 

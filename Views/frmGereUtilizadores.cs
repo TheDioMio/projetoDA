@@ -36,7 +36,9 @@ namespace iTasks
             cbDepartamento.DataSource = Enum.GetValues(typeof(Departamento));
             cbNivelProg.DataSource = Enum.GetValues(typeof(NivelExperiencia));
             updateListGestores();
-            updateListProgramadores();           
+            updateListProgramadores();
+
+           
         }
 
 
@@ -204,7 +206,7 @@ namespace iTasks
                 string name = txtNomeGestor.Text;
                 string userName = txtUsernameGestor.Text;
                 string pass = txtPasswordGestor.Text;
-                 Departamento departamento = (Departamento)cbDepartamento.SelectedIndex;
+                Departamento departamento = (Departamento)cbDepartamento.SelectedIndex;
 
                  
                 Gestor user = listaGestores[lstListaGestores.SelectedIndex];
@@ -253,20 +255,23 @@ namespace iTasks
         }
         private void btApagarGestor_Click(object sender, EventArgs e)
         {
-            Gestor user = listaGestores[lstListaGestores.SelectedIndex];
-            if (user != null)
+            if (lstListaGestores.SelectedIndex >= 0)
             {
-                DialogResult resultado = MessageBox.Show("Deseja apagar o utilizador selecionado?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                Gestor user = listaGestores[lstListaGestores.SelectedIndex];
+                if (user != null)
+                {
+                    DialogResult resultado = MessageBox.Show("Deseja apagar o utilizador selecionado?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (resultado == DialogResult.Yes)
-                {
-                    userController.Eliminar(user.Id);
-                    updateListGestores();
-                    limparCampos();
-                }
-                else
-                {
-                    return;
+                    if (resultado == DialogResult.Yes)
+                    {
+                        userController.Eliminar(user.Id);
+                        updateListGestores();
+                        limparCampos();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
         }
@@ -365,20 +370,23 @@ namespace iTasks
 
         private void btApagarProgramador_Click(object sender, EventArgs e)
         {
-            Programador user = listaProgramadores[lstListaProgramadores.SelectedIndex];
-            if (user != null)
+            if (lstListaProgramadores.SelectedIndex >= 0)
             {
-                DialogResult resultado = MessageBox.Show("Deseja apagar o utilizador selecionado?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                Programador user = listaProgramadores[lstListaProgramadores.SelectedIndex];
+                if (user != null)
+                {
+                    DialogResult resultado = MessageBox.Show("Deseja apagar o utilizador selecionado?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                if (resultado == DialogResult.Yes)
-                {
-                    userController.Eliminar(user.Id);
-                    updateListProgramadores();
-                    limparCamposProgramador();
-                }
-                else
-                {
-                    return;
+                    if (resultado == DialogResult.Yes)
+                    {
+                        userController.Eliminar(user.Id);
+                        updateListProgramadores();
+                        limparCamposProgramador();
+                    }
+                    else
+                    {
+                        return;
+                    }
                 }
             }
         }

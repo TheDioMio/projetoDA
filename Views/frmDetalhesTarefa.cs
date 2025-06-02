@@ -21,14 +21,14 @@ namespace iTasks
         public UtilizadorController userController = new UtilizadorController();
         public TarefaController tarefaController = new TarefaController();
 
-        public frmDetalhesTarefa(Utilizador gestor)
+        public frmDetalhesTarefa(Utilizador user)
         {
             InitializeComponent();
             listaProgramadores = userController.GetProgramadores();
             cbProgramador.DataSource = listaProgramadores;
             listaTipoTarefas = tarefaController.getTipoTarefas();
             cbTipoTarefa.DataSource = listaTipoTarefas;
-            _gestor = gestor;
+            _gestor = user;
         }
 
         public bool validaCamposTarefa()
@@ -109,9 +109,9 @@ namespace iTasks
                 EstadoAtual estado = EstadoAtual.ToDo;
                 DateTime dataPrevInicio = dtInicio.Value;
                 DateTime dataPrevFim = dtFim.Value;
-                Utilizador gestor = _gestor;
+                Gestor gestor = _gestor as Gestor;
                 TipoTarefa tipotarefa = listaTipoTarefas[cbTipoTarefa.SelectedIndex];
-                Utilizador programador = listaProgramadores[cbProgramador.SelectedIndex];
+                Programador programador = listaProgramadores[cbProgramador.SelectedIndex];
 
                 Tarefa tarefa = new Tarefa();
 

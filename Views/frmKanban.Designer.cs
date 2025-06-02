@@ -1,4 +1,4 @@
-﻿namespace iTasks
+namespace iTasks
 {
     partial class frmKanban
     {
@@ -51,6 +51,8 @@
             this.labelBemVindo = new System.Windows.Forms.Label();
             this.btPrevisao = new System.Windows.Forms.Button();
             this.btLogout = new System.Windows.Forms.Button();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
+            this.logoutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -61,22 +63,18 @@
             // 
             this.lstTodo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstTodo.FormattingEnabled = true;
-            this.lstTodo.ItemHeight = 16;
-            this.lstTodo.Location = new System.Drawing.Point(4, 19);
-            this.lstTodo.Margin = new System.Windows.Forms.Padding(4);
+            this.lstTodo.Location = new System.Drawing.Point(3, 16);
             this.lstTodo.Name = "lstTodo";
-            this.lstTodo.Size = new System.Drawing.Size(395, 516);
+            this.lstTodo.Size = new System.Drawing.Size(296, 419);
             this.lstTodo.TabIndex = 0;
             this.lstTodo.SelectedIndexChanged += new System.EventHandler(this.lstTodo_SelectedIndexChanged_1);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.lstTodo);
-            this.groupBox1.Location = new System.Drawing.Point(16, 71);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox1.Location = new System.Drawing.Point(12, 58);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(403, 539);
+            this.groupBox1.Size = new System.Drawing.Size(302, 438);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "ToDo";
@@ -84,11 +82,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.lstDoing);
-            this.groupBox2.Location = new System.Drawing.Point(427, 68);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox2.Location = new System.Drawing.Point(320, 55);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(403, 543);
+            this.groupBox2.Size = new System.Drawing.Size(302, 441);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Doing";
@@ -97,22 +93,18 @@
             // 
             this.lstDoing.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstDoing.FormattingEnabled = true;
-            this.lstDoing.ItemHeight = 16;
-            this.lstDoing.Location = new System.Drawing.Point(4, 19);
-            this.lstDoing.Margin = new System.Windows.Forms.Padding(4);
+            this.lstDoing.Location = new System.Drawing.Point(3, 16);
             this.lstDoing.Name = "lstDoing";
-            this.lstDoing.Size = new System.Drawing.Size(395, 520);
+            this.lstDoing.Size = new System.Drawing.Size(296, 422);
             this.lstDoing.TabIndex = 0;
             this.lstDoing.SelectedIndexChanged += new System.EventHandler(this.lstDoing_SelectedIndexChanged_1);
             // 
             // groupBox3
             // 
             this.groupBox3.Controls.Add(this.lstDone);
-            this.groupBox3.Location = new System.Drawing.Point(837, 68);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
+            this.groupBox3.Location = new System.Drawing.Point(628, 55);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox3.Size = new System.Drawing.Size(403, 543);
+            this.groupBox3.Size = new System.Drawing.Size(302, 441);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Done";
@@ -121,11 +113,9 @@
             // 
             this.lstDone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstDone.FormattingEnabled = true;
-            this.lstDone.ItemHeight = 16;
-            this.lstDone.Location = new System.Drawing.Point(4, 19);
-            this.lstDone.Margin = new System.Windows.Forms.Padding(4);
+            this.lstDone.Location = new System.Drawing.Point(3, 16);
             this.lstDone.Name = "lstDone";
-            this.lstDone.Size = new System.Drawing.Size(395, 520);
+            this.lstDone.Size = new System.Drawing.Size(296, 422);
             this.lstDone.TabIndex = 0;
             this.lstDone.SelectedIndexChanged += new System.EventHandler(this.lstDone_SelectedIndexChanged_1);
             // 
@@ -138,30 +128,32 @@
             this.listagensToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1257, 28);
+            this.menuStrip1.Padding = new System.Windows.Forms.Padding(4, 2, 0, 2);
+            this.menuStrip1.Size = new System.Drawing.Size(943, 27);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // ficheiroToolStripMenuItem
             // 
             this.ficheiroToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sairToolStripMenuItem,
-            this.exportarParaCSVToolStripMenuItem});
+            this.exportarParaCSVToolStripMenuItem,
+            this.toolStripMenuItem1,
+            this.logoutToolStripMenuItem,
+            this.sairToolStripMenuItem});
             this.ficheiroToolStripMenuItem.Name = "ficheiroToolStripMenuItem";
-            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(68, 23);
             this.ficheiroToolStripMenuItem.Text = "Ficheiro";
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(338, 26);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(304, 24);
             this.sairToolStripMenuItem.Text = "Sair";
             // 
             // exportarParaCSVToolStripMenuItem
             // 
             this.exportarParaCSVToolStripMenuItem.Name = "exportarParaCSVToolStripMenuItem";
-            this.exportarParaCSVToolStripMenuItem.Size = new System.Drawing.Size(338, 26);
+            this.exportarParaCSVToolStripMenuItem.Size = new System.Drawing.Size(304, 24);
             this.exportarParaCSVToolStripMenuItem.Text = "Exportar Tarefas Concluídas para CSV";
             this.exportarParaCSVToolStripMenuItem.Click += new System.EventHandler(this.exportarParaCSVToolStripMenuItem_Click);
             // 
@@ -171,20 +163,20 @@
             this.gerirUtilizadoresToolStripMenuItem,
             this.gerirTiposDeTarefasToolStripMenuItem});
             this.utilizadoresToolStripMenuItem.Name = "utilizadoresToolStripMenuItem";
-            this.utilizadoresToolStripMenuItem.Size = new System.Drawing.Size(160, 24);
+            this.utilizadoresToolStripMenuItem.Size = new System.Drawing.Size(144, 23);
             this.utilizadoresToolStripMenuItem.Text = "Gestão da Aplicação";
             // 
             // gerirUtilizadoresToolStripMenuItem
             // 
             this.gerirUtilizadoresToolStripMenuItem.Name = "gerirUtilizadoresToolStripMenuItem";
-            this.gerirUtilizadoresToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.gerirUtilizadoresToolStripMenuItem.Size = new System.Drawing.Size(208, 24);
             this.gerirUtilizadoresToolStripMenuItem.Text = "Gerir Utilizadores";
             this.gerirUtilizadoresToolStripMenuItem.Click += new System.EventHandler(this.gerirUtilizadoresToolStripMenuItem_Click);
             // 
             // gerirTiposDeTarefasToolStripMenuItem
             // 
             this.gerirTiposDeTarefasToolStripMenuItem.Name = "gerirTiposDeTarefasToolStripMenuItem";
-            this.gerirTiposDeTarefasToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.gerirTiposDeTarefasToolStripMenuItem.Size = new System.Drawing.Size(208, 24);
             this.gerirTiposDeTarefasToolStripMenuItem.Text = "Gerir Tipos de Tarefas";
             this.gerirTiposDeTarefasToolStripMenuItem.Click += new System.EventHandler(this.gerirTiposDeTarefasToolStripMenuItem_Click);
             // 
@@ -194,13 +186,14 @@
             this.tarefasTerminadasToolStripMenuItem,
             this.tarefasEmCursoToolStripMenuItem});
             this.listagensToolStripMenuItem.Name = "listagensToolStripMenuItem";
-            this.listagensToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
+            this.listagensToolStripMenuItem.Size = new System.Drawing.Size(78, 23);
             this.listagensToolStripMenuItem.Text = "Listagens";
             // 
             // tarefasTerminadasToolStripMenuItem
             // 
             this.tarefasTerminadasToolStripMenuItem.Name = "tarefasTerminadasToolStripMenuItem";
             this.tarefasTerminadasToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.tarefasTerminadasToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
             this.tarefasTerminadasToolStripMenuItem.Text = "Tarefas Concluídas";
             this.tarefasTerminadasToolStripMenuItem.Click += new System.EventHandler(this.tarefasTerminadasToolStripMenuItem_Click);
             // 
@@ -208,15 +201,15 @@
             // 
             this.tarefasEmCursoToolStripMenuItem.Name = "tarefasEmCursoToolStripMenuItem";
             this.tarefasEmCursoToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.tarefasEmCursoToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
             this.tarefasEmCursoToolStripMenuItem.Text = "Tarefas em Curso";
             this.tarefasEmCursoToolStripMenuItem.Click += new System.EventHandler(this.tarefasEmCursoToolStripMenuItem_Click);
             // 
             // btSetDoing
             // 
-            this.btSetDoing.Location = new System.Drawing.Point(220, 618);
-            this.btSetDoing.Margin = new System.Windows.Forms.Padding(4);
+            this.btSetDoing.Location = new System.Drawing.Point(165, 502);
             this.btSetDoing.Name = "btSetDoing";
-            this.btSetDoing.Size = new System.Drawing.Size(195, 28);
+            this.btSetDoing.Size = new System.Drawing.Size(146, 23);
             this.btSetDoing.TabIndex = 5;
             this.btSetDoing.Text = "Executar Tarefa >>";
             this.btSetDoing.UseVisualStyleBackColor = true;
@@ -224,10 +217,9 @@
             // 
             // btSetDone
             // 
-            this.btSetDone.Location = new System.Drawing.Point(633, 618);
-            this.btSetDone.Margin = new System.Windows.Forms.Padding(4);
+            this.btSetDone.Location = new System.Drawing.Point(475, 502);
             this.btSetDone.Name = "btSetDone";
-            this.btSetDone.Size = new System.Drawing.Size(192, 28);
+            this.btSetDone.Size = new System.Drawing.Size(144, 23);
             this.btSetDone.TabIndex = 6;
             this.btSetDone.Text = "Terminar Tarefa >>";
             this.btSetDone.UseVisualStyleBackColor = true;
@@ -235,10 +227,9 @@
             // 
             // btSetTodo
             // 
-            this.btSetTodo.Location = new System.Drawing.Point(431, 618);
-            this.btSetTodo.Margin = new System.Windows.Forms.Padding(4);
+            this.btSetTodo.Location = new System.Drawing.Point(323, 502);
             this.btSetTodo.Name = "btSetTodo";
-            this.btSetTodo.Size = new System.Drawing.Size(192, 28);
+            this.btSetTodo.Size = new System.Drawing.Size(144, 23);
             this.btSetTodo.TabIndex = 7;
             this.btSetTodo.Text = "<< Reiniciar Tarefa";
             this.btSetTodo.UseVisualStyleBackColor = true;
@@ -246,10 +237,9 @@
             // 
             // btNova
             // 
-            this.btNova.Location = new System.Drawing.Point(20, 618);
-            this.btNova.Margin = new System.Windows.Forms.Padding(4);
+            this.btNova.Location = new System.Drawing.Point(15, 502);
             this.btNova.Name = "btNova";
-            this.btNova.Size = new System.Drawing.Size(139, 28);
+            this.btNova.Size = new System.Drawing.Size(104, 23);
             this.btNova.TabIndex = 8;
             this.btNova.Text = "Nova Tarefa";
             this.btNova.UseVisualStyleBackColor = true;
@@ -258,19 +248,17 @@
             // labelBemVindo
             // 
             this.labelBemVindo.AutoSize = true;
-            this.labelBemVindo.Location = new System.Drawing.Point(1037, 42);
-            this.labelBemVindo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelBemVindo.Location = new System.Drawing.Point(778, 34);
             this.labelBemVindo.Name = "labelBemVindo";
-            this.labelBemVindo.Size = new System.Drawing.Size(187, 16);
+            this.labelBemVindo.Size = new System.Drawing.Size(149, 13);
             this.labelBemVindo.TabIndex = 9;
             this.labelBemVindo.Text = "Bem vindo: <Nome Utilizador>";
             // 
             // btPrevisao
             // 
-            this.btPrevisao.Location = new System.Drawing.Point(16, 36);
-            this.btPrevisao.Margin = new System.Windows.Forms.Padding(4);
+            this.btPrevisao.Location = new System.Drawing.Point(12, 29);
             this.btPrevisao.Name = "btPrevisao";
-            this.btPrevisao.Size = new System.Drawing.Size(223, 28);
+            this.btPrevisao.Size = new System.Drawing.Size(167, 23);
             this.btPrevisao.TabIndex = 10;
             this.btPrevisao.Text = "Ver Previsão de Conclusão";
             this.btPrevisao.UseVisualStyleBackColor = true;
@@ -286,12 +274,25 @@
             this.btLogout.UseVisualStyleBackColor = true;
             this.btLogout.Click += new System.EventHandler(this.btLogout_Click);
             // 
+            // toolStripMenuItem1
+            // 
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(301, 6);
+            // 
+            // logoutToolStripMenuItem
+            // 
+            this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(304, 24);
+            this.logoutToolStripMenuItem.Text = "Logout";
+            
+            // 
             // frmKanban
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1257, 661);
             this.Controls.Add(this.btLogout);
+            this.ClientSize = new System.Drawing.Size(943, 537);
             this.Controls.Add(this.btPrevisao);
             this.Controls.Add(this.labelBemVindo);
             this.Controls.Add(this.btNova);
@@ -303,7 +304,6 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmKanban";
             this.Text = "Kanban";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmKanban_FormClosed);
@@ -342,5 +342,7 @@
         private System.Windows.Forms.Label labelBemVindo;
         private System.Windows.Forms.Button btPrevisao;
         private System.Windows.Forms.Button btLogout;
+        private System.Windows.Forms.ToolStripSeparator toolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem logoutToolStripMenuItem;
     }
 }

@@ -34,6 +34,14 @@ namespace iTasks.Controllers
         //public List<Utilizador> ObterTodos() => //Obter todos os users com o gestor associado
         //    contexto.Utilizadores.Include(utilizadorEncontrado => utilizadorEncontrado.Gestor).ToList();  // Inclui gestor associado
 
+        public List<Utilizador> ObterProgramadoresDeGestor(Gestor gestor)
+        {
+            return contexto.Programadores()
+                .Where(programador => programador.GestorId == gestor.Id)
+                .ToList();
+        }
+
+
         public Utilizador ObterPorId(int id) => //Encontrar utilizador pelo ID
             contexto.Utilizadores.Find(id);
 
@@ -41,12 +49,12 @@ namespace iTasks.Controllers
             contexto.Utilizadores.FirstOrDefault(utilizadorEncontrado => utilizadorEncontrado.Username == username);
             
 
-        public bool Criar(Utilizador utilizadorEncontrado)
+        public bool Criar(Utilizador utilizador)
         {
             bool flag = false;
             try
             {
-                contexto.Utilizadores.Add(utilizadorEncontrado);
+                contexto.Utilizadores.Add(utilizador);
                 contexto.SaveChanges();
                 flag = true;
             }
