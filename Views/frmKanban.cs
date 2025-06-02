@@ -17,13 +17,11 @@ namespace iTasks
     public partial class frmKanban : Form
     {
         public Utilizador _user;
-        public iTasksContexto Contexto = new iTasksContexto();
         public TarefaController controller = new TarefaController();
         public List<Tarefa> listaTarefas = new List<Tarefa>(); 
         public frmKanban(Utilizador userLogado)
         {
-            InitializeComponent();
-            Contexto = new iTasksContexto();
+            InitializeComponent();           
             _user = userLogado;
             //Grisa o menu de gestão de users se o utilizador não for gestor. (SE FOR PROGRAMADOR)
             if (_user is Gestor)
@@ -92,7 +90,7 @@ namespace iTasks
             var programadorID = controller.GetTarefaComProgramadorId(tarefaSelecionada.Id).Programador.Id;
 
             //FLAG 1 - Ter alguma coisa NULL
-            if (tarefaSelecionada == null || programadorID == null || listaTarefas == null)
+            if (tarefaSelecionada == null || programadorID <0 || listaTarefas == null)
             {
                 MessageBox.Show(
                             "ERRO: Tarefa, programador, ou lista das tarefas está null",

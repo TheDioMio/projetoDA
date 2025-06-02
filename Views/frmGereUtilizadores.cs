@@ -113,7 +113,7 @@ namespace iTasks
             return true;
         }
 
-        public bool validarDadosprogramador()
+        public bool validarDadosProgramador()
         {
 
             string name = txtNomeProg.Text;
@@ -260,6 +260,20 @@ namespace iTasks
                 Gestor user = listaGestores[lstListaGestores.SelectedIndex];
                 if (user != null)
                 {
+                    List<Programador> programadoresDeGestor = userController.ObterProgramadoresDeGestor(listaGestores[lstListaGestores.SelectedIndex]);
+                    if (programadoresDeGestor != null)
+                    {
+                        MessageBox.Show("Não é possivel apagar o Gestor, pois tem Programadores associados!");
+                        return;
+                    }
+
+                    List<Tarefa> tarefasDeGestor = userController.ObterTarefasDeGestor(listaGestores[lstListaGestores.SelectedIndex]);
+                    if (tarefasDeGestor != null)
+                    {
+                        MessageBox.Show("Não é possivel apagar o Gestor, pois tem Tarefas associadas!");
+                        return;
+                    }
+
                     DialogResult resultado = MessageBox.Show("Deseja apagar o utilizador selecionado?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
@@ -308,7 +322,7 @@ namespace iTasks
             NivelExperiencia nivelExperiencia = (NivelExperiencia)cbNivelProg.SelectedIndex;
             Gestor gestor = listaGestores[cbGestorProg.SelectedIndex];
 
-            if (validarDadosprogramador())
+            if (validarDadosProgramador())
             {
 
                 //verificar se o username não existe 
@@ -375,6 +389,14 @@ namespace iTasks
                 Programador user = listaProgramadores[lstListaProgramadores.SelectedIndex];
                 if (user != null)
                 {
+
+                    List<Tarefa> tarefasDeprogramador = userController.ObterTarefasDeProgramador(listaProgramadores[lstListaProgramadores.SelectedIndex]);
+                    if (tarefasDeprogramador != null)
+                    {
+                        MessageBox.Show("Não é possivel apagar o Programador, pois tem Tarefas associadas!");
+                        return;
+                    }
+
                     DialogResult resultado = MessageBox.Show("Deseja apagar o utilizador selecionado?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                     if (resultado == DialogResult.Yes)
@@ -393,7 +415,7 @@ namespace iTasks
 
         private void btAtualizarProgramador_Click(object sender, EventArgs e)
         {
-            if (validarDadosprogramador())
+            if (validarDadosProgramador())
             {
                 int id = int.Parse(txtIdProg.Text);
                 string name = txtNomeProg.Text;

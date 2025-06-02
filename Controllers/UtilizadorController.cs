@@ -42,6 +42,20 @@ namespace iTasks.Controllers
                 .ToList();
         }
 
+        public List<Tarefa> ObterTarefasDeGestor(Gestor gestor)
+        {
+            return contexto.Tarefas
+                .Where(tarefas => tarefas.Gestor.Id == gestor.Id)
+                .ToList();
+        }
+
+        public List<Tarefa> ObterTarefasDeProgramador(Programador programador)
+        {
+            return contexto.Tarefas
+                .Where(tarefas => tarefas.Programador.Id == programador.Id)
+                .ToList();
+        }
+
 
         public Utilizador ObterPorId(int id) => //Encontrar utilizador pelo ID
             contexto.Utilizadores.Find(id);

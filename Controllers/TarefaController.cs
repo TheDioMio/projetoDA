@@ -28,7 +28,7 @@ namespace iTasks.Controllers
          
          */
 
-        iTasksContexto contexto = new iTasksContexto(); //Criação de variável global para aceder ao contexto.
+        //iTasksContexto contexto = new iTasksContexto(); //Criação de variável global para aceder ao contexto.
         iTasksContexto Contexto = new iTasksContexto(); //Criação de variável global para aceder ao contexto.
 
         public bool Criar(Tarefa tarefa)
@@ -36,8 +36,10 @@ namespace iTasks.Controllers
             bool flag = false;
             try
             {
-                contexto.Tarefas.Add(tarefa);
-                contexto.SaveChanges();
+                Contexto.Utilizadores.Attach(tarefa.Programador);
+                Contexto.Utilizadores.Attach(tarefa.Gestor);
+                Contexto.Tarefas.Add(tarefa);
+                Contexto.SaveChanges();
                 flag = true;
             }
             catch (Exception)
@@ -49,21 +51,21 @@ namespace iTasks.Controllers
 
         public void Atualizar(Tarefa tarefa)
         {
-            contexto.Entry(tarefa).State = EntityState.Modified;
-            contexto.SaveChanges();
+            Contexto.Entry(tarefa).State = EntityState.Modified;
+            Contexto.SaveChanges();
         }
 
         public Tarefa ObterPorId(int id) => //Encontrar utilizador pelo ID
-            contexto.Tarefas.Find(id);
+            Contexto.Tarefas.Find(id);
 
         public List<Tarefa> GetTarefas()
         {
-            return contexto.Tarefas.ToList();
+            return Contexto.Tarefas.ToList();
         }
 
         public List<TipoTarefa> GetTipoTarefas()
         {
-            return contexto.TiposTarefa.ToList();
+            return Contexto.TiposTarefa.ToList();
         }
 
         public Tarefa GetTarefaComProgramadorId(int tarefaId)
@@ -143,12 +145,6 @@ namespace iTasks.Controllers
             }
         }
 
-        //Adicionar tarefa
-        public void Adicionar(Tarefa tarefa)
-        {
-            Contexto.Tarefas.Add(tarefa);
-            Contexto.SaveChanges();
-        }
 
         //Filtrar tarefas em To-Do
         public List<Tarefa> ObterTarefasToDo()
