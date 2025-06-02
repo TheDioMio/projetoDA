@@ -1,12 +1,13 @@
-﻿using System;
+﻿using iTasks.Data;
+using iTasks.Models;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
+using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
-using iTasks.Data;
-using iTasks.Models;
-using System.Data.Entity;
-using System.Runtime.Remoting.Contexts;
+using System.Windows.Forms;
 
 
 namespace iTasks.Controllers
@@ -34,10 +35,10 @@ namespace iTasks.Controllers
         //public List<Utilizador> ObterTodos() => //Obter todos os users com o gestor associado
         //    contexto.Utilizadores.Include(utilizadorEncontrado => utilizadorEncontrado.Gestor).ToList();  // Inclui gestor associado
 
-        public List<Utilizador> ObterProgramadoresDeGestor(Gestor gestor)
+        public List<Programador> ObterProgramadoresDeGestor(Gestor gestor)
         {
-            return contexto.Programadores()
-                .Where(programador => programador.GestorId == gestor.Id)
+            return contexto.Programadores
+                .Where(programador => programador.Gestor.Id == gestor.Id)
                 .ToList();
         }
 
@@ -97,3 +98,12 @@ namespace iTasks.Controllers
         }
     }
 }
+
+
+
+
+
+/*
+ 1.º Puxar a lista das tarefas 
+ 
+ */

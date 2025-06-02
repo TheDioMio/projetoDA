@@ -56,17 +56,22 @@ namespace iTasks.Controllers
         public Tarefa ObterPorId(int id) => //Encontrar utilizador pelo ID
             contexto.Tarefas.Find(id);
 
-        public List<Tarefa> getTarefas()
+        public List<Tarefa> GetTarefas()
         {
             return contexto.Tarefas.ToList();
         }
 
-        public List<TipoTarefa> getTipoTarefas()
+        public List<TipoTarefa> GetTipoTarefas()
         {
             return contexto.TiposTarefa.ToList();
         }
 
-
+        public Tarefa GetTarefaComProgramadorId(int tarefaId)
+        {
+            return Contexto.Tarefas
+                .Include(tarefa => tarefa.Programador)
+                .FirstOrDefault(tarefa => tarefa.Id == tarefaId);
+        }
 
 
 

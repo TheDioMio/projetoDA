@@ -26,7 +26,7 @@ namespace iTasks
             InitializeComponent();
             listaProgramadores = userController.GetProgramadores();
             cbProgramador.DataSource = listaProgramadores;
-            listaTipoTarefas = tarefaController.getTipoTarefas();
+            listaTipoTarefas = tarefaController.GetTipoTarefas();
             cbTipoTarefa.DataSource = listaTipoTarefas;
             _gestor = user;
         }
