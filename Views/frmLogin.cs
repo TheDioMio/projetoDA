@@ -49,9 +49,17 @@ namespace iTasks
             //Contexto.Utilizadores.Add(user1);
             //Contexto.SaveChanges();
 
+            //Gestor user1 = new Gestor
+            //{
+            //    Nome = "Admin",
+            //    Password = "Admin",
+            //    Username = "Admin"
+            //};
+            //Contexto.Utilizadores.Add(user1);
+            //Contexto.SaveChanges();
+
             //txtPassword.Text = "Admin";
             //txtUsername.Text = "Admin";
-
 
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
@@ -67,8 +75,20 @@ namespace iTasks
                 return;
             }
 
-            // 2) Se não encontrar ou a password não bater
-            if (username != password)
+            // 2) Cria a instâmncia do utilizador logado, para a passar para as próximas páginas
+            var user = contexto.ObterPorUsername(username);
+
+            if (user== null)
+            {
+                MessageBox.Show(
+                    "Utilizador não encontrado!",
+                    "Erro",
+                    MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                return;
+            }
+            // 3) Se não encontrar ou a password não bater
+            if (password != user.Password)
             {
                 MessageBox.Show(
                     "Credenciais inválidas",
@@ -78,10 +98,9 @@ namespace iTasks
                 return;
             }
 
-            // 3) Cria a instâmncia do utilizador logado, para a passar para as próximas páginas
-            var userLogado = contexto.ObterPorUsername(username);
+            
 
-            var kanban = new frmKanban(userLogado);
+            var kanban = new frmKanban(user);
             this.Hide();
             kanban.ShowDialog();
             this.Show();

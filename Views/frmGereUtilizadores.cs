@@ -261,14 +261,14 @@ namespace iTasks
                 if (user != null)
                 {
                     List<Programador> programadoresDeGestor = userController.ObterProgramadoresDeGestor(listaGestores[lstListaGestores.SelectedIndex]);
-                    if (programadoresDeGestor != null)
+                    if (programadoresDeGestor.Count>0)
                     {
                         MessageBox.Show("Não é possivel apagar o Gestor, pois tem Programadores associados!");
                         return;
                     }
 
                     List<Tarefa> tarefasDeGestor = userController.ObterTarefasDeGestor(listaGestores[lstListaGestores.SelectedIndex]);
-                    if (tarefasDeGestor != null)
+                    if (tarefasDeGestor.Count>0)
                     {
                         MessageBox.Show("Não é possivel apagar o Gestor, pois tem Tarefas associadas!");
                         return;
@@ -391,7 +391,7 @@ namespace iTasks
                 {
 
                     List<Tarefa> tarefasDeprogramador = userController.ObterTarefasDeProgramador(listaProgramadores[lstListaProgramadores.SelectedIndex]);
-                    if (tarefasDeprogramador != null)
+                    if (tarefasDeprogramador.Count > 0)
                     {
                         MessageBox.Show("Não é possivel apagar o Programador, pois tem Tarefas associadas!");
                         return;
