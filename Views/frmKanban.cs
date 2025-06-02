@@ -36,7 +36,7 @@ namespace iTasks
         {
             var userLogado = _user;
             Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
-            switch (tarefaSelecionada.EstadoAtual)
+            switch (tarefaSelecionada.EstadoAtual)   //FALTA VALIDAÇÃO PARA SE NADA FOR SELECIONADO
             {
                 case EstadoAtual.ToDo:
                     if(userLogado is Programador programador) //Converte o userLogado do tipo Utilizador para o tipo Programador, caso o seja
@@ -195,7 +195,7 @@ namespace iTasks
         {
             //utilizadoresToolStripMenuItem.Enabled = false;
             Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
-            switch (tarefaSelecionada.EstadoAtual)
+            switch (tarefaSelecionada.EstadoAtual)  //VALIDACAO A VER SE ALGO FOR SELECIONADO
             {
                 case EstadoAtual.ToDo:
                     MessageBox.Show(
@@ -228,7 +228,7 @@ namespace iTasks
         {
             Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
             var userLogado = _user; 
-            switch (tarefaSelecionada.EstadoAtual)
+            switch (tarefaSelecionada.EstadoAtual)  //VALIDACAO A VER SE ALGO FOR SELECIONADO
             {
                 case EstadoAtual.ToDo:
                     MessageBox.Show(
@@ -357,20 +357,6 @@ namespace iTasks
             gereTiposTarefas.ShowDialog();
         }
 
-        private void btLogout_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void frmKanban_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if(DialogResult == DialogResult.OK)
-            {
-                Application.Exit();
-            }
-        }
-
         private void btPrevisao_Click(object sender, EventArgs e)
         {
             Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
@@ -421,6 +407,25 @@ namespace iTasks
                     MessageBox.Show("Erro ao exportar: " + ex.Message, "Erro");
                 }
             }
+        }
+
+
+
+
+
+
+
+        private void frmKanban_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            if (DialogResult == DialogResult.OK)
+            {
+                Application.Exit();
+            }
+        }
+        private void btLogout1_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

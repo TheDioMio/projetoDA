@@ -1,4 +1,4 @@
-﻿using iTasks.Controllers;
+using iTasks.Controllers;
 using iTasks.Models;
 using System;
 using System.Collections.Generic;
@@ -39,18 +39,18 @@ namespace iTasks
             //TipoTarefa tarefa5 = new TipoTarefa("TESTE5");
             //Contexto.TiposTarefa.Add(tarefa5);
 
+            
+            //Gestor user1 = new Gestor
+            //{
+            //    Nome = "Admin",
+            //    Password = "Admin",
+            //    Username = "Admin"
+            //};
+            //Contexto.Utilizadores.Add(user1);
+            //Contexto.SaveChanges();
 
-            Gestor user1 = new Gestor
-            {
-                Nome = "Admin",
-                Password = "Admin",
-                Username = "Admin"
-            };
-            Contexto.Utilizadores.Add(user1);
-            Contexto.SaveChanges();
-
-            txtPassword.Text = "Admin";
-            txtUsername.Text = "Admin";
+            //txtPassword.Text = "Admin";
+            //txtUsername.Text = "Admin";
 
 
             string username = txtUsername.Text.Trim();
