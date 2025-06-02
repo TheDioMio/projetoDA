@@ -60,9 +60,15 @@ namespace iTasks.Controllers
 
         public List<Tarefa> GetTarefas()
         {
-            return Contexto.Tarefas.ToList();
+            return Contexto.Tarefas
+                .Include(t => t.Programador)  // Inclui os dados do Programador
+                .Include(t => t.Gestor)       // Inclui os dados do Gestor
+                .Include(t => t.TipoTarefa)  // Inclui os dados do TipoTarefas
+                .ToList();
         }
 
+
+        //ponderar mudar para o controlador do Tipo de Tarefa
         public List<TipoTarefa> GetTipoTarefas()
         {
             return Contexto.TiposTarefa.ToList();
@@ -75,7 +81,29 @@ namespace iTasks.Controllers
                 .FirstOrDefault(tarefa => tarefa.Id == tarefaId);
         }
 
+        public List<Tarefa> GetTarefasProgramadorDoing(int programadorId)
+        {
+            //return Contexto.Tarefas
+            //                        .Where(tarefa => tarefa.Programador.Id == programadorId && tarefa.EstadoAtual == EstadoAtual.Doing)
+            //                        .ToList();
 
+            return Contexto.Tarefas
+                .Include(t => t.Programador)
+                .Include(t => t.TipoTarefa)
+                .Include(t => t.Gestor) // Carrega dados do Gestor vinculado ao Programador
+                .Where(t => t.Programador.Id == programadorId && t.EstadoAtual == EstadoAtual.Doing)
+                .ToList();
+        }
+
+        public Tarefa GetTarefasProgramadorOrdem(int programadorId)
+        {
+            return Contexto.Tarefas
+                    .Where(tarefa => tarefa.EstadoAtual == EstadoAtual.ToDo && tarefa.Programador.Id == programadorId)
+                    .OrderBy(tarefa => tarefa.OrdemExecucao)
+                    .FirstOrDefault();
+        }
+
+        
 
         public void AvancarTarefa(Tarefa tarefa)
         {
@@ -85,7 +113,7 @@ namespace iTasks.Controllers
                 {
                     case EstadoAtual.ToDo:
                         tarefa.EstadoAtual = EstadoAtual.Doing;
-
+                        tarefa.DataRealInicio = DateTime.Now;
                         //FALTA VALIDAÇÕES DOS REQUESITOS PARA PASSAR DE TODO -> DOING
                         break;
 
