@@ -11,6 +11,7 @@ using System.Runtime.Remoting.Contexts;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using iTasks.Views;
 
 namespace iTasks
 {
@@ -403,6 +404,14 @@ namespace iTasks
 
         private void btPrevisao_Click(object sender, EventArgs e)
         {
+
+            if (!(_user is Gestor))
+            {
+                btPrevisao.Visible = false;
+
+            }
+            
+
             Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
 
             if(tarefaSelecionada == null)
@@ -414,7 +423,13 @@ namespace iTasks
                             MessageBoxIcon.Warning);
                 return;
             } else {
+
+
                 //POPUP
+                frmPrevisaoConclusao frm = new frmPrevisaoConclusao(tarefaSelecionada);
+
+                frm.ShowDialog();
+                
             }
         }
 

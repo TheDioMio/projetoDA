@@ -66,6 +66,12 @@
     <Compile Include="Models\NivelExperiencia.cs" />
     <Compile Include="Models\Programador.cs" />
     <Compile Include="Models\Sessao.cs" />
+    <Compile Include="Views\frmPrevisaoConclusao.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\frmPrevisaoConclusao.Designer.cs">
+      <DependentUpon>frmPrevisaoConclusao.cs</DependentUpon>
+    </Compile>
     <Compile Include="Views\frmConsultarTarefasConcluidas.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -144,6 +150,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Views\frmPrevisaoConclusao.resx">
+      <DependentUpon>frmPrevisaoConclusao.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

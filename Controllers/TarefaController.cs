@@ -233,6 +233,57 @@ namespace iTasks.Controllers
             File.WriteAllText(caminhoFicheiro, sb.ToString(), Encoding.UTF8);
         }
 
+       
+        // metodo para calcular o tempo medio das tarefas realizadas
+
+        public double CalcularTempoTotalPrevistoParaToDo()
+        {
+            // Usa os métodos já existentes para obter as tarefas
+            var tarefasToDo = ObterTarefasToDo();
+            var tarefasDone = ObterTarefasDone()
+                .Where(t => t.DataRealInicio != null && t.DataRealFim != null)
+                .ToList();
+
+            // Cria o dicionário com as médias de tempo por StoryPoints
+            var mediasPorStoryPoints = tarefasDone
+                .GroupBy(t => t.StoryPoints)
+                .ToDictionary(
+                    g => g.Key,
+                    g => g.Average(t => (t.DataRealFim - t.DataRealInicio).TotalHours)
+                );
+            
+            double tempoTotalPrevisto = 0;
+
+            foreach (var tarefa in tarefasToDo)
+            {
+                double tempoPrevisto;
+
+                if (mediasPorStoryPoints.ContainsKey(tarefa.StoryPoints))
+                {
+                    tempoPrevisto = mediasPorStoryPoints[tarefa.StoryPoints];
+                }
+                else if (mediasPorStoryPoints.Any())
+                {
+                    // Procura o número de StoryPoints mais próximo
+                    var spMaisProximo = mediasPorStoryPoints.Keys
+                        .OrderBy(sp => Math.Abs(sp - tarefa.StoryPoints))
+                        .First();
+
+                    tempoPrevisto = mediasPorStoryPoints[spMaisProximo];
+                }
+                else
+                {
+                    // Se não houver tarefas concluídas, define como 0 ou outro valor padrão
+                    tempoPrevisto = 0;
+                }
+
+                tempoTotalPrevisto += tempoPrevisto;
+            }
+
+            return tempoTotalPrevisto;
+        }
+
+
 
     }
 }
