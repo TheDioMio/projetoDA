@@ -39,204 +39,72 @@ namespace iTasks
         private void btSetDoing_Click_1(object sender, EventArgs e) //BTN AVANCAR TAREFA
         {
             var userLogado = _user;
-            Tarefa tarefaSelecionada = (Tarefa)lstTodo.SelectedItem;
+            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
             //Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
 
             listaTarefas = controller.GetTarefas();
 
-            if (userLogado.Id == tarefaSelecionada.Programador.Id)
+            switch (tarefaSelecionada.EstadoAtual)
             {
-                List<Tarefa> tarefasDoingProg = controller.GetTarefasProgramadorDoing(userLogado.Id) ;
-                if (tarefasDoingProg.Count<2)
-                {
-                    Tarefa tarefaMenor = controller.GetTarefasProgramadorOrdem(userLogado.Id);
-                    if (tarefaMenor ==tarefaSelecionada)
+                case EstadoAtual.ToDo:
+                    if (userLogado.Id == tarefaSelecionada.Programador.Id)
                     {
-                        controller.AvancarTarefa(tarefaSelecionada);
+                        List<Tarefa> tarefasDoingProg = controller.GetTarefasProgramadorDoing(userLogado.Id);
+                        if (tarefasDoingProg.Count < 2)
+                        {
+                            Tarefa tarefaMenor = controller.GetTarefasProgramadorMenorOrdem(userLogado.Id);
+                            if (tarefaMenor == tarefaSelecionada)
+                            {
+                                controller.AvancarTarefa(tarefaSelecionada);
+                            }
+                            else
+                            {
+                                MessageBox.Show("ERRO: Ordem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //não é a tarefa menor, logo não pode ser mudada
+                                return;
+                            }
+
+                        }
+                        else
+                        {
+                            MessageBox.Show("ERRO: 2 Tarefas", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //já tem 2 tarefas no doing
+                            return;
+                        }
                     }
                     else
                     {
-                        MessageBox.Show("ERRO: Ordem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //não é a tarefa menor, logo não pode ser mudada
+                        MessageBox.Show("ERRO: User", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //não é o user que está logao
                         return;
                     }
+                    CarregarTarefas();
+                   break;
 
-                }
-                else
-                {
-                    MessageBox.Show("ERRO: 2 Tarefas", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //já tem 2 tarefas no doing
-                    return;
-                }
-            }
-            else
-            {
-                MessageBox.Show("ERRO: User", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //não é o user que está logao
-                return;
-            }
-            CarregarTarefas();
-
-            //switch (tarefaSelecionada.EstadoAtual)
-            //{
-            //    case EstadoAtual.ToDo:
-            //        if (userLogado is Programador programador) //Converte o userLogado do tipo Utilizador para o tipo Programador, caso o seja
-            //        {
-            //            if (VerificacoesMudar_ToDo_Doing(tarefaSelecionada, programador, listaTarefas, EstadoAtual.ToDo) == true)
-            //            {
-            //                controller.AvancarTarefa(tarefaSelecionada);
-            //            }
-            //            else
-            //            {
-            //                MessageBox.Show(
-            //                "ERRO: VALIDAÇÃO DENTRO DA FUNÇÃO",
-            //                "Aviso",
-            //                MessageBoxButtons.OK,
-            //                MessageBoxIcon.Error);
-            //            }
-            //        }
-            //        else
-            //        {
-            //            MessageBox.Show(
-            //                "ERRO: VALIDAÇÃO DENTRO DO BTN",
-            //                "Aviso",
-            //                MessageBoxButtons.OK,
-            //                MessageBoxIcon.Error);
-            //        }
-            //        CarregarTarefas();
-            //        break;
-
-            //    case EstadoAtual.Doing:
-            //        MessageBox.Show(
-            //                "ERRO: Está a tentar avançar uma tarefa que já está em Doing!",
-            //                "Aviso",
-            //                MessageBoxButtons.OK,
-            //                MessageBoxIcon.Error);
-            //        break;
-
-            //    case EstadoAtual.Done:
-            //        MessageBox.Show(
-            //                "ERRO: Está a tentar avançar uma tarefa que já terminou!",
-            //                "Aviso",
-            //                MessageBoxButtons.OK,
-            //                MessageBoxIcon.Error);
-            //        break;
-
-            //    default:
-            //        MessageBox.Show("Estado desconhecido!");
-            //        break;
-            //}
-        }
-
-        public bool VerificacoesMudar_ToDo_Doing(Tarefa tarefaSelecionada, Programador programadorLogado, List<Tarefa> listaTarefas, EstadoAtual novoEstado)
-        {
-            var programadorID = controller.GetTarefaComProgramadorId(tarefaSelecionada.Id).Programador.Id;
-
-            //FLAG 1 - Ter alguma coisa NULL
-            if (tarefaSelecionada == null || programadorID <0 || listaTarefas == null)
-            {
-                MessageBox.Show(
-                            "ERRO: Tarefa, programador, ou lista das tarefas está null",
+                case EstadoAtual.Doing:
+                    MessageBox.Show(
+                            "ERRO: Está a tentar avançar uma tarefa que já está em Doing!",
                             "Aviso",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                return false;
-            }
+                    break;
 
-            //FLAG 2 - Verificar se a tarefa pertence ao programador logado
-            if (tarefaSelecionada.Programador.Id != programadorLogado.Id)
-            {
-                MessageBox.Show(
-                            "ERRO: Tarefa não pertence ao programador",
+                case EstadoAtual.Done:
+                    MessageBox.Show(
+                            "ERRO: Está a tentar avançar uma tarefa que já terminou!",
                             "Aviso",
                             MessageBoxButtons.OK,
                             MessageBoxIcon.Error);
-                return false;
+                    break;
+
+                default:
+                    MessageBox.Show("Estado desconhecido!");
+                    break;
             }
-
-
-            //FLAG 3 - Transição: ToDo -> Doing
-            if (tarefaSelecionada.EstadoAtual == EstadoAtual.ToDo && novoEstado == EstadoAtual.Doing)
-            {
-                // 3.1. Verificar limite de 2 tarefas no estado Doing
-                int doingCount = listaTarefas.Count(t => t.EstadoAtual == EstadoAtual.Doing);
-                if (doingCount >= 2)
-                    return false;
-
-                // 3.2. Verificar se é a tarefa com menor ordem entre as que estão em ToDo
-                //var menorToDo = listaTarefas
-                //    .Where(tarefa => tarefa.EstadoAtual == EstadoAtual.ToDo)&&(Tarefa.Programador.Id == programadorId)
-                //    .OrderBy(tarefa => tarefa.OrdemExecucao)
-                //    .FirstOrDefault();
-
-                //if (menorToDo == null || tarefaSelecionada.Id != menorToDo.Id)
-                //    return false;
-
-                return true;
-            }
-            return false; //DEFAULT PARA RETORNAR FALSE.
         }
-
-
-        public bool VerificacoesMudar_Doing_Done(Tarefa tarefaSelecionada, Programador programadorLogado, List<Tarefa> listaTarefas, EstadoAtual novoEstado)
-        {
-            //FLAG 1 - Ter alguma coisa NULL
-            if (tarefaSelecionada == null || programadorLogado == null || listaTarefas == null)
-                return false;
-
-            //FLAG 2 - Verificar se a tarefa pertence ao programador logado
-            if (tarefaSelecionada.Programador.Id != programadorLogado.Id)
-                return false;
-
-            //FLAG 3 - Verificar se é a tarefa com menor ordem entre as que estão em Doing
-            if (tarefaSelecionada.EstadoAtual == EstadoAtual.Doing && novoEstado == EstadoAtual.Done)
-            {
-                var menorDoing = listaTarefas
-                    .Where(tarefa => tarefa.EstadoAtual == EstadoAtual.Doing)
-                    .OrderBy(tarefa => tarefa.OrdemExecucao)
-                    .FirstOrDefault();
-
-                if (menorDoing == null || tarefaSelecionada.Id != menorDoing.Id)
-                    return false;
-
-                return true;
-            }
-            return false; //Default retorna FALSE
-        }
-
-        /*Validações a fazer para passar de ToDo para Doing:
-            1. A tarefa tem de pertencer ao Programador que está logado
-                (CADA PROGRAMADOR SÓ PODE MOVIMENTAR AS SUAS TAREFAS),
-            2. O programador só pode ter no máx 2 tarefas no "Doing" ao msm tempo,
-            3. A tarefa tem de estar na ordem de execução correta
-                (1, só depois 2, etc etc etc)*/
-
-        /*Validações a fazer para passar de Doing para Done:
-            1. A tarefa tem de pertencer ao Programador que está logado,
-            2. A tarefa tem de estar no estado Doing,
-            3. A tarefa tem de ser a próxima na ordem de execução*/
-
-        /*OBS IMPORTANTES:
-         Gestor não pode atribuir duas tarefas com a mesma ordem a um programador
-        As datas reais de início e fim são automaticamente atualizadasw:
-        DATA DE INICIO É QUANDO A TAREFA PASSA PARA DOING,
-        DATA DE FIM QUANDO PASSA PARA DONE.*/
-
-
-
-
-
-
-
-
-
-
-
-
 
         private void btSetTodo_Click_1(object sender, EventArgs e) //BTN REINICIAR TAREFA
         {
-            //utilizadoresToolStripMenuItem.Enabled = false;
             Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
             switch (tarefaSelecionada.EstadoAtual)  //VALIDACAO A VER SE ALGO FOR SELECIONADO
             {
@@ -270,7 +138,8 @@ namespace iTasks
         private void btSetDone_Click(object sender, EventArgs e) //BTN TERMINAR TAREFA
         {
             Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
-            var userLogado = _user; 
+            var userLogado = _user;
+
             switch (tarefaSelecionada.EstadoAtual)  //VALIDACAO A VER SE ALGO FOR SELECIONADO
             {
                 case EstadoAtual.ToDo:
@@ -282,17 +151,28 @@ namespace iTasks
                     break;
 
                 case EstadoAtual.Doing:
-                    if(userLogado is Programador programador)
+                    if(tarefaSelecionada.Programador.Id == userLogado.Id)
                     {
-                        if (VerificacoesMudar_ToDo_Doing(tarefaSelecionada, programador, listaTarefas, EstadoAtual.ToDo) == true)
+                        //é o user logado
+                        Tarefa tarefaMenor = controller.GetTarefasProgramadorMenorOrdem(userLogado.Id);
+                        if (tarefaMenor == tarefaSelecionada)
                         {
                             controller.AvancarTarefa(tarefaSelecionada);
+                            CarregarTarefas();
                         }
+                        else
+                        {
+                            MessageBox.Show("ERRO: Ordem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //não é a próxima tarefa, logo não pode ser finalizada
+                            return;
+                        }
+                    } else
+                    {
+                        //não é o user logado
                     }
-                    CarregarTarefas();
-                    break;
+                break;
 
-                case EstadoAtual.Done: //PQ É QUE NA PRIMEIRA VEZ, DÁ PARA FAZER ISTO, E DPS É QUE APARECE O AVISO?
+                case EstadoAtual.Done:
                     MessageBox.Show(
                             "ERRO: Está a tentar terminar uma tarefa que já foi dada como terminada.",
                             "Aviso",
@@ -305,10 +185,6 @@ namespace iTasks
                     break;
             }
         }
-
-
-
-
         public void CarregarTarefas()
         {
             //Separação das tarefas por estados
@@ -323,9 +199,8 @@ namespace iTasks
 
             //Adicionar os itens por lista, por estado.
             lstTodo.DataSource = tarefasToDo;
-            //lstTodo.Items.AddRange(tarefasToDo.ToArray());
             lstDoing.DataSource = tarefasDoing;
-            //lstDone.Items.AddRange(tarefasDone.ToArray());
+            lstDone.DataSource = tarefasDone;
         }
 
         public Tarefa verOndeEstaTarefaSelecionada()

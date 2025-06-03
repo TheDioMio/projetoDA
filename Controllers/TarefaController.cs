@@ -95,15 +95,23 @@ namespace iTasks.Controllers
                 .ToList();
         }
 
-        public Tarefa GetTarefasProgramadorOrdem(int programadorId)
+        public Tarefa GetTarefasProgramadorMenorOrdem(int programadorId)
         {
             return Contexto.Tarefas
-                    .Where(tarefa => tarefa.EstadoAtual == EstadoAtual.ToDo && tarefa.Programador.Id == programadorId)
-                    .OrderBy(tarefa => tarefa.OrdemExecucao)
-                    .FirstOrDefault();
+                    .Where(tarefa => tarefa.Programador.Id == programadorId &&
+                    tarefa.EstadoAtual == EstadoAtual.ToDo || tarefa.EstadoAtual == EstadoAtual.Doing)
+                    .OrderBy(tarefa => tarefa.OrdemExecucao).FirstOrDefault();
         }
 
-        
+        public Tarefa GetTarefasProgramadorMaiorOrdem(int programadorId)
+        {
+            return Contexto.Tarefas
+                    .Where(tarefa => tarefa.Programador.Id == programadorId &&
+                    (tarefa.EstadoAtual == EstadoAtual.ToDo || tarefa.EstadoAtual == EstadoAtual.Doing) 
+                    ).OrderByDescending(tarefa => tarefa.OrdemExecucao).FirstOrDefault();
+        }
+
+
 
         public void AvancarTarefa(Tarefa tarefa)
         {
@@ -119,6 +127,7 @@ namespace iTasks.Controllers
 
                     case EstadoAtual.Doing:
                         tarefa.EstadoAtual = EstadoAtual.Done;
+                        tarefa.DataRealFim = DateTime.Now;
                         //FALTA VALIDAÇÕES DOS REQUESITOS PARA PASSAR DE DOING -> DONE
                         if (tarefa.EstadoAtual == EstadoAtual.ToDo)
                         {
