@@ -112,12 +112,3 @@ namespace iTasks.Controllers
         }
     }
 }
-
-
-
-
-
-/*
- 1.º Puxar a lista das tarefas 
- 
- */
