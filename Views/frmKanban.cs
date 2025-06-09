@@ -361,5 +361,18 @@ namespace iTasks
             DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+
+        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            
+            this.Close();
+            Application.Exit();
+        }
     }
 }

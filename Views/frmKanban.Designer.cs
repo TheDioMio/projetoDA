@@ -66,7 +66,7 @@ namespace iTasks
             this.lstTodo.FormattingEnabled = true;
             this.lstTodo.ItemHeight = 16;
             this.lstTodo.Location = new System.Drawing.Point(4, 19);
-            this.lstTodo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstTodo.Margin = new System.Windows.Forms.Padding(4);
             this.lstTodo.Name = "lstTodo";
             this.lstTodo.Size = new System.Drawing.Size(395, 516);
             this.lstTodo.TabIndex = 0;
@@ -76,9 +76,9 @@ namespace iTasks
             // 
             this.groupBox1.Controls.Add(this.lstTodo);
             this.groupBox1.Location = new System.Drawing.Point(16, 71);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(403, 539);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
@@ -88,9 +88,9 @@ namespace iTasks
             // 
             this.groupBox2.Controls.Add(this.lstDoing);
             this.groupBox2.Location = new System.Drawing.Point(427, 68);
-            this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox2.Size = new System.Drawing.Size(403, 543);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
@@ -102,7 +102,7 @@ namespace iTasks
             this.lstDoing.FormattingEnabled = true;
             this.lstDoing.ItemHeight = 16;
             this.lstDoing.Location = new System.Drawing.Point(4, 19);
-            this.lstDoing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstDoing.Margin = new System.Windows.Forms.Padding(4);
             this.lstDoing.Name = "lstDoing";
             this.lstDoing.Size = new System.Drawing.Size(395, 520);
             this.lstDoing.TabIndex = 0;
@@ -112,9 +112,9 @@ namespace iTasks
             // 
             this.groupBox3.Controls.Add(this.lstDone);
             this.groupBox3.Location = new System.Drawing.Point(837, 68);
-            this.groupBox3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox3.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox3.Size = new System.Drawing.Size(403, 543);
             this.groupBox3.TabIndex = 3;
             this.groupBox3.TabStop = false;
@@ -126,7 +126,7 @@ namespace iTasks
             this.lstDone.FormattingEnabled = true;
             this.lstDone.ItemHeight = 16;
             this.lstDone.Location = new System.Drawing.Point(4, 19);
-            this.lstDone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstDone.Margin = new System.Windows.Forms.Padding(4);
             this.lstDone.Name = "lstDone";
             this.lstDone.Size = new System.Drawing.Size(395, 520);
             this.lstDone.TabIndex = 0;
@@ -142,7 +142,7 @@ namespace iTasks
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1257, 30);
+            this.menuStrip1.Size = new System.Drawing.Size(1257, 28);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -154,7 +154,7 @@ namespace iTasks
             this.logoutToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.ficheiroToolStripMenuItem.Name = "ficheiroToolStripMenuItem";
-            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(75, 26);
+            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
             this.ficheiroToolStripMenuItem.Text = "Ficheiro";
             // 
             // exportarParaCSVToolStripMenuItem
@@ -174,12 +174,14 @@ namespace iTasks
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
             this.logoutToolStripMenuItem.Size = new System.Drawing.Size(338, 26);
             this.logoutToolStripMenuItem.Text = "Logout";
+            this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
             this.sairToolStripMenuItem.Size = new System.Drawing.Size(338, 26);
             this.sairToolStripMenuItem.Text = "Sair";
+            this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
             // utilizadoresToolStripMenuItem
             // 
@@ -187,7 +189,7 @@ namespace iTasks
             this.gerirUtilizadoresToolStripMenuItem,
             this.gerirTiposDeTarefasToolStripMenuItem});
             this.utilizadoresToolStripMenuItem.Name = "utilizadoresToolStripMenuItem";
-            this.utilizadoresToolStripMenuItem.Size = new System.Drawing.Size(160, 26);
+            this.utilizadoresToolStripMenuItem.Size = new System.Drawing.Size(160, 24);
             this.utilizadoresToolStripMenuItem.Text = "Gestão da Aplicação";
             // 
             // gerirUtilizadoresToolStripMenuItem
@@ -210,7 +212,7 @@ namespace iTasks
             this.tarefasTerminadasToolStripMenuItem,
             this.tarefasEmCursoToolStripMenuItem});
             this.listagensToolStripMenuItem.Name = "listagensToolStripMenuItem";
-            this.listagensToolStripMenuItem.Size = new System.Drawing.Size(84, 26);
+            this.listagensToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
             this.listagensToolStripMenuItem.Text = "Listagens";
             // 
             // tarefasTerminadasToolStripMenuItem
@@ -230,7 +232,7 @@ namespace iTasks
             // btSetDoing
             // 
             this.btSetDoing.Location = new System.Drawing.Point(220, 618);
-            this.btSetDoing.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btSetDoing.Margin = new System.Windows.Forms.Padding(4);
             this.btSetDoing.Name = "btSetDoing";
             this.btSetDoing.Size = new System.Drawing.Size(195, 28);
             this.btSetDoing.TabIndex = 5;
@@ -241,7 +243,7 @@ namespace iTasks
             // btSetDone
             // 
             this.btSetDone.Location = new System.Drawing.Point(633, 618);
-            this.btSetDone.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btSetDone.Margin = new System.Windows.Forms.Padding(4);
             this.btSetDone.Name = "btSetDone";
             this.btSetDone.Size = new System.Drawing.Size(192, 28);
             this.btSetDone.TabIndex = 6;
@@ -252,7 +254,7 @@ namespace iTasks
             // btSetTodo
             // 
             this.btSetTodo.Location = new System.Drawing.Point(431, 618);
-            this.btSetTodo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btSetTodo.Margin = new System.Windows.Forms.Padding(4);
             this.btSetTodo.Name = "btSetTodo";
             this.btSetTodo.Size = new System.Drawing.Size(192, 28);
             this.btSetTodo.TabIndex = 7;
@@ -263,7 +265,7 @@ namespace iTasks
             // btNova
             // 
             this.btNova.Location = new System.Drawing.Point(20, 618);
-            this.btNova.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btNova.Margin = new System.Windows.Forms.Padding(4);
             this.btNova.Name = "btNova";
             this.btNova.Size = new System.Drawing.Size(139, 28);
             this.btNova.TabIndex = 8;
@@ -284,7 +286,7 @@ namespace iTasks
             // btPrevisao
             // 
             this.btPrevisao.Location = new System.Drawing.Point(16, 36);
-            this.btPrevisao.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btPrevisao.Margin = new System.Windows.Forms.Padding(4);
             this.btPrevisao.Name = "btPrevisao";
             this.btPrevisao.Size = new System.Drawing.Size(223, 28);
             this.btPrevisao.TabIndex = 10;
@@ -295,7 +297,7 @@ namespace iTasks
             // btLogout
             // 
             this.btLogout.Location = new System.Drawing.Point(1548, 761);
-            this.btLogout.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btLogout.Margin = new System.Windows.Forms.Padding(4);
             this.btLogout.Name = "btLogout";
             this.btLogout.Size = new System.Drawing.Size(100, 34);
             this.btLogout.TabIndex = 11;
@@ -331,8 +333,9 @@ namespace iTasks
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmKanban";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Kanban";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.frmKanban_FormClosed);
             this.groupBox1.ResumeLayout(false);
