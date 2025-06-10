@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmGereTiposTarefas));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.lstLista = new System.Windows.Forms.ListBox();
             this.txtDesc = new System.Windows.Forms.TextBox();
@@ -44,9 +45,9 @@
             // 
             this.groupBox1.Controls.Add(this.lstLista);
             this.groupBox1.Location = new System.Drawing.Point(16, 15);
-            this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
             this.groupBox1.Size = new System.Drawing.Size(365, 474);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
@@ -58,7 +59,7 @@
             this.lstLista.FormattingEnabled = true;
             this.lstLista.ItemHeight = 16;
             this.lstLista.Location = new System.Drawing.Point(4, 19);
-            this.lstLista.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.lstLista.Margin = new System.Windows.Forms.Padding(4);
             this.lstLista.Name = "lstLista";
             this.lstLista.Size = new System.Drawing.Size(357, 451);
             this.lstLista.TabIndex = 0;
@@ -67,7 +68,7 @@
             // txtDesc
             // 
             this.txtDesc.Location = new System.Drawing.Point(479, 66);
-            this.txtDesc.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtDesc.Margin = new System.Windows.Forms.Padding(4);
             this.txtDesc.Name = "txtDesc";
             this.txtDesc.Size = new System.Drawing.Size(380, 22);
             this.txtDesc.TabIndex = 15;
@@ -85,7 +86,7 @@
             // txtId
             // 
             this.txtId.Location = new System.Drawing.Point(479, 34);
-            this.txtId.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtId.Margin = new System.Windows.Forms.Padding(4);
             this.txtId.Name = "txtId";
             this.txtId.ReadOnly = true;
             this.txtId.Size = new System.Drawing.Size(81, 22);
@@ -104,7 +105,7 @@
             // btGravar
             // 
             this.btGravar.Location = new System.Drawing.Point(675, 117);
-            this.btGravar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btGravar.Margin = new System.Windows.Forms.Padding(4);
             this.btGravar.Name = "btGravar";
             this.btGravar.Size = new System.Drawing.Size(185, 28);
             this.btGravar.TabIndex = 31;
@@ -147,7 +148,8 @@
             this.Controls.Add(this.txtId);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmGereTiposTarefas";
             this.Text = "frmGereTiposTarefas";
             this.groupBox1.ResumeLayout(false);

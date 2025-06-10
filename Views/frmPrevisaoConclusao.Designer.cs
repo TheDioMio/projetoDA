@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmPrevisaoConclusao));
             this.txtTarefa = new System.Windows.Forms.TextBox();
             this.labelTarefa = new System.Windows.Forms.Label();
             this.labelPrevisao = new System.Windows.Forms.Label();
@@ -89,6 +90,7 @@
             this.Controls.Add(this.txtPrevisao);
             this.Controls.Add(this.labelTarefa);
             this.Controls.Add(this.txtTarefa);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmPrevisaoConclusao";
             this.Text = "Previsão de Conclusão";
             this.ResumeLayout(false);
