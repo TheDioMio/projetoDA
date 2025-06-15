@@ -282,7 +282,7 @@ namespace iTasks.Controllers
                 }
                 else
                 {
-                    // Se não houver tarefas concluídas, define como 0 ou outro valor padrão
+                    // Se não houver tarefas concluídas, define como 0.
                     tempoPrevisto = 0;
                 }
 

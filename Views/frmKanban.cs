@@ -1,378 +1,388 @@
-using iTasks.Data;
-using iTasks.Models;
-using iTasks.Controllers;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Runtime.Remoting.Contexts;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using iTasks.Views;
+    using iTasks.Data;
+    using iTasks.Models;
+    using iTasks.Controllers;
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel;
+    using System.Data;
+    using System.Drawing;
+    using System.Linq;
+    using System.Runtime.Remoting.Contexts;
+    using System.Text;
+    using System.Threading.Tasks;
+    using System.Windows.Forms;
+    using iTasks.Views;
 
-namespace iTasks
-{
-    public partial class frmKanban : Form
+    namespace iTasks
     {
-        public Utilizador _user;
-        public TarefaController controller = new TarefaController();
-        public List<Tarefa> listaTarefas = new List<Tarefa>();
-        public List<Tarefa> tarefasToDo;
-        public List<Tarefa> tarefasDoing; 
-        public List<Tarefa> tarefasDone;
-        public frmKanban(Utilizador userLogado)
+        public partial class frmKanban : Form
         {
-            InitializeComponent();           
-            _user = userLogado;
+            public Utilizador _user;
+            public TarefaController controller = new TarefaController();
+            public List<Tarefa> listaTarefas = new List<Tarefa>();
+            public List<Tarefa> tarefasToDo;
+            public List<Tarefa> tarefasDoing; 
+            public List<Tarefa> tarefasDone;
+            public frmKanban(Utilizador userLogado)
+            {
+                InitializeComponent();           
+                _user = userLogado;
             //Grisa o menu de gestão de users se o utilizador não for gestor. (SE FOR PROGRAMADOR)
             if (_user is Gestor)
             {
                 utilizadoresToolStripMenuItem.Enabled = true;
             }
-            labelBemVindo.Text = $"Bem-vindo, {userLogado.Username}";
-            CarregarTarefas();
-        }
-        
-        private void btSetDoing_Click_1(object sender, EventArgs e) //BTN AVANCAR TAREFA
-        {
-            var userLogado = _user;
-            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
-            //Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
-
-            listaTarefas = controller.GetTarefas();
-
-            switch (tarefaSelecionada.EstadoAtual)
+            else
             {
-                case EstadoAtual.ToDo:
-                    if (userLogado.Id == tarefaSelecionada.Programador.Id)
-                    {
-                        List<Tarefa> tarefasDoingProg = controller.GetTarefasProgramadorDoing(userLogado.Id);
-                        if (tarefasDoingProg.Count < 2)
+
+                utilizadoresToolStripMenuItem.Enabled = false;
+                btNova.Enabled = false;
+                exportarParaCSVToolStripMenuItem.Enabled = false;
+
+            }
+                labelBemVindo.Text = $"Bem-vindo, {userLogado.Nome}"; // alterei para mostrar nome em vez de username ( MP - 15/06/2025)
+                CarregarTarefas();
+            }
+        
+            private void btSetDoing_Click_1(object sender, EventArgs e) //BTN AVANCAR TAREFA
+            {
+                var userLogado = _user;
+                Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
+                //Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
+
+                listaTarefas = controller.GetTarefas();
+
+                switch (tarefaSelecionada.EstadoAtual)
+                {
+                    case EstadoAtual.ToDo:
+                        if (userLogado.Id == tarefaSelecionada.Programador.Id)
                         {
+                            List<Tarefa> tarefasDoingProg = controller.GetTarefasProgramadorDoing(userLogado.Id);
+                            if (tarefasDoingProg.Count < 2)
+                            {
+                                Tarefa tarefaMenor = controller.GetTarefasProgramadorMenorOrdem(userLogado.Id);
+                                if (tarefaMenor == tarefaSelecionada)
+                                {
+                                    controller.AvancarTarefa(tarefaSelecionada);
+                                }
+                                else
+                                {
+                                    MessageBox.Show("ERRO: Ordem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //não é a tarefa menor, logo não pode ser mudada
+                                    return;
+                                }
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("ERRO: 2 Tarefas", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //já tem 2 tarefas no doing
+                                return;
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("ERRO: User", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //não é o user que está logao
+                            return;
+                        }
+                        CarregarTarefas();
+                       break;
+
+                    case EstadoAtual.Doing:
+                        MessageBox.Show(
+                                "ERRO: Está a tentar avançar uma tarefa que já está em Doing!",
+                                "Aviso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        break;
+
+                    case EstadoAtual.Done:
+                        MessageBox.Show(
+                                "ERRO: Está a tentar avançar uma tarefa que já terminou!",
+                                "Aviso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        break;
+
+                    default:
+                        MessageBox.Show("Estado desconhecido!");
+                        break;
+                }
+            }
+
+            private void btSetTodo_Click_1(object sender, EventArgs e) //BTN REINICIAR TAREFA
+            {
+                Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
+                switch (tarefaSelecionada.EstadoAtual)  //VALIDACAO A VER SE ALGO FOR SELECIONADO
+                {
+                    case EstadoAtual.ToDo:
+                        MessageBox.Show(
+                                "ERRO: Impossível reiniciar uma tarefa em ToDo!",
+                                "Aviso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                    break;
+
+                    case EstadoAtual.Doing:
+                        controller.RetrocederTarefa(tarefaSelecionada);
+                        CarregarTarefas();
+                    break;
+
+                    case EstadoAtual.Done:
+                        MessageBox.Show(
+                                "ERRO: Está a tentar reiniciar uma tarefa que já foi dada como terminada.",
+                                "Aviso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                    break;
+
+                    default:
+                        MessageBox.Show("Estado desconhecido!");
+                    break;
+                }
+            }
+
+            private void btSetDone_Click(object sender, EventArgs e) //BTN TERMINAR TAREFA
+            {
+                Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
+                var userLogado = _user;
+
+                switch (tarefaSelecionada.EstadoAtual)  //VALIDACAO A VER SE ALGO FOR SELECIONADO
+                {
+                    case EstadoAtual.ToDo:
+                        MessageBox.Show(
+                                "ERRO: Está a tentar terminar uma tarefa que ainda não foi iniciada!",
+                                "Aviso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        break;
+
+                    case EstadoAtual.Doing:
+                        if(tarefaSelecionada.Programador.Id == userLogado.Id)
+                        {
+                            //é o user logado
                             Tarefa tarefaMenor = controller.GetTarefasProgramadorMenorOrdem(userLogado.Id);
                             if (tarefaMenor == tarefaSelecionada)
                             {
                                 controller.AvancarTarefa(tarefaSelecionada);
+                                CarregarTarefas();
                             }
                             else
                             {
                                 MessageBox.Show("ERRO: Ordem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                //não é a tarefa menor, logo não pode ser mudada
+                                //não é a próxima tarefa, logo não pode ser finalizada
                                 return;
                             }
-
-                        }
-                        else
+                        } else
                         {
-                            MessageBox.Show("ERRO: 2 Tarefas", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            //já tem 2 tarefas no doing
-                            return;
+                            //não é o user logado
                         }
-                    }
-                    else
-                    {
-                        MessageBox.Show("ERRO: User", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        //não é o user que está logao
-                        return;
-                    }
-                    CarregarTarefas();
-                   break;
-
-                case EstadoAtual.Doing:
-                    MessageBox.Show(
-                            "ERRO: Está a tentar avançar uma tarefa que já está em Doing!",
-                            "Aviso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
                     break;
 
-                case EstadoAtual.Done:
-                    MessageBox.Show(
-                            "ERRO: Está a tentar avançar uma tarefa que já terminou!",
-                            "Aviso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    break;
+                    case EstadoAtual.Done:
+                        MessageBox.Show(
+                                "ERRO: Está a tentar terminar uma tarefa que já foi dada como terminada.",
+                                "Aviso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                        break;
 
-                default:
-                    MessageBox.Show("Estado desconhecido!");
-                    break;
+                    default:
+                        MessageBox.Show("Estado desconhecido!");
+                        break;
+                }
             }
-        }
-
-        private void btSetTodo_Click_1(object sender, EventArgs e) //BTN REINICIAR TAREFA
-        {
-            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
-            switch (tarefaSelecionada.EstadoAtual)  //VALIDACAO A VER SE ALGO FOR SELECIONADO
+            public void CarregarTarefas()
             {
-                case EstadoAtual.ToDo:
-                    MessageBox.Show(
-                            "ERRO: Impossível reiniciar uma tarefa em ToDo!",
-                            "Aviso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                break;
+                //Separação das tarefas por estados
+                tarefasToDo = controller.ObterTarefasToDo();
+                tarefasDoing = controller.ObterTarefasDoing();
+                tarefasDone = controller.ObterTarefasDone();
 
-                case EstadoAtual.Doing:
-                    controller.RetrocederTarefa(tarefaSelecionada);
-                    CarregarTarefas();
-                break;
+                //Limpar os items que possam estar na list no início
+                lstTodo.DataSource = null;
+                lstDoing.DataSource = null;
+                //lstDone.Items.Clear();
 
-                case EstadoAtual.Done:
-                    MessageBox.Show(
-                            "ERRO: Está a tentar reiniciar uma tarefa que já foi dada como terminada.",
-                            "Aviso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                break;
-
-                default:
-                    MessageBox.Show("Estado desconhecido!");
-                break;
-            }
-        }
-
-        private void btSetDone_Click(object sender, EventArgs e) //BTN TERMINAR TAREFA
-        {
-            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
-            var userLogado = _user;
-
-            switch (tarefaSelecionada.EstadoAtual)  //VALIDACAO A VER SE ALGO FOR SELECIONADO
-            {
-                case EstadoAtual.ToDo:
-                    MessageBox.Show(
-                            "ERRO: Está a tentar terminar uma tarefa que ainda não foi iniciada!",
-                            "Aviso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    break;
-
-                case EstadoAtual.Doing:
-                    if(tarefaSelecionada.Programador.Id == userLogado.Id)
-                    {
-                        //é o user logado
-                        Tarefa tarefaMenor = controller.GetTarefasProgramadorMenorOrdem(userLogado.Id);
-                        if (tarefaMenor == tarefaSelecionada)
-                        {
-                            controller.AvancarTarefa(tarefaSelecionada);
-                            CarregarTarefas();
-                        }
-                        else
-                        {
-                            MessageBox.Show("ERRO: Ordem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            //não é a próxima tarefa, logo não pode ser finalizada
-                            return;
-                        }
-                    } else
-                    {
-                        //não é o user logado
-                    }
-                break;
-
-                case EstadoAtual.Done:
-                    MessageBox.Show(
-                            "ERRO: Está a tentar terminar uma tarefa que já foi dada como terminada.",
-                            "Aviso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Error);
-                    break;
-
-                default:
-                    MessageBox.Show("Estado desconhecido!");
-                    break;
-            }
-        }
-        public void CarregarTarefas()
-        {
-            //Separação das tarefas por estados
-            tarefasToDo = controller.ObterTarefasToDo();
-            tarefasDoing = controller.ObterTarefasDoing();
-            tarefasDone = controller.ObterTarefasDone();
-
-            //Limpar os items que possam estar na list no início
-            lstTodo.DataSource = null;
-            lstDoing.DataSource = null;
-            //lstDone.Items.Clear();
-
-            //Adicionar os itens por lista, por estado.
-            lstTodo.DataSource = tarefasToDo;
-            lstDoing.DataSource = tarefasDoing;
-            lstDone.DataSource = tarefasDone;
-        }
-
-        public Tarefa verOndeEstaTarefaSelecionada()
-        {
-            if (lstTodo.SelectedItem as Tarefa != null)
-            {
-                Tarefa tarefaSelecionada = lstTodo.SelectedItem as Tarefa;
-                return tarefaSelecionada;
-            }
-            else if (lstDoing.SelectedItem as Tarefa != null)
-            {
-                Tarefa tarefaSelecionada = lstDoing.SelectedItem as Tarefa;
-                return tarefaSelecionada;
-            }
-            else if (lstDone.SelectedItem as Tarefa != null)
-            {
-                Tarefa tarefaSelecionada = lstDone.SelectedItem as Tarefa;
-                return tarefaSelecionada;
-            }
-            else
-            {
-                return null;
+                //Adicionar os itens por lista, por estado.
+                lstTodo.DataSource = tarefasToDo;
+                lstDoing.DataSource = tarefasDoing;
+                lstDone.DataSource = tarefasDone;
             }
 
-        }
-
-        private void gerirUtilizadoresToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmGereUtilizadores gereUtilizadores = new frmGereUtilizadores();
-            gereUtilizadores.ShowDialog();
-        }
-
-        private void btNova_Click(object sender, EventArgs e)
-        {
-            var detalhesTarefa = new frmDetalhesTarefa(_user);
-            detalhesTarefa.Show();
-            CarregarTarefas();
-        }
-
-
-        //IMPEDIR QUE O USER SELECIONE TAREFAS SIMULTÂNEAS
-        private void lstTodo_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (lstTodo.SelectedIndex != -1)
+            public Tarefa verOndeEstaTarefaSelecionada()
             {
-                lstDoing.ClearSelected();
-                lstDone.ClearSelected();
-            }
-        }
-
-        private void lstDoing_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (lstDoing.SelectedIndex != -1)
-            {
-                lstTodo.ClearSelected();
-                lstDone.ClearSelected();
-            }
-        }
-
-        private void lstDone_SelectedIndexChanged_1(object sender, EventArgs e)
-        {
-            if (lstDone.SelectedIndex != -1)
-            {
-                lstTodo.ClearSelected();
-                lstDoing.ClearSelected();
-            }
-        }
-        //IMPEDIR QUE O USER SELECIONE TAREFAS SIMULTÂNEAS
-
-
-        private void gerirTiposDeTarefasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmGereTiposTarefas gereTiposTarefas = new frmGereTiposTarefas();
-            gereTiposTarefas.ShowDialog();
-        }
-
-        private void btPrevisao_Click(object sender, EventArgs e)
-        {
-
-            if (!(_user is Gestor))
-            {
-                btPrevisao.Visible = false;
+                if (lstTodo.SelectedItem as Tarefa != null)
+                {
+                    Tarefa tarefaSelecionada = lstTodo.SelectedItem as Tarefa;
+                    return tarefaSelecionada;
+                }
+                else if (lstDoing.SelectedItem as Tarefa != null)
+                {
+                    Tarefa tarefaSelecionada = lstDoing.SelectedItem as Tarefa;
+                    return tarefaSelecionada;
+                }
+                else if (lstDone.SelectedItem as Tarefa != null)
+                {
+                    Tarefa tarefaSelecionada = lstDone.SelectedItem as Tarefa;
+                    return tarefaSelecionada;
+                }
+                else
+                {
+                    return null;
+                }
 
             }
-            
 
-            Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
-
-            if(tarefaSelecionada == null)
+            private void gerirUtilizadoresToolStripMenuItem_Click(object sender, EventArgs e)
             {
-                MessageBox.Show(
-                            "AVISO: Selecione uma tarefa para conseguir ver a sua previsão de conclusão.",
-                            "Aviso",
-                            MessageBoxButtons.OK,
-                            MessageBoxIcon.Warning);
-                return;
-            } else {
+                frmGereUtilizadores gereUtilizadores = new frmGereUtilizadores();
+                gereUtilizadores.ShowDialog();
+            }
 
-
-                //POPUP
-                frmPrevisaoConclusao frm = new frmPrevisaoConclusao(tarefaSelecionada);
-
-                frm.ShowDialog();
+            private void btNova_Click(object sender, EventArgs e)
+            {
+              
+                 var detalhesTarefa = new frmDetalhesTarefa(_user);
+                 detalhesTarefa.Show();
+                 CarregarTarefas();
                 
             }
-        }
 
-        private void tarefasTerminadasToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmConsultarTarefasConcluidas frm = new frmConsultarTarefasConcluidas();
-           
-            frm.ShowDialog();
-        }
 
-        private void tarefasEmCursoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            frmConsultaTarefasEmCurso frm = new frmConsultaTarefasEmCurso();
-
-            frm.ShowDialog();
-        }
-
-        private void exportarParaCSVToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Ficheiros CSV (*.csv)|*.csv";
-            saveFileDialog.Title = "Guardar tarefas concluídas como CSV";
-            saveFileDialog.FileName = "tarefas_concluidas.csv";
-
-            if (saveFileDialog.ShowDialog() == DialogResult.OK)
+            //IMPEDIR QUE O USER SELECIONE TAREFAS SIMULTÂNEAS
+            private void lstTodo_SelectedIndexChanged_1(object sender, EventArgs e)
             {
-                try
+                if (lstTodo.SelectedIndex != -1)
                 {
-                    controller.ExportarTarefasConcluidasParaCsv(saveFileDialog.FileName);
-                    MessageBox.Show("Exportação concluída com sucesso!", "Sucesso");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Erro ao exportar: " + ex.Message, "Erro");
+                    lstDoing.ClearSelected();
+                    lstDone.ClearSelected();
                 }
             }
-        }
 
-
-
-
-
-
-
-        private void frmKanban_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            if (DialogResult == DialogResult.OK)
+            private void lstDoing_SelectedIndexChanged_1(object sender, EventArgs e)
             {
+                if (lstDoing.SelectedIndex != -1)
+                {
+                    lstTodo.ClearSelected();
+                    lstDone.ClearSelected();
+                }
+            }
+
+            private void lstDone_SelectedIndexChanged_1(object sender, EventArgs e)
+            {
+                if (lstDone.SelectedIndex != -1)
+                {
+                    lstTodo.ClearSelected();
+                    lstDoing.ClearSelected();
+                }
+            }
+            //IMPEDIR QUE O USER SELECIONE TAREFAS SIMULTÂNEAS
+
+
+            private void gerirTiposDeTarefasToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                frmGereTiposTarefas gereTiposTarefas = new frmGereTiposTarefas();
+                gereTiposTarefas.ShowDialog();
+            }
+
+            private void btPrevisao_Click(object sender, EventArgs e)
+            {
+
+                if (!(_user is Gestor))
+                {
+                    btPrevisao.Visible = false;
+
+                }
+            
+
+                Tarefa tarefaSelecionada = verOndeEstaTarefaSelecionada();
+
+                if(tarefaSelecionada == null)
+                {
+                    MessageBox.Show(
+                                "AVISO: Selecione uma tarefa para conseguir ver a sua previsão de conclusão.",
+                                "Aviso",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                    return;
+                } else {
+
+
+                    //POPUP
+                    frmPrevisaoConclusao frm = new frmPrevisaoConclusao(tarefaSelecionada);
+
+                    frm.ShowDialog();
+                
+                }
+            }
+
+            private void tarefasTerminadasToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                frmConsultarTarefasConcluidas frm = new frmConsultarTarefasConcluidas();
+           
+                frm.ShowDialog();
+            }
+
+            private void tarefasEmCursoToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                frmConsultaTarefasEmCurso frm = new frmConsultaTarefasEmCurso();
+
+                frm.ShowDialog();
+            }
+
+            private void exportarParaCSVToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                SaveFileDialog saveFileDialog = new SaveFileDialog();
+                saveFileDialog.Filter = "Ficheiros CSV (*.csv)|*.csv";
+                saveFileDialog.Title = "Guardar tarefas concluídas como CSV";
+                saveFileDialog.FileName = "tarefas_concluidas.csv";
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    try
+                    {
+                        controller.ExportarTarefasConcluidasParaCsv(saveFileDialog.FileName);
+                        MessageBox.Show("Exportação concluída com sucesso!", "Sucesso");
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Erro ao exportar: " + ex.Message, "Erro");
+                    }
+                }
+            }
+
+
+
+
+
+
+
+            private void frmKanban_FormClosed(object sender, FormClosedEventArgs e)
+            {
+                if (DialogResult == DialogResult.OK)
+                {
+                    Application.Exit();
+                }
+            }
+            private void btLogout1_Click(object sender, EventArgs e)
+            {
+                DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+
+            private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+                DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+
+            private void sairToolStripMenuItem_Click(object sender, EventArgs e)
+            {
+            
+                this.Close();
                 Application.Exit();
             }
         }
-        private void btLogout1_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void logoutToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            DialogResult = DialogResult.Cancel;
-            this.Close();
-        }
-
-        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            
-            this.Close();
-            Application.Exit();
-        }
     }
-}
