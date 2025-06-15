@@ -103,6 +103,7 @@ namespace iTasks
             var kanban = new frmKanban(user);
             this.Hide();
             kanban.ShowDialog();
+            txtPassword.Clear(); // Limpa o campo da password após login
             this.Show();
         }
 
