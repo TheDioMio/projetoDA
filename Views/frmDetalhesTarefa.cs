@@ -21,6 +21,10 @@ namespace iTasks
         public UtilizadorController userController = new UtilizadorController();
         public TarefaController tarefaController = new TarefaController();
 
+        public delegate void TarefaCriadaHandler(); 
+        
+        public event Action TarefaCriada;
+
         public frmDetalhesTarefa(Utilizador user)
         {
             InitializeComponent();
@@ -137,6 +141,8 @@ namespace iTasks
                     // correu bem proceder
                     //ficou aqui este código pois devemos analisar o que fazer a seguir,
                     //ou fechamos a janela, ou deixamos introduzir mais tarefas
+
+                    TarefaCriada?.Invoke(); // Chama o evento que atualiza listbox to do no Kanban 
                 }
                 else
                 {

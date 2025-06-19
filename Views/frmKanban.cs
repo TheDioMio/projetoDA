@@ -243,8 +243,9 @@
 
             private void btNova_Click(object sender, EventArgs e)
             {
-              
-                 var detalhesTarefa = new frmDetalhesTarefa(_user);
+
+                var detalhesTarefa = new frmDetalhesTarefa(_user);
+                detalhesTarefa.TarefaCriada += AtualizarListaTarefasToDo;
                  detalhesTarefa.Show();
                  CarregarTarefas();
                 
@@ -384,5 +385,11 @@
                 this.Close();
                 Application.Exit();
             }
-        }
+
+            private void AtualizarListaTarefasToDo()
+            {
+                lstTodo.DataSource = null;
+                lstTodo.DataSource = controller.ObterTarefasToDo();
+            }
+    }
     }
