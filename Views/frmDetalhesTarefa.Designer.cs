@@ -1,4 +1,4 @@
-﻿namespace iTasks
+namespace iTasks
 {
     partial class frmDetalhesTarefa
     {
@@ -96,12 +96,14 @@
             this.cbProgramador.Name = "cbProgramador";
             this.cbProgramador.Size = new System.Drawing.Size(413, 24);
             this.cbProgramador.TabIndex = 6;
+            this.cbProgramador.SelectedIndexChanged += new System.EventHandler(this.cbProgramador_SelectedIndexChanged);
             // 
             // txtOrdem
             // 
             this.txtOrdem.Location = new System.Drawing.Point(176, 236);
             this.txtOrdem.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txtOrdem.Name = "txtOrdem";
+            this.txtOrdem.ReadOnly = true;
             this.txtOrdem.Size = new System.Drawing.Size(81, 22);
             this.txtOrdem.TabIndex = 9;
             // 
@@ -243,7 +245,7 @@
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(124, 16);
             this.label10.TabIndex = 22;
-            this.label10.Text = "Data Real de Início:";
+            this.label10.Text = "Data Real de Fim:";
             // 
             // txtDataCriacao
             // 

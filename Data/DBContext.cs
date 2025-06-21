@@ -14,7 +14,6 @@ namespace iTasks.Data
         public DbSet<Utilizador> Utilizadores { get; set; }
         public DbSet<Programador> Programadores { get; set; }
         public DbSet<Gestor> Gestores { get; set; }
-
         public DbSet<TipoTarefa> TiposTarefa { get; set; }
         public DbSet<Projeto> Projetos { get; set; }
         public DbSet<Tarefa> Tarefas { get; set; }

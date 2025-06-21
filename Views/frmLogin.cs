@@ -39,15 +39,6 @@ namespace iTasks
             //TipoTarefa tarefa5 = new TipoTarefa("TESTE5");
             //Contexto.TiposTarefa.Add(tarefa5);
 
-            
-            //Gestor user1 = new Gestor
-            //{
-            //    Nome = "Admin",
-            //    Password = "Admin",
-            //    Username = "Admin"
-            //};
-            //Contexto.Utilizadores.Add(user1);
-            //Contexto.SaveChanges();
 
             //Gestor user1 = new Gestor
             //{
@@ -57,12 +48,14 @@ namespace iTasks
             //};
             //Contexto.Utilizadores.Add(user1);
             //Contexto.SaveChanges();
+            
 
             //txtPassword.Text = "Admin";
             //txtUsername.Text = "Admin";
 
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
+
 
             // 1) Campos obrigatórios
             if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password))

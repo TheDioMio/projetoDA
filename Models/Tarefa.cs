@@ -25,8 +25,8 @@ namespace iTasks.Models
         public DateTime DataPrevistaInicio { get; set; }
         public DateTime DataCriacao { get; set; } = DateTime.Now;
         public DateTime DataPrevistaFim { get; set; }
-        public DateTime DataRealInicio { get; set; }
-        public DateTime DataRealFim { get; set; }
+        public DateTime? DataRealInicio { get; set; }
+        public DateTime? DataRealFim { get; set; }
 
         public override string ToString()
         {

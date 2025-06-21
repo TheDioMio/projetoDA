@@ -69,9 +69,10 @@ namespace iTasks
             this.lstTodo.Location = new System.Drawing.Point(4, 19);
             this.lstTodo.Margin = new System.Windows.Forms.Padding(4);
             this.lstTodo.Name = "lstTodo";
-            this.lstTodo.Size = new System.Drawing.Size(395, 516);
+            this.lstTodo.Size = new System.Drawing.Size(296, 419);
             this.lstTodo.TabIndex = 0;
             this.lstTodo.SelectedIndexChanged += new System.EventHandler(this.lstTodo_SelectedIndexChanged_1);
+            this.lstTodo.DoubleClick += new System.EventHandler(this.lstTodo_DoubleClick);
             // 
             // groupBox1
             // 
@@ -105,7 +106,7 @@ namespace iTasks
             this.lstDoing.Location = new System.Drawing.Point(4, 19);
             this.lstDoing.Margin = new System.Windows.Forms.Padding(4);
             this.lstDoing.Name = "lstDoing";
-            this.lstDoing.Size = new System.Drawing.Size(395, 520);
+            this.lstDoing.Size = new System.Drawing.Size(296, 422);
             this.lstDoing.TabIndex = 0;
             this.lstDoing.SelectedIndexChanged += new System.EventHandler(this.lstDoing_SelectedIndexChanged_1);
             // 
@@ -129,7 +130,7 @@ namespace iTasks
             this.lstDone.Location = new System.Drawing.Point(4, 19);
             this.lstDone.Margin = new System.Windows.Forms.Padding(4);
             this.lstDone.Name = "lstDone";
-            this.lstDone.Size = new System.Drawing.Size(395, 520);
+            this.lstDone.Size = new System.Drawing.Size(296, 422);
             this.lstDone.TabIndex = 0;
             this.lstDone.SelectedIndexChanged += new System.EventHandler(this.lstDone_SelectedIndexChanged_1);
             // 
@@ -161,26 +162,26 @@ namespace iTasks
             // exportarParaCSVToolStripMenuItem
             // 
             this.exportarParaCSVToolStripMenuItem.Name = "exportarParaCSVToolStripMenuItem";
-            this.exportarParaCSVToolStripMenuItem.Size = new System.Drawing.Size(338, 26);
+            this.exportarParaCSVToolStripMenuItem.Size = new System.Drawing.Size(304, 24);
             this.exportarParaCSVToolStripMenuItem.Text = "Exportar Tarefas Concluídas para CSV";
             this.exportarParaCSVToolStripMenuItem.Click += new System.EventHandler(this.exportarParaCSVToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(335, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(301, 6);
             // 
             // logoutToolStripMenuItem
             // 
             this.logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(338, 26);
+            this.logoutToolStripMenuItem.Size = new System.Drawing.Size(304, 24);
             this.logoutToolStripMenuItem.Text = "Logout";
             this.logoutToolStripMenuItem.Click += new System.EventHandler(this.logoutToolStripMenuItem_Click);
             // 
             // sairToolStripMenuItem
             // 
             this.sairToolStripMenuItem.Name = "sairToolStripMenuItem";
-            this.sairToolStripMenuItem.Size = new System.Drawing.Size(338, 26);
+            this.sairToolStripMenuItem.Size = new System.Drawing.Size(304, 24);
             this.sairToolStripMenuItem.Text = "Sair";
             this.sairToolStripMenuItem.Click += new System.EventHandler(this.sairToolStripMenuItem_Click);
             // 
@@ -196,14 +197,14 @@ namespace iTasks
             // gerirUtilizadoresToolStripMenuItem
             // 
             this.gerirUtilizadoresToolStripMenuItem.Name = "gerirUtilizadoresToolStripMenuItem";
-            this.gerirUtilizadoresToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.gerirUtilizadoresToolStripMenuItem.Size = new System.Drawing.Size(208, 24);
             this.gerirUtilizadoresToolStripMenuItem.Text = "Gerir Utilizadores";
             this.gerirUtilizadoresToolStripMenuItem.Click += new System.EventHandler(this.gerirUtilizadoresToolStripMenuItem_Click);
             // 
             // gerirTiposDeTarefasToolStripMenuItem
             // 
             this.gerirTiposDeTarefasToolStripMenuItem.Name = "gerirTiposDeTarefasToolStripMenuItem";
-            this.gerirTiposDeTarefasToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.gerirTiposDeTarefasToolStripMenuItem.Size = new System.Drawing.Size(208, 24);
             this.gerirTiposDeTarefasToolStripMenuItem.Text = "Gerir Tipos de Tarefas";
             this.gerirTiposDeTarefasToolStripMenuItem.Click += new System.EventHandler(this.gerirTiposDeTarefasToolStripMenuItem_Click);
             // 
@@ -219,14 +220,14 @@ namespace iTasks
             // tarefasTerminadasToolStripMenuItem
             // 
             this.tarefasTerminadasToolStripMenuItem.Name = "tarefasTerminadasToolStripMenuItem";
-            this.tarefasTerminadasToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.tarefasTerminadasToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
             this.tarefasTerminadasToolStripMenuItem.Text = "Tarefas Concluídas";
             this.tarefasTerminadasToolStripMenuItem.Click += new System.EventHandler(this.tarefasTerminadasToolStripMenuItem_Click);
             // 
             // tarefasEmCursoToolStripMenuItem
             // 
             this.tarefasEmCursoToolStripMenuItem.Name = "tarefasEmCursoToolStripMenuItem";
-            this.tarefasEmCursoToolStripMenuItem.Size = new System.Drawing.Size(214, 26);
+            this.tarefasEmCursoToolStripMenuItem.Size = new System.Drawing.Size(189, 24);
             this.tarefasEmCursoToolStripMenuItem.Text = "Tarefas em Curso";
             this.tarefasEmCursoToolStripMenuItem.Click += new System.EventHandler(this.tarefasEmCursoToolStripMenuItem_Click);
             // 
@@ -235,7 +236,7 @@ namespace iTasks
             this.btSetDoing.Location = new System.Drawing.Point(220, 618);
             this.btSetDoing.Margin = new System.Windows.Forms.Padding(4);
             this.btSetDoing.Name = "btSetDoing";
-            this.btSetDoing.Size = new System.Drawing.Size(195, 28);
+            this.btSetDoing.Size = new System.Drawing.Size(146, 23);
             this.btSetDoing.TabIndex = 5;
             this.btSetDoing.Text = "Executar Tarefa >>";
             this.btSetDoing.UseVisualStyleBackColor = true;
@@ -246,7 +247,7 @@ namespace iTasks
             this.btSetDone.Location = new System.Drawing.Point(633, 618);
             this.btSetDone.Margin = new System.Windows.Forms.Padding(4);
             this.btSetDone.Name = "btSetDone";
-            this.btSetDone.Size = new System.Drawing.Size(192, 28);
+            this.btSetDone.Size = new System.Drawing.Size(144, 23);
             this.btSetDone.TabIndex = 6;
             this.btSetDone.Text = "Terminar Tarefa >>";
             this.btSetDone.UseVisualStyleBackColor = true;
@@ -257,7 +258,7 @@ namespace iTasks
             this.btSetTodo.Location = new System.Drawing.Point(431, 618);
             this.btSetTodo.Margin = new System.Windows.Forms.Padding(4);
             this.btSetTodo.Name = "btSetTodo";
-            this.btSetTodo.Size = new System.Drawing.Size(192, 28);
+            this.btSetTodo.Size = new System.Drawing.Size(144, 23);
             this.btSetTodo.TabIndex = 7;
             this.btSetTodo.Text = "<< Reiniciar Tarefa";
             this.btSetTodo.UseVisualStyleBackColor = true;
@@ -268,7 +269,7 @@ namespace iTasks
             this.btNova.Location = new System.Drawing.Point(20, 618);
             this.btNova.Margin = new System.Windows.Forms.Padding(4);
             this.btNova.Name = "btNova";
-            this.btNova.Size = new System.Drawing.Size(139, 28);
+            this.btNova.Size = new System.Drawing.Size(104, 23);
             this.btNova.TabIndex = 8;
             this.btNova.Text = "Nova Tarefa";
             this.btNova.UseVisualStyleBackColor = true;
@@ -277,10 +278,9 @@ namespace iTasks
             // labelBemVindo
             // 
             this.labelBemVindo.AutoSize = true;
-            this.labelBemVindo.Location = new System.Drawing.Point(1037, 42);
-            this.labelBemVindo.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.labelBemVindo.Location = new System.Drawing.Point(778, 34);
             this.labelBemVindo.Name = "labelBemVindo";
-            this.labelBemVindo.Size = new System.Drawing.Size(187, 16);
+            this.labelBemVindo.Size = new System.Drawing.Size(149, 13);
             this.labelBemVindo.TabIndex = 9;
             this.labelBemVindo.Text = "Bem vindo: <Nome Utilizador>";
             // 
@@ -289,7 +289,7 @@ namespace iTasks
             this.btPrevisao.Location = new System.Drawing.Point(16, 36);
             this.btPrevisao.Margin = new System.Windows.Forms.Padding(4);
             this.btPrevisao.Name = "btPrevisao";
-            this.btPrevisao.Size = new System.Drawing.Size(223, 28);
+            this.btPrevisao.Size = new System.Drawing.Size(167, 23);
             this.btPrevisao.TabIndex = 10;
             this.btPrevisao.Text = "Ver Previsão de Conclusão";
             this.btPrevisao.UseVisualStyleBackColor = true;
@@ -300,17 +300,16 @@ namespace iTasks
             this.btLogout.Location = new System.Drawing.Point(1548, 761);
             this.btLogout.Margin = new System.Windows.Forms.Padding(4);
             this.btLogout.Name = "btLogout";
-            this.btLogout.Size = new System.Drawing.Size(100, 34);
+            this.btLogout.Size = new System.Drawing.Size(75, 28);
             this.btLogout.TabIndex = 11;
             this.btLogout.Text = "Logout";
             this.btLogout.UseVisualStyleBackColor = true;
             // 
             // btLogout1
             // 
-            this.btLogout1.Location = new System.Drawing.Point(1131, 620);
-            this.btLogout1.Margin = new System.Windows.Forms.Padding(4);
+            this.btLogout1.Location = new System.Drawing.Point(848, 504);
             this.btLogout1.Name = "btLogout1";
-            this.btLogout1.Size = new System.Drawing.Size(105, 28);
+            this.btLogout1.Size = new System.Drawing.Size(79, 23);
             this.btLogout1.TabIndex = 12;
             this.btLogout1.Text = "Logout";
             this.btLogout1.UseVisualStyleBackColor = true;
@@ -318,9 +317,9 @@ namespace iTasks
             // 
             // frmKanban
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1257, 661);
+            this.ClientSize = new System.Drawing.Size(943, 578);
             this.Controls.Add(this.btLogout1);
             this.Controls.Add(this.btLogout);
             this.Controls.Add(this.btPrevisao);

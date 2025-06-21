@@ -31,6 +31,7 @@
             if (_user is Gestor)
             {
                 utilizadoresToolStripMenuItem.Enabled = true;
+                btNova.Enabled = true;
             }
             else
             {

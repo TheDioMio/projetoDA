@@ -1,4 +1,4 @@
-﻿using iTasks.Data;
+using iTasks.Data;
 using iTasks.Models;
 using System;
 using System.Collections.Generic;
@@ -37,6 +37,7 @@ namespace iTasks.Controllers
             try
             {
                 Contexto.Utilizadores.Attach(tarefa.Programador);
+                Contexto.TiposTarefa.Attach(tarefa.TipoTarefa);
                 Contexto.Utilizadores.Attach(tarefa.Gestor);
                 Contexto.Tarefas.Add(tarefa);
                 Contexto.SaveChanges();
@@ -49,10 +50,24 @@ namespace iTasks.Controllers
             return flag;
         }
 
-        public void Atualizar(Tarefa tarefa)
+        public bool Atualizar(Tarefa tarefa)
         {
-            Contexto.Entry(tarefa).State = EntityState.Modified;
-            Contexto.SaveChanges();
+            
+            bool flag = false;
+            try
+            {
+                //Contexto.Utilizadores.Attach(tarefa.Programador);
+                //Contexto.TiposTarefa.Attach(tarefa.TipoTarefa);
+                //Contexto.Utilizadores.Attach(tarefa.Gestor);
+                Contexto.Entry(tarefa).State = EntityState.Modified;
+                Contexto.SaveChanges();
+                flag = true;
+            }
+            catch (Exception)
+            {
+                flag = false;
+            }
+            return flag;
         }
 
         public Tarefa ObterPorId(int id) => //Encontrar utilizador pelo ID
@@ -188,6 +203,10 @@ namespace iTasks.Controllers
         {
             return Contexto.Tarefas
                   .Where(tarefa => tarefa.EstadoAtual == EstadoAtual.ToDo)
+                  .Include(t => t.TipoTarefa)
+                  .Include(t => t.Programador)
+                  .Include(t => t.Gestor)
+                  .Include(t => t.Projeto)
                   .ToList();
         }
 
@@ -258,9 +277,9 @@ namespace iTasks.Controllers
                 .GroupBy(t => t.StoryPoints)
                 .ToDictionary(
                     g => g.Key,
-                    g => g.Average(t => (t.DataRealFim - t.DataRealInicio).TotalHours)
+                    g => g.Average(t => (t.DataRealFim.Value - t.DataRealInicio.Value).TotalHours)
                 );
-            
+
             double tempoTotalPrevisto = 0;
 
             foreach (var tarefa in tarefasToDo)
