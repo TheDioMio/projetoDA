@@ -65,11 +65,10 @@ namespace iTasks
             // 
             this.lstTodo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstTodo.FormattingEnabled = true;
-            this.lstTodo.ItemHeight = 16;
-            this.lstTodo.Location = new System.Drawing.Point(4, 19);
+            this.lstTodo.Location = new System.Drawing.Point(4, 17);
             this.lstTodo.Margin = new System.Windows.Forms.Padding(4);
             this.lstTodo.Name = "lstTodo";
-            this.lstTodo.Size = new System.Drawing.Size(296, 419);
+            this.lstTodo.Size = new System.Drawing.Size(395, 518);
             this.lstTodo.TabIndex = 0;
             this.lstTodo.SelectedIndexChanged += new System.EventHandler(this.lstTodo_SelectedIndexChanged_1);
             this.lstTodo.DoubleClick += new System.EventHandler(this.lstTodo_DoubleClick);
@@ -102,11 +101,10 @@ namespace iTasks
             // 
             this.lstDoing.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstDoing.FormattingEnabled = true;
-            this.lstDoing.ItemHeight = 16;
-            this.lstDoing.Location = new System.Drawing.Point(4, 19);
+            this.lstDoing.Location = new System.Drawing.Point(4, 17);
             this.lstDoing.Margin = new System.Windows.Forms.Padding(4);
             this.lstDoing.Name = "lstDoing";
-            this.lstDoing.Size = new System.Drawing.Size(296, 422);
+            this.lstDoing.Size = new System.Drawing.Size(395, 522);
             this.lstDoing.TabIndex = 0;
             this.lstDoing.SelectedIndexChanged += new System.EventHandler(this.lstDoing_SelectedIndexChanged_1);
             // 
@@ -126,11 +124,10 @@ namespace iTasks
             // 
             this.lstDone.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lstDone.FormattingEnabled = true;
-            this.lstDone.ItemHeight = 16;
-            this.lstDone.Location = new System.Drawing.Point(4, 19);
+            this.lstDone.Location = new System.Drawing.Point(4, 17);
             this.lstDone.Margin = new System.Windows.Forms.Padding(4);
             this.lstDone.Name = "lstDone";
-            this.lstDone.Size = new System.Drawing.Size(296, 422);
+            this.lstDone.Size = new System.Drawing.Size(395, 522);
             this.lstDone.TabIndex = 0;
             this.lstDone.SelectedIndexChanged += new System.EventHandler(this.lstDone_SelectedIndexChanged_1);
             // 
@@ -144,7 +141,7 @@ namespace iTasks
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
-            this.menuStrip1.Size = new System.Drawing.Size(1257, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1246, 27);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -156,7 +153,7 @@ namespace iTasks
             this.logoutToolStripMenuItem,
             this.sairToolStripMenuItem});
             this.ficheiroToolStripMenuItem.Name = "ficheiroToolStripMenuItem";
-            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(75, 24);
+            this.ficheiroToolStripMenuItem.Size = new System.Drawing.Size(68, 23);
             this.ficheiroToolStripMenuItem.Text = "Ficheiro";
             // 
             // exportarParaCSVToolStripMenuItem
@@ -191,7 +188,7 @@ namespace iTasks
             this.gerirUtilizadoresToolStripMenuItem,
             this.gerirTiposDeTarefasToolStripMenuItem});
             this.utilizadoresToolStripMenuItem.Name = "utilizadoresToolStripMenuItem";
-            this.utilizadoresToolStripMenuItem.Size = new System.Drawing.Size(160, 24);
+            this.utilizadoresToolStripMenuItem.Size = new System.Drawing.Size(144, 23);
             this.utilizadoresToolStripMenuItem.Text = "Gestão da Aplicação";
             // 
             // gerirUtilizadoresToolStripMenuItem
@@ -214,7 +211,7 @@ namespace iTasks
             this.tarefasTerminadasToolStripMenuItem,
             this.tarefasEmCursoToolStripMenuItem});
             this.listagensToolStripMenuItem.Name = "listagensToolStripMenuItem";
-            this.listagensToolStripMenuItem.Size = new System.Drawing.Size(84, 24);
+            this.listagensToolStripMenuItem.Size = new System.Drawing.Size(78, 23);
             this.listagensToolStripMenuItem.Text = "Listagens";
             // 
             // tarefasTerminadasToolStripMenuItem
@@ -307,7 +304,7 @@ namespace iTasks
             // 
             // btLogout1
             // 
-            this.btLogout1.Location = new System.Drawing.Point(848, 504);
+            this.btLogout1.Location = new System.Drawing.Point(1157, 618);
             this.btLogout1.Name = "btLogout1";
             this.btLogout1.Size = new System.Drawing.Size(79, 23);
             this.btLogout1.TabIndex = 12;
@@ -319,7 +316,7 @@ namespace iTasks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(943, 578);
+            this.ClientSize = new System.Drawing.Size(1246, 652);
             this.Controls.Add(this.btLogout1);
             this.Controls.Add(this.btLogout);
             this.Controls.Add(this.btPrevisao);

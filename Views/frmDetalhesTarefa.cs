@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics.Eventing.Reader;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.ConstrainedExecution;
@@ -38,7 +39,7 @@ namespace iTasks
         
         public event Action TarefaCriada;
 
-        public frmDetalhesTarefa(Utilizador user)
+        public frmDetalhesTarefa(Utilizador user, Tarefa tarefa)
         {
             InitializeComponent();
 
@@ -242,9 +243,9 @@ namespace iTasks
         {
             if (validaCamposTarefa())
             {
-               // temos de validar se ordem e story Points são numeros
+                // temos de validar se ordem e story Points são numeros
                 string desc = txtDesc.Text;
-                
+
                 int ordem;
                 if (!int.TryParse(txtOrdem.Text, out ordem))
                 {
@@ -268,7 +269,7 @@ namespace iTasks
                     MessageBox.Show("A data prevista de inicio de tarefa não pode ser superior á data prevista de fim.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                                
+
                 //EstadoAtual estado = EstadoAtual.ToDo;
                 //DateTime dataPrevInicio = dtInicio.Value;
                 //DateTime dataPrevFim = dtFim.Value;
@@ -288,6 +289,8 @@ namespace iTasks
                 tarefa.Gestor = _gestor as Gestor;
                 tarefa.Programador = (Programador)cbProgramador.SelectedItem;
                 tarefa.TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem;
+
+                // rever pois se é para editar uma tarefa pode não ser null
                 tarefa.DataRealInicio = null;
                 tarefa.DataRealFim = null;
                 //tarefa.DataRealInicio = DateTime.MaxValue;
@@ -297,15 +300,18 @@ namespace iTasks
                 {
                     bool success = tarefaController.Criar(tarefa);
 
-                bool success = tarefaController.Criar(tarefa);
+                    if (success)
+                    {
+                        // correu bem proceder
+                        //ficou aqui este código pois devemos analisar o que fazer a seguir,
+                        //ou fechamos a janela, ou deixamos introduzir mais tarefas
 
-                if (success)
-                {
-                    // correu bem proceder
-                    //ficou aqui este código pois devemos analisar o que fazer a seguir,
-                    //ou fechamos a janela, ou deixamos introduzir mais tarefas
-
-                    TarefaCriada?.Invoke(); // Chama o evento que atualiza listbox to do no Kanban 
+                        TarefaCriada?.Invoke(); // Chama o evento que atualiza listbox to do no Kanban 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Alguma coisa não correu bem, não foi possivel criar a Tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
                 }
                 else
                 {
@@ -320,11 +326,9 @@ namespace iTasks
                     }
                     else
                     {
-                        MessageBox.Show("Alguma coisa não correu bem, não foi possivel criar a Tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        MessageBox.Show("Alguma coisa não correu bem, não foi possivel atualizar a Tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
-
-               
             }
         }
 
@@ -335,7 +339,7 @@ namespace iTasks
                 if (cbProgramador.SelectedIndex >= 0)
                 {
                     Programador programador = (Programador)cbProgramador.SelectedItem;
-                    Tarefa tarefaSelected = tarefaController.GetTarefaComMaiorOrdem(programador.Id);
+                    Tarefa tarefaSelected = tarefaController.GetTarefasProgramadorMaiorOrdem(programador.Id);
                     if (tarefaSelected == null)
                     {
                         txtOrdem.Text = "1";

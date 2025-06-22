@@ -30,16 +30,21 @@
             //Grisa o menu de gestão de users se o utilizador não for gestor. (SE FOR PROGRAMADOR)
             if (_user is Gestor)
             {
-                utilizadoresToolStripMenuItem.Enabled = true;
-                btNova.Enabled = true;
+                if (_user is Gestor gestor && gestor.gereUtilizadores == true)
+                {
+                    gerirUtilizadoresToolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    gerirUtilizadoresToolStripMenuItem.Enabled = false;
+                }
+                    btNova.Enabled = true;
             }
             else
             {
-
                 utilizadoresToolStripMenuItem.Enabled = false;
                 btNova.Enabled = false;
                 exportarParaCSVToolStripMenuItem.Enabled = false;
-
             }
                 labelBemVindo.Text = $"Bem-vindo, {userLogado.Nome}"; // alterei para mostrar nome em vez de username ( MP - 15/06/2025)
                 CarregarTarefas();
@@ -245,7 +250,7 @@
             private void btNova_Click(object sender, EventArgs e)
             {
 
-                var detalhesTarefa = new frmDetalhesTarefa(_user);
+                var detalhesTarefa = new frmDetalhesTarefa(_user, null);
                 detalhesTarefa.TarefaCriada += AtualizarListaTarefasToDo;
                  detalhesTarefa.Show();
                  CarregarTarefas();
@@ -392,5 +397,15 @@
                 lstTodo.DataSource = null;
                 lstTodo.DataSource = controller.ObterTarefasToDo();
             }
+
+        private void lstTodo_DoubleClick(object sender, EventArgs e)
+        {
+            Tarefa tarefaSelecionada = (Tarefa)lstTodo.SelectedItem;
+            if (tarefaSelecionada != null)
+            {
+                var detalhesTarefa = new frmDetalhesTarefa(_user, tarefaSelecionada);
+                detalhesTarefa.Show();
+            }
+        }
     }
     }

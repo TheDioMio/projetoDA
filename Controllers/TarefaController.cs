@@ -114,7 +114,7 @@ namespace iTasks.Controllers
         {
             return Contexto.Tarefas
                     .Where(tarefa => tarefa.Programador.Id == programadorId &&
-                    tarefa.EstadoAtual == EstadoAtual.ToDo || tarefa.EstadoAtual == EstadoAtual.Doing)
+                            tarefa.EstadoAtual == EstadoAtual.ToDo || tarefa.EstadoAtual == EstadoAtual.Doing)
                     .OrderBy(tarefa => tarefa.OrdemExecucao).FirstOrDefault();
         }
 
