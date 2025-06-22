@@ -122,8 +122,25 @@ namespace iTasks.Controllers
         {
             return Contexto.Tarefas
                     .Where(tarefa => tarefa.Programador.Id == programadorId &&
-                    (tarefa.EstadoAtual == EstadoAtual.ToDo || tarefa.EstadoAtual == EstadoAtual.Doing) 
+                    (tarefa.EstadoAtual == EstadoAtual.ToDo || tarefa.EstadoAtual == EstadoAtual.Doing)
                     ).OrderByDescending(tarefa => tarefa.OrdemExecucao).FirstOrDefault();
+        }
+
+        public bool ExisteOrdemParaProgramador(int programadorId, int ordem)
+        {
+            return Contexto.Tarefas.Any(t =>
+                t.Programador.Id == programadorId &&
+                (t.EstadoAtual == EstadoAtual.ToDo || t.EstadoAtual == EstadoAtual.Doing) &&
+                t.OrdemExecucao == ordem);
+        }
+
+        public bool ExisteOrdemParaProgramador(int programadorId, int ordem, int tarefaIdIgnorar)
+        {
+            return Contexto.Tarefas.Any(t =>
+                t.Programador.Id == programadorId &&
+                (t.EstadoAtual == EstadoAtual.ToDo || t.EstadoAtual == EstadoAtual.Doing) &&
+                t.OrdemExecucao == ordem &&
+                t.Id != tarefaIdIgnorar);
         }
 
 

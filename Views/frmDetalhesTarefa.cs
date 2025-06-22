@@ -240,92 +240,91 @@ namespace iTasks
 
         private void btGravar_Click(object sender, EventArgs e)
         {
-            if (validaCamposTarefa())
+            if (!validaCamposTarefa())
+                return;
+
+            string desc = txtDesc.Text;
+
+            if (!int.TryParse(txtOrdem.Text, out int ordem))
             {
-               // temos de validar se ordem e story Points são numeros
-                string desc = txtDesc.Text;
-                
-                int ordem;
-                if (!int.TryParse(txtOrdem.Text, out ordem))
-                {
-                    MessageBox.Show("O valor do campo ordem de execução não é um valor válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtOrdem.Text = "";
-                    txtOrdem.Focus();
-                    return;
-                }
+                MessageBox.Show("O valor do campo ordem de execução não é um valor válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtOrdem.Text = string.Empty;
+                txtOrdem.Focus();
+                return;
+            }
 
-                int storyPoints;
-                if (!int.TryParse(txtStoryPoints.Text, out storyPoints))
-                {
-                    MessageBox.Show("O valor do campo Story Points não é um valor válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtStoryPoints.Text = "";
-                    txtStoryPoints.Focus();
-                    return;
-                }
+            if (!int.TryParse(txtStoryPoints.Text, out int storyPoints))
+            {
+                MessageBox.Show("O valor do campo Story Points não é um valor válido.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txtStoryPoints.Text = string.Empty;
+                txtStoryPoints.Focus();
+                return;
+            }
 
-                if (dtInicio.Value > dtFim.Value)
-                {
-                    MessageBox.Show("A data prevista de inicio de tarefa não pode ser superior á data prevista de fim.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                                
-                //EstadoAtual estado = EstadoAtual.ToDo;
-                //DateTime dataPrevInicio = dtInicio.Value;
-                //DateTime dataPrevFim = dtFim.Value;
-                //Gestor gestor = _gestor as Gestor;
-                //TipoTarefa tipotarefa = listaTipoTarefas[cbTipoTarefa.SelectedIndex];
-                //Programador programador = listaProgramadores[cbProgramador.SelectedIndex];
+            if (dtInicio.Value > dtFim.Value)
+            {
+                MessageBox.Show("A data prevista de inicio de tarefa não pode ser superior á data prevista de fim.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                Tarefa tarefa = new Tarefa();
+            Programador programador = (Programador)cbProgramador.SelectedItem;
+            int? tarefaId = string.IsNullOrEmpty(txtId.Text) ? (int?)null : int.Parse(txtId.Text);
 
-                tarefa.Descricao = desc;
-                tarefa.OrdemExecucao = ordem;
-                tarefa.DataCriacao = DateTime.Now;
-                tarefa.StoryPoints = storyPoints;
-                tarefa.DataPrevistaInicio = dtInicio.Value;
-                tarefa.DataPrevistaFim = dtFim.Value;
-                tarefa.EstadoAtual = EstadoAtual.ToDo;
-                tarefa.Gestor = _gestor as Gestor;
-                tarefa.Programador = (Programador)cbProgramador.SelectedItem;
-                tarefa.TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem;
-                tarefa.DataRealInicio = null;
-                tarefa.DataRealFim = null;
-                //tarefa.DataRealInicio = DateTime.MaxValue;
-                //tarefa.DataRealFim = DateTime.MaxValue;
+            bool existeOrdem = tarefaId.HasValue
+                ? tarefaController.ExisteOrdemParaProgramador(programador.Id, ordem, tarefaId.Value)
+                : tarefaController.ExisteOrdemParaProgramador(programador.Id, ordem);
 
-                if (string.IsNullOrEmpty(txtId.Text))
-                {
-                    bool success = tarefaController.Criar(tarefa);
+            if (existeOrdem)
+            {
+                MessageBox.Show("Já existe uma tarefa com a mesma ordem para o programador selecionado.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
-                bool success = tarefaController.Criar(tarefa);
+            Tarefa tarefa = new Tarefa();
 
+            if (tarefaId.HasValue)
+                tarefa.Id = tarefaId.Value;
+
+            tarefa.Descricao = desc;
+            tarefa.OrdemExecucao = ordem;
+            tarefa.DataCriacao = DateTime.Now;
+            tarefa.StoryPoints = storyPoints;
+            tarefa.DataPrevistaInicio = dtInicio.Value;
+            tarefa.DataPrevistaFim = dtFim.Value;
+            tarefa.EstadoAtual = EstadoAtual.ToDo;
+            tarefa.Gestor = _gestor as Gestor;
+            tarefa.Programador = programador;
+            tarefa.TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem;
+            tarefa.DataRealInicio = null;
+            tarefa.DataRealFim = null;
+
+            bool success;
+            if (!tarefaId.HasValue)
+            {
+                success = tarefaController.Criar(tarefa);
                 if (success)
                 {
-                    // correu bem proceder
-                    //ficou aqui este código pois devemos analisar o que fazer a seguir,
-                    //ou fechamos a janela, ou deixamos introduzir mais tarefas
-
-                    TarefaCriada?.Invoke(); // Chama o evento que atualiza listbox to do no Kanban 
+                    TarefaCriada?.Invoke();
                 }
                 else
                 {
-                    bool success = tarefaController.Atualizar(tarefa);
-
-                    if (success)
-                    {
-                        MessageBox.Show("Tarefa atualizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        // correu bem proceder
-                        //ficou aqui este código pois devemos analisar o que fazer a seguir,
-                        //ou fechamos a janela, ou deixamos introduzir mais tarefas
-                    }
-                    else
-                    {
-                        MessageBox.Show("Alguma coisa não correu bem, não foi possivel criar a Tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    }
+                    MessageBox.Show("Alguma coisa não correu bem, não foi possivel criar a Tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
-
-               
             }
+            else
+            {
+                success = tarefaController.Atualizar(tarefa);
+                if (success)
+                {
+                    MessageBox.Show("Tarefa atualizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show("Alguma coisa não correu bem, não foi possivel criar a Tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+            }
+
+
         }
 
         private void cbProgramador_SelectedIndexChanged(object sender, EventArgs e)
