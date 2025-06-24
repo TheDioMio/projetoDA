@@ -103,6 +103,7 @@ namespace iTasks
             this.txtOrdem.Location = new System.Drawing.Point(176, 236);
             this.txtOrdem.Margin = new System.Windows.Forms.Padding(4);
             this.txtOrdem.Name = "txtOrdem";
+            this.txtOrdem.ReadOnly = true;
             this.txtOrdem.Size = new System.Drawing.Size(81, 22);
             this.txtOrdem.TabIndex = 9;
             // 
