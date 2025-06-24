@@ -45,6 +45,7 @@ namespace iTasks
                 utilizadoresToolStripMenuItem.Enabled = false;
                 btNova.Enabled = false;
                 exportarParaCSVToolStripMenuItem.Enabled = false;
+                btApagarTarefa.Enabled = false;
             }
             labelBemVindo.Text = $"Bem-vindo, {userLogado.Nome}"; // alterei para mostrar nome em vez de username ( MP - 15/06/2025)
             CarregarTarefas();
@@ -433,6 +434,34 @@ namespace iTasks
                 var detalhesTarefa = new frmDetalhesTarefa(_user, tarefaSelecionada);
                 detalhesTarefa.Show();
             }
+        }
+
+        private void btApagarTarefa_Click(object sender, EventArgs e)
+        {
+
+            if (lstTodo.SelectedIndex != -1)
+            {
+                // Guarda o resultado da MessageBox
+                DialogResult resposta = MessageBox.Show(
+                    "Pretende apagar a tarefa selecionada?",
+                    "Aviso",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning);
+
+                // Verifica se o utilizador clicou em Sim
+                if (resposta == DialogResult.Yes)
+                {
+                    var tarefaSelecionada = (Tarefa)lstTodo.SelectedItem;
+                    controller.ApagarTarefa(tarefaSelecionada.Id);
+                    AtualizarListaTarefasToDo();
+                }
+                // Não é necessário o else, pois se clicar em Não, não faz nada
+            }
+            else
+            {
+                MessageBox.Show("Selecione uma tarefa para apagar.", "Aviso");
+            }
+
         }
     }
 }

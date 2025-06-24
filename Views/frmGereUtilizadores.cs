@@ -188,6 +188,7 @@ namespace iTasks
                 if (success)
                 {
                     updateListGestores();
+                    limparCampos();
                 }
                 else
                 {
@@ -242,12 +243,13 @@ namespace iTasks
 
         }
 
-        private void limparCampos()
+        private void limparCampos() 
         {
             txtIdGestor.Text = "";
             txtNomeGestor.Text = "";
             txtPasswordGestor.Text = "";
             txtPasswordGestor.Text = "";
+            txtUsernameGestor.Text = "";
             chkGereUtilizadores.Checked = false;
             cbDepartamento.SelectedIndex = 0;
             lstListaGestores.ClearSelected();

@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading.Tasks;
 using System.IO;
+using System.Runtime.Remoting.Contexts;
 
 namespace iTasks.Controllers
 {
@@ -126,6 +127,15 @@ namespace iTasks.Controllers
                     ).OrderByDescending(tarefa => tarefa.OrdemExecucao).FirstOrDefault();
         }
 
+        public List<Tarefa> ObterTarefasDonePorGestor(int gestorId)
+        {
+            // Exemplo: filtrar tarefas onde o GestorId é igual ao gestorId passado
+            return Contexto.Tarefas
+                .Where(t => t.EstadoAtual == EstadoAtual.Done && t.Gestor.Id == gestorId)
+                .ToList();
+        }
+
+
 
 
         public void AvancarTarefa(Tarefa tarefa)
@@ -236,9 +246,9 @@ namespace iTasks.Controllers
 
         // Exportar tarefas concluidas para .csv
 
-        public void ExportarTarefasConcluidasParaCsv(string caminhoFicheiro)
+        public void ExportarTarefasConcluidasParaCsv(string caminhoFicheiro, int gestorId)
         {
-            var tarefas = ObterTarefasDone();
+            var tarefas = ObterTarefasDonePorGestor(gestorId);
 
             var sb = new StringBuilder();
 
@@ -309,6 +319,17 @@ namespace iTasks.Controllers
             }
 
             return tempoTotalPrevisto;
+        }
+
+        //Eliminar tarefa
+        public void ApagarTarefa(int id)
+        {
+            var tarefaEncontrada = Contexto.Tarefas.Find(id);
+            if (tarefaEncontrada != null)
+            {
+                Contexto.Tarefas.Remove(tarefaEncontrada);
+                Contexto.SaveChanges();
+            }
         }
 
 
