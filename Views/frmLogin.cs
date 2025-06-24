@@ -30,26 +30,16 @@ namespace iTasks
 
             //TipoTarefa tarefa1 = new TipoTarefa("TESTE1");
             //Contexto.TiposTarefa.Add(tarefa1);
-            //TipoTarefa tarefa2 = new TipoTarefa("TESTE2");
-            //Contexto.TiposTarefa.Add(tarefa2);
-            //TipoTarefa tarefa3 = new TipoTarefa("TESTE3");
-            //Contexto.TiposTarefa.Add(tarefa3);
-            //TipoTarefa tarefa4 = new TipoTarefa("TESTE4");
-            //Contexto.TiposTarefa.Add(tarefa4);
-            //TipoTarefa tarefa5 = new TipoTarefa("TESTE5");
-            //Contexto.TiposTarefa.Add(tarefa5);
-
 
             //Gestor user1 = new Gestor
             //{
             //    Nome = "Admin",
             //    Password = "Admin",
-            //    Username = "Admin"
+            //    Username = "Admin",
             //};
+            //user1.gereUtilizadores = true;
             //Contexto.Utilizadores.Add(user1);
             //Contexto.SaveChanges();
-            
-
             //txtPassword.Text = "Admin";
             //txtUsername.Text = "Admin";
 
