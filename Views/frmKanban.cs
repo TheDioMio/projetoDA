@@ -370,7 +370,7 @@ namespace iTasks
         private void exportarParaCSVToolStripMenuItem_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog = new SaveFileDialog();
-            saveFileDialog.Filter = "Ficheiros CSV (.csv)|.csv";
+            saveFileDialog.Filter = "Ficheiros CSV (*.csv)|*.csv";
             saveFileDialog.Title = "Guardar tarefas concluídas como CSV";
             saveFileDialog.FileName = "tarefas_concluidas.csv";
 
@@ -378,7 +378,8 @@ namespace iTasks
             {
                 try
                 {
-                    controller.ExportarTarefasConcluidasParaCsv(saveFileDialog.FileName);
+                    int gestorId = _user.Id;
+                    controller.ExportarTarefasConcluidasParaCsv(saveFileDialog.FileName, gestorId);
                     MessageBox.Show("Exportação concluída com sucesso!", "Sucesso");
                 }
                 catch (Exception ex)
