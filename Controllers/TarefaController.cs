@@ -333,6 +333,49 @@ namespace iTasks.Controllers
         }
 
 
+        public List<object> ObterResumoTarefasConcluidas(Utilizador utilizador)
+        {
+            var tarefas = Contexto.Tarefas
+                .Include(t => t.Programador)
+                .Include(t => t.Gestor)
+                .Where(t => t.EstadoAtual == EstadoAtual.Done
+                    && t.DataRealInicio != null
+                    && t.DataRealFim != null)
+                .ToList();
+
+            if (utilizador is Programador prog)
+            {
+                return tarefas
+                    .Where(t => t.Programador.Id == prog.Id)
+                    .Select(t => new
+                    {
+                        t.Descricao,
+                        DataInicio = t.DataRealInicio.Value,
+                        DataFim = t.DataRealFim.Value,
+                        DiasDecorridos = Math.Round((t.DataRealFim.Value - t.DataRealInicio.Value).TotalDays, 2)
+                    })
+                    .ToList<object>();
+            }
+            else if (utilizador is Gestor gestor)
+            {
+                return tarefas
+                    .Where(t => t.Gestor.Id == gestor.Id)
+                    .Select(t => new
+                    {
+                        t.Descricao,
+                        Programador = t.Programador.Nome,
+                        DiasPrevistos = Math.Round((t.DataPrevistaFim - t.DataPrevistaInicio).TotalDays, 2),
+                        DiasReais = Math.Round((t.DataRealFim.Value - t.DataRealInicio.Value).TotalDays, 2),
+                        Diferenca = Math.Round(
+                            (t.DataRealFim.Value - t.DataRealInicio.Value).TotalDays
+                            - (t.DataPrevistaFim - t.DataPrevistaInicio).TotalDays, 2)
+                    })
+                    .ToList<object>();
+            }
+
+            return new List<object>();
+        }
+
 
     }
 }

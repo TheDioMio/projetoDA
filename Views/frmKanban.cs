@@ -355,7 +355,7 @@ namespace iTasks
 
         private void tarefasTerminadasToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmConsultarTarefasConcluidas frm = new frmConsultarTarefasConcluidas();
+            frmConsultarTarefasConcluidas frm = new frmConsultarTarefasConcluidas(_user);
 
             frm.ShowDialog();
         }

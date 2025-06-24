@@ -1,4 +1,5 @@
 ﻿using iTasks.Controllers;
+using iTasks.Models;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,14 +16,21 @@ namespace iTasks
     {
         private TarefaController _controller = new TarefaController();
 
-        public frmConsultarTarefasConcluidas()
+        private Utilizador _user;
+
+        public frmConsultarTarefasConcluidas(Utilizador user)
         {
             InitializeComponent();
 
-            var tarefasConcluidas = _controller.ObterTarefasDone();
-            gvTarefasConcluidas.DataSource = tarefasConcluidas;
+            _user = user;
 
-            gvTarefasConcluidas.ReadOnly = true;
+           // var tarefasConcluidas = _controller.ObterTarefasDone();
+          //  gvTarefasConcluidas.DataSource = tarefasConcluidas;
+
+          //  gvTarefasConcluidas.ReadOnly = true;
+
+
+            
 
         }
 
@@ -46,7 +54,9 @@ namespace iTasks
 
         private void frmConsultarTarefasConcluidas_Load(object sender, EventArgs e)
         {
-            
+            var resumo = _controller.ObterResumoTarefasConcluidas(_user);
+            gvTarefasConcluidas.DataSource = resumo;
+            gvTarefasConcluidas.ReadOnly = true;
         }
     }
 }
