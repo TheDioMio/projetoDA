@@ -396,7 +396,7 @@ namespace iTasks.Controllers
             var tarefas = Contexto.Tarefas
                 .Include(t => t.Programador)
                 .Where(t => t.Gestor.Id == gestor.Id && t.EstadoAtual != EstadoAtual.Done)
-                .ToList(); // <-- importante: para evitar erro de cálculo no SQL
+                .ToList(); 
 
             return tarefas
                 .Select(t => new

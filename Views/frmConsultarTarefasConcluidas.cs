@@ -57,6 +57,9 @@ namespace iTasks
             var resumo = _controller.ObterResumoTarefasConcluidas(_user);
             gvTarefasConcluidas.DataSource = resumo;
             gvTarefasConcluidas.ReadOnly = true;
+
+            if (gvTarefasConcluidas.Columns.Contains("Diferenca"))
+                gvTarefasConcluidas.Columns["Diferenca"].DefaultCellStyle.Format = "N2";
         }
     }
 }

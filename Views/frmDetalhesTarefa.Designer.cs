@@ -360,7 +360,7 @@ namespace iTasks
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmDetalhesTarefa";
-            this.Text = "frmDetalhesTarefa";
+            this.Text = "Detalhes Tarefa";
             this.ResumeLayout(false);
             this.PerformLayout();
 
