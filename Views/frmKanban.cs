@@ -46,6 +46,7 @@ namespace iTasks
                 btNova.Enabled = false;
                 exportarParaCSVToolStripMenuItem.Enabled = false;
                 btApagarTarefa.Enabled = false;
+                tarefasEmCursoToolStripMenuItem.Enabled = false;
             }
             labelBemVindo.Text = $"Bem-vindo, {userLogado.Nome}";
             CarregarTarefas();
