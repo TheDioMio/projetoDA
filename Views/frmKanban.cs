@@ -277,7 +277,17 @@ namespace iTasks
 
         private void btNova_Click(object sender, EventArgs e)
         {
+            List<TipoTarefa> tipoTarefas = controller.GetTipoTarefas();
 
+            if (tipoTarefas.Count == 0)
+            {
+                MessageBox.Show(
+                            "AVISO: Ainda não existem tipos de tarefas definidos.",
+                            "Aviso",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Warning);
+                return;
+            }
             var detalhesTarefa = new frmDetalhesTarefa(_user, null);
             detalhesTarefa.TarefaCriada += AtualizarListaTarefasToDo;
             detalhesTarefa.ShowDialog();

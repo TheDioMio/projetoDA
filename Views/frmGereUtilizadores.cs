@@ -228,8 +228,19 @@ namespace iTasks
                 user.departamento = departamento;
                 user.gereUtilizadores = chkGereUtilizadores.Checked;
 
-                userController.Atualizar(user);
-                updateListGestores();
+
+                bool success = userController.Atualizar(user);
+
+                if (success)
+                {
+                    updateListGestores();
+                    //limparCampos();
+                    MessageBox.Show("Gestor Atualizado com sucesso.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Alguma coisa não correu bem, não foi possivel Atualizar o Gestor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
 
@@ -287,9 +298,19 @@ namespace iTasks
 
                         if (resultado == DialogResult.Yes)
                         {
-                            userController.Eliminar(user.Id);
-                            updateListGestores();
-                            limparCampos();
+
+                            bool success = userController.Eliminar(user.Id);
+
+                            if (success)
+                            {
+                                updateListGestores();
+                                limparCampos();
+                                MessageBox.Show("Gestor Eliminado com sucesso.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
+                            else
+                            {
+                                MessageBox.Show("Alguma coisa não correu bem, não foi possivel eliminar o Gestor.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            }
                         }
                         else
                         {
@@ -358,6 +379,7 @@ namespace iTasks
                 if (success)
                 {
                     updateListProgramadores();
+                    MessageBox.Show("Programador criado com sucesso.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
@@ -411,9 +433,18 @@ namespace iTasks
 
                     if (resultado == DialogResult.Yes)
                     {
-                        userController.Eliminar(user.Id);
-                        updateListProgramadores();
-                        limparCamposProgramador();
+                        bool success = userController.Eliminar(user.Id);
+
+                        if (success)
+                        {
+                            updateListProgramadores();
+                            limparCamposProgramador();
+                            MessageBox.Show("Programador Eliminado com sucesso.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                        else
+                        {
+                            MessageBox.Show("Alguma coisa não correu bem, não foi possivel eliminar o Programador.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
                     }
                     else
                     {
@@ -443,8 +474,16 @@ namespace iTasks
                 user.Password = pass;
                 user.nivelExperiencia = nivelExperiencia;
                 user.Gestor = userGestor;
-                userController.Atualizar(user);
-                updateListProgramadores();
+                bool success=userController.Atualizar(user);
+                if (success)
+                {
+                    updateListProgramadores();
+                    MessageBox.Show("Programador Atualizado com sucesso.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
+                else
+                {
+                    MessageBox.Show("Alguma coisa não correu bem, não foi possivel atualizar o Programador.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                }
             }
         }
     }

@@ -94,22 +94,43 @@ namespace iTasks.Controllers
             return programadores;
         }
 
-        public void Atualizar(Utilizador utilizadorEncontrado)
+        public bool Atualizar(Utilizador utilizadorEncontrado)
         {
-            contexto.Entry(utilizadorEncontrado).State = EntityState.Modified;
-            contexto.SaveChanges();
+            bool flag = false;
+            try
+            {
+                contexto.Entry(utilizadorEncontrado).State = EntityState.Modified;
+                contexto.SaveChanges();
+                flag = true;
+            }
+            catch (Exception)
+            {
+                flag = false;
+            }
+            return flag;  
         }
 
 
         //Eliminar utilizadores
-        public void Eliminar(int id)
+        public bool Eliminar(int id)
         {
-            var utilizadorEncontrado = contexto.Utilizadores.Find(id);
-            if (utilizadorEncontrado != null)
+            bool flag = false;
+            try
             {
-                contexto.Utilizadores.Remove(utilizadorEncontrado);
-                contexto.SaveChanges();
+                var utilizadorEncontrado = contexto.Utilizadores.Find(id);
+                if (utilizadorEncontrado != null)
+                {
+                    contexto.Utilizadores.Remove(utilizadorEncontrado);
+                    contexto.SaveChanges();
+                    flag = true;
+                }
+               
             }
+            catch (Exception)
+            {
+                flag = false;
+            }
+            return flag;
         }
     }
 }
