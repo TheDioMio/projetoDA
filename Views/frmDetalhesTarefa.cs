@@ -29,6 +29,7 @@ namespace iTasks
     public partial class frmDetalhesTarefa : Form
     {
         private Utilizador _gestor;
+        private Tarefa _tarefa;
         private List<TipoTarefa> listaTipoTarefas;
         private List<Programador> listaProgramadores;
         public UtilizadorController userController = new UtilizadorController();
@@ -42,7 +43,7 @@ namespace iTasks
         public frmDetalhesTarefa(Utilizador user, Tarefa tarefa)
         {
             InitializeComponent();
-
+            _tarefa = tarefa;
             // carrega a lista de tipos de tarefa
             listaTipoTarefas = tarefaController.GetTipoTarefas();
             cbTipoTarefa.DataSource = listaTipoTarefas;
@@ -67,7 +68,7 @@ namespace iTasks
             }
             else //se a tarefa vier preenchida é porque é uma tarefa já criada
             {
-                if (tarefa.Gestor.Id == user.Id) // a tarefa foi criada pelo mesmo gestor que a está a abrir ou seja pode editar
+                if ((tarefa.Gestor.Id == user.Id)&&(tarefa.EstadoAtual != EstadoAtual.Done)) // a tarefa foi criada pelo mesmo gestor que a está a abrir ou seja pode editar
                 {
                     listaProgramadores = userController.ObterProgramadoresDeGestor(tarefa.Gestor);
                     cbProgramador.DataSource = listaProgramadores;
@@ -108,7 +109,7 @@ namespace iTasks
                 dtInicio.Value = tarefa.DataPrevistaInicio;
                 dtFim.Value = tarefa.DataPrevistaFim;
                 cbTipoTarefa.SelectedItem = tarefa.TipoTarefa;
-
+                _gestor = tarefa.Gestor;
             }
         }
 
@@ -174,8 +175,12 @@ namespace iTasks
                 return false;
             }
 
-            // podemos ainda validar a data para ver se é anterior ao dia atual
-            // e validar ainda se a data prevista de fim não é anterior á data prevista de inicio
+            if (dtInicio.Value > dtFim.Value)
+            {
+                MessageBox.Show("A data prevista de inicio de tarefa não pode ser superior á data prevista de fim.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtInicio.Focus();
+                return false;
+            }
 
             return true;
         }
@@ -192,7 +197,7 @@ namespace iTasks
             {
                 // temos de validar se ordem e story Points são numeros
                 string desc = txtDesc.Text;
-
+                
                 int ordem;
                 if (!int.TryParse(txtOrdem.Text, out ordem))
                 {
@@ -211,22 +216,19 @@ namespace iTasks
                     return;
                 }
 
-                if (dtInicio.Value > dtFim.Value)
-                {
-                    MessageBox.Show("A data prevista de inicio de tarefa não pode ser superior á data prevista de fim.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-                if (dtInicio.Value.Date < DateTime.Now.Date)
-                {
-                    MessageBox.Show("A data prevista de inicio não pode ser inferior a data atual!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return;
-                }
-
-
+                
 
 
                 if (string.IsNullOrEmpty(txtId.Text)) // é uma nova tarefa
                 {
+                    // vê se a data de inicio não é inferior a data atual
+                    // só se aplica a criar, pois quando é a editar pode ser anterior
+                    if (dtInicio.Value.Date < DateTime.Now.Date)
+                    {
+                        MessageBox.Show("A data prevista de inicio não pode ser inferior a data atual!", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+
                     Tarefa tarefa = new Tarefa();
 
                     tarefa.Descricao = desc;
@@ -259,67 +261,90 @@ namespace iTasks
                 }
                 else // então vamos editar a tarefa 
                 {
+                    _tarefa.Descricao = desc;
+                    _tarefa.OrdemExecucao = ordem;
+                    //_tarefa.DataCriacao = DateTime.Now;
+                    _tarefa.StoryPoints = storyPoints;
+                    _tarefa.DataPrevistaInicio = dtInicio.Value;
+                    _tarefa.DataPrevistaFim = dtFim.Value;
+                    //_tarefa.EstadoAtual = EstadoAtual.ToDo;
+                    _tarefa.Gestor = _gestor as Gestor;
+                    _tarefa.Programador = (Programador)cbProgramador.SelectedItem;
+                    _tarefa.TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem;
+                    //_tarefa.DataRealInicio = null;
+                    _tarefa.DataRealFim = null;
+
+                    bool success = tarefaController.Atualizar(_tarefa);
+
+                    if (success)
+                    {
+                        // correu bem proceder
+                        //ficou aqui este código pois devemos analisar o que fazer a seguir,
+                        //ou fechamos a janela, ou deixamos introduzir mais tarefas
+                        MessageBox.Show("Tarefa atualizada com sucesso.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        TarefaCriada?.Invoke(); // Chama o evento que atualiza listbox to do no Kanban 
+                    }
+                    else
+                    {
+                        MessageBox.Show("Alguma coisa não correu bem, não foi possivel atualizar a Tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    }
+
+                    
+
+                    //    Tarefa tarefa = new Tarefa();
+
+                    //tarefa.Descricao = desc;
+                    //tarefa.OrdemExecucao = ordem;
+                    //tarefa.DataCriacao = DateTime.Now;
+                    //tarefa.StoryPoints = storyPoints;
+                    //tarefa.DataPrevistaInicio = dtInicio.Value;
+                    //tarefa.DataPrevistaFim = dtFim.Value;
+                    //tarefa.EstadoAtual = EstadoAtual.ToDo;
+                    //tarefa.Gestor = _gestor as Gestor;
+                    //tarefa.Programador = (Programador)cbProgramador.SelectedItem;
+                    //tarefa.TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem;
 
 
+                    //tarefa.DataRealInicio = null;
+                    //tarefa.DataRealFim = null;
+                    ////tarefa.DataRealInicio = DateTime.MaxValue;
+                    ////tarefa.DataRealFim = DateTime.MaxValue;
 
+                    //if (string.IsNullOrEmpty(txtId.Text))
+                    //{
+                    //    bool success = tarefaController.Criar(tarefa);
 
+                    //    if (success)
+                    //    {
+                    //        // correu bem proceder
+                    //        //ficou aqui este código pois devemos analisar o que fazer a seguir,
+                    //        //ou fechamos a janela, ou deixamos introduzir mais tarefas
+                    //        MessageBox.Show("Tarefa criada com sucesso.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //        TarefaCriada?.Invoke(); // Chama o evento que atualiza listbox to do no Kanban 
+                    //    }
+                    //    else
+                    //    {
+                    //        MessageBox.Show("Alguma coisa não correu bem, não foi possivel criar a Tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    bool success = tarefaController.Atualizar(tarefa);
 
-
+                    //    if (success)
+                    //    {
+                    //        MessageBox.Show("Tarefa atualizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //        // correu bem proceder
+                    //        //ficou aqui este código pois devemos analisar o que fazer a seguir,
+                    //        //ou fechamos a janela, ou deixamos introduzir mais tarefas
+                    //    }
+                    //    else
+                    //    {
+                    //        MessageBox.Show("Alguma coisa não correu bem, não foi possivel atualizar a Tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    //    }
+                    //}
+                    this.Close();
                 }
-
-                //    Tarefa tarefa = new Tarefa();
-
-                //tarefa.Descricao = desc;
-                //tarefa.OrdemExecucao = ordem;
-                //tarefa.DataCriacao = DateTime.Now;
-                //tarefa.StoryPoints = storyPoints;
-                //tarefa.DataPrevistaInicio = dtInicio.Value;
-                //tarefa.DataPrevistaFim = dtFim.Value;
-                //tarefa.EstadoAtual = EstadoAtual.ToDo;
-                //tarefa.Gestor = _gestor as Gestor;
-                //tarefa.Programador = (Programador)cbProgramador.SelectedItem;
-                //tarefa.TipoTarefa = (TipoTarefa)cbTipoTarefa.SelectedItem;
-
-
-                //tarefa.DataRealInicio = null;
-                //tarefa.DataRealFim = null;
-                ////tarefa.DataRealInicio = DateTime.MaxValue;
-                ////tarefa.DataRealFim = DateTime.MaxValue;
-
-                //if (string.IsNullOrEmpty(txtId.Text))
-                //{
-                //    bool success = tarefaController.Criar(tarefa);
-
-                //    if (success)
-                //    {
-                //        // correu bem proceder
-                //        //ficou aqui este código pois devemos analisar o que fazer a seguir,
-                //        //ou fechamos a janela, ou deixamos introduzir mais tarefas
-                //        MessageBox.Show("Tarefa criada com sucesso.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //        TarefaCriada?.Invoke(); // Chama o evento que atualiza listbox to do no Kanban 
-                //    }
-                //    else
-                //    {
-                //        MessageBox.Show("Alguma coisa não correu bem, não foi possivel criar a Tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    }
-                //}
-                //else
-                //{
-                //    bool success = tarefaController.Atualizar(tarefa);
-
-                //    if (success)
-                //    {
-                //        MessageBox.Show("Tarefa atualizada com sucesso.", "Informação", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                //        // correu bem proceder
-                //        //ficou aqui este código pois devemos analisar o que fazer a seguir,
-                //        //ou fechamos a janela, ou deixamos introduzir mais tarefas
-                //    }
-                //    else
-                //    {
-                //        MessageBox.Show("Alguma coisa não correu bem, não foi possivel atualizar a Tarefa.", "Erro", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                //    }
-                //}
-                this.Close();
             }
         }
 

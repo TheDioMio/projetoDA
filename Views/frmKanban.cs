@@ -421,12 +421,19 @@ namespace iTasks
             lstTodo.DataSource = controller.ObterTarefasToDo();
         }
 
+        private void AtualizarListaTarefasDoing()
+        {
+            lstDoing.DataSource = null;
+            lstDoing.DataSource = controller.ObterTarefasDoing();
+        }
+
         private void lstTodo_DoubleClick(object sender, EventArgs e)
         {
             Tarefa tarefaSelecionada = (Tarefa)lstTodo.SelectedItem;
             if (tarefaSelecionada != null)
             {
                 var detalhesTarefa = new frmDetalhesTarefa(_user, tarefaSelecionada);
+                detalhesTarefa.TarefaCriada += AtualizarListaTarefasToDo;
                 detalhesTarefa.Show();
             }
         }
@@ -470,6 +477,7 @@ namespace iTasks
             if (tarefaSelecionada != null)
             {
                 var detalhesTarefa = new frmDetalhesTarefa(_user, tarefaSelecionada);
+                detalhesTarefa.TarefaCriada += AtualizarListaTarefasDoing;
                 detalhesTarefa.Show();
             }
         }

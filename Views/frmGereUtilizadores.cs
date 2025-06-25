@@ -190,6 +190,7 @@ namespace iTasks
                 {
                     updateListGestores();
                     limparCampos();
+                    MessageBox.Show("Gestor criado com sucesso.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 }
                 else
                 {
