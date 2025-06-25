@@ -108,6 +108,7 @@ namespace iTasks
             this.lstDoing.Size = new System.Drawing.Size(527, 643);
             this.lstDoing.TabIndex = 0;
             this.lstDoing.SelectedIndexChanged += new System.EventHandler(this.lstDoing_SelectedIndexChanged_1);
+            this.lstDoing.DoubleClick += new System.EventHandler(this.lstDoing_DoubleClick);
             // 
             // groupBox3
             // 
@@ -132,6 +133,7 @@ namespace iTasks
             this.lstDone.Size = new System.Drawing.Size(527, 643);
             this.lstDone.TabIndex = 0;
             this.lstDone.SelectedIndexChanged += new System.EventHandler(this.lstDone_SelectedIndexChanged_1);
+            this.lstDone.DoubleClick += new System.EventHandler(this.lstDone_DoubleClick);
             // 
             // menuStrip1
             // 

@@ -107,11 +107,25 @@ namespace iTasks.Controllers
                 .ToList();
         }
 
-        public Tarefa GetTarefasProgramadorMenorOrdem(int programadorId)
+        //public Tarefa GetTarefasProgramadorMenorOrdem(int programadorId)
+        //{
+        //    return Contexto.Tarefas
+        //            .Where(tarefa => tarefa.Programador.Id == programadorId &&
+        //                    tarefa.EstadoAtual == EstadoAtual.ToDo || tarefa.EstadoAtual == EstadoAtual.Doing)
+        //            .OrderBy(tarefa => tarefa.OrdemExecucao).FirstOrDefault();
+        //}
+
+        public Tarefa GetTarefasProgramadorMenorOrdemDoing(int programadorId)
         {
             return Contexto.Tarefas
-                    .Where(tarefa => tarefa.Programador.Id == programadorId &&
-                            tarefa.EstadoAtual == EstadoAtual.ToDo || tarefa.EstadoAtual == EstadoAtual.Doing)
+                    .Where(tarefa => tarefa.Programador.Id == programadorId && tarefa.EstadoAtual == EstadoAtual.Doing)
+                    .OrderBy(tarefa => tarefa.OrdemExecucao).FirstOrDefault();
+        }
+
+        public Tarefa GetTarefasProgramadorMenorOrdemToDo(int programadorId)
+        {
+            return Contexto.Tarefas
+                    .Where(tarefa => tarefa.Programador.Id == programadorId && tarefa.EstadoAtual == EstadoAtual.ToDo)
                     .OrderBy(tarefa => tarefa.OrdemExecucao).FirstOrDefault();
         }
 
@@ -272,6 +286,7 @@ namespace iTasks.Controllers
         {
             // Usa os métodos já existentes para obter as tarefas
             var tarefasToDo = ObterTarefasToDo();
+
             var tarefasDone = ObterTarefasDone()
                 .Where(t => t.DataRealInicio != null && t.DataRealFim != null)
                 .ToList();

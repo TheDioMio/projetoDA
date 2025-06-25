@@ -74,7 +74,7 @@ namespace iTasks
                             List<Tarefa> tarefasDoingProg = controller.GetTarefasProgramadorDoing(userLogado.Id);
                             if (tarefasDoingProg.Count < 2)
                             {
-                                Tarefa tarefaMenor = controller.GetTarefasProgramadorMenorOrdem(userLogado.Id);
+                                Tarefa tarefaMenor = controller.GetTarefasProgramadorMenorOrdemToDo(userLogado.Id);
                                 if (tarefaMenor == tarefaSelecionada)
                                 {
                                     controller.AvancarTarefa(tarefaSelecionada);
@@ -192,7 +192,8 @@ namespace iTasks
                         if (tarefaSelecionada.Programador.Id == userLogado.Id)
                         {
                             //é o user logado
-                            Tarefa tarefaMenor = controller.GetTarefasProgramadorMenorOrdem(userLogado.Id);
+                            Tarefa tarefaMenor = controller.GetTarefasProgramadorMenorOrdemDoing(userLogado.Id);
+                            //Tarefa tarefaMenor = controller.GetTarefasProgramadorMenorOrdem(userLogado.Id);
                             if (tarefaMenor == tarefaSelecionada)
                             {
                                 controller.AvancarTarefa(tarefaSelecionada);
@@ -461,6 +462,26 @@ namespace iTasks
         private void frmKanban_Shown(object sender, EventArgs e)
         {
 
+        }
+
+        private void lstDoing_DoubleClick(object sender, EventArgs e)
+        {
+            Tarefa tarefaSelecionada = (Tarefa)lstDoing.SelectedItem;
+            if (tarefaSelecionada != null)
+            {
+                var detalhesTarefa = new frmDetalhesTarefa(_user, tarefaSelecionada);
+                detalhesTarefa.Show();
+            }
+        }
+
+        private void lstDone_DoubleClick(object sender, EventArgs e)
+        {
+            Tarefa tarefaSelecionada = (Tarefa)lstDone.SelectedItem;
+            if (tarefaSelecionada != null)
+            {
+                var detalhesTarefa = new frmDetalhesTarefa(_user, tarefaSelecionada);
+                detalhesTarefa.Show();
+            }
         }
     }
 }
