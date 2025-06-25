@@ -278,7 +278,7 @@ namespace iTasks
 
             var detalhesTarefa = new frmDetalhesTarefa(_user, null);
             detalhesTarefa.TarefaCriada += AtualizarListaTarefasToDo;
-            detalhesTarefa.Show();
+            detalhesTarefa.ShowDialog();
             CarregarTarefas();
 
         }
@@ -462,6 +462,11 @@ namespace iTasks
             {
                 MessageBox.Show("Selecione uma tarefa para apagar.", "Aviso");
             }
+
+        }
+
+        private void frmKanban_Shown(object sender, EventArgs e)
+        {
 
         }
     }

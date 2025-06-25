@@ -42,6 +42,7 @@ namespace iTasks.Controllers
                 .ToList();
         }
 
+
         public List<Tarefa> ObterTarefasDeGestor(Gestor gestor)
         {
             return contexto.Tarefas

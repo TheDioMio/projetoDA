@@ -99,10 +99,6 @@ namespace iTasks.Controllers
 
         public List<Tarefa> GetTarefasProgramadorDoing(int programadorId)
         {
-            //return Contexto.Tarefas
-            //                        .Where(tarefa => tarefa.Programador.Id == programadorId && tarefa.EstadoAtual == EstadoAtual.Doing)
-            //                        .ToList();
-
             return Contexto.Tarefas
                 .Include(t => t.Programador)
                 .Include(t => t.TipoTarefa)
@@ -122,9 +118,7 @@ namespace iTasks.Controllers
         public Tarefa GetTarefasProgramadorMaiorOrdem(int programadorId)
         {
             return Contexto.Tarefas
-                    .Where(tarefa => tarefa.Programador.Id == programadorId &&
-                    (tarefa.EstadoAtual == EstadoAtual.ToDo || tarefa.EstadoAtual == EstadoAtual.Doing) 
-                    ).OrderByDescending(tarefa => tarefa.OrdemExecucao).FirstOrDefault();
+                    .Where(tarefa => tarefa.Programador.Id == programadorId).OrderByDescending(tarefa => tarefa.OrdemExecucao).FirstOrDefault();
         }
 
         public List<Tarefa> ObterTarefasDonePorGestor(int gestorId)
@@ -192,7 +186,7 @@ namespace iTasks.Controllers
                 if (tarefa.EstadoAtual == EstadoAtual.Doing)
                 {
                     tarefa.EstadoAtual = EstadoAtual.ToDo;
-
+                    tarefa.DataRealInicio = null;
                     Contexto.Entry(tarefa).State = EntityState.Modified;
                     Contexto.SaveChanges();
                 }

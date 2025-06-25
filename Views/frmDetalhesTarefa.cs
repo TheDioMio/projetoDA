@@ -51,25 +51,22 @@ namespace iTasks
             // se for um gestor pode criar as tarefas
             if (tarefa == null)
             {
-                if ((user is Gestor)) // se o utilizador é um gestor pode criar a tarefa
-                {
-                    // carrega a lista de progaramadores do gestor 
+                //if ((user is Gestor)) // se o utilizador é um gestor pode criar a tarefa
+                //{
+
+                // é uma tarefa nova
+                // carrega a lista de progaramadores do gestor 
+                    retirarEnable();
                     listaProgramadores = userController.ObterProgramadoresDeGestor(user as Gestor);
                     cbProgramador.DataSource = listaProgramadores;
                     _gestor = user;
                     dtInicio.Value = DateTime.Today;
                     dtFim.Value = DateTime.Today.AddDays(1);
-                    retirarEnable();
                     
-                }  
+                //}  
             }
             else //se a tarefa vier preenchida é porque é uma tarefa já criada
             {
-                // se a tarefa já foi criada então 
-                //      é um gestor pode alterar se a tarefa for sua senão só vê
-                //      se for um programador só vê
-                
-                
                 if (tarefa.Gestor.Id == user.Id) // a tarefa foi criada pelo mesmo gestor que a está a abrir ou seja pode editar
                 {
                     listaProgramadores = userController.ObterProgramadoresDeGestor(tarefa.Gestor);
@@ -113,56 +110,6 @@ namespace iTasks
                 cbTipoTarefa.SelectedItem = tarefa.TipoTarefa;
 
             }
-
-
-
-            //if (user is Gestor)
-            //{
-            //    //carrega todos programadores do gestor logado
-            //    //listaProgramadores = userController.ObterProgramadoresDeGestor(user as Gestor);
-            //    //cbProgramador.DataSource = listaProgramadores;
-            //    //listaTipoTarefas = tarefaController.GetTipoTarefas();
-            //    //cbTipoTarefa.DataSource = listaTipoTarefas;
-            //    //_gestor = user;
-            //    //dtInicio.Value = DateTime.Today;
-            //    //dtFim.Value = DateTime.Today.AddDays(1);
-            //    if (tarefa != null)
-            //    {
-            //        //txtId.Text = tarefa.Id.ToString();
-            //        //txtEstado.Text = tarefa.EstadoAtual.ToString();
-            //        //txtDataCriacao.Text = tarefa.DataCriacao.ToString();
-            //        //txtDesc.Text = tarefa.Descricao;
-            //        //txtOrdem.Text = tarefa.OrdemExecucao.ToString();
-            //        //txtStoryPoints.Text = tarefa.StoryPoints.ToString();
-            //        //dtInicio.Value = tarefa.DataPrevistaInicio;
-            //        //dtFim.Value = tarefa.DataPrevistaFim;
-            //        //cbTipoTarefa.SelectedItem = tarefa.TipoTarefa;
-            //        //cbProgramador.SelectedItem = tarefa.Programador;
-            //        //btGravar.Enabled = true;
-
-            //    }
-
-            //}
-            //else
-            //{
-            //    // é um programador, apenas pode ver a tarefa em modo readonly
-            //    //carrega todos programadores do gestor logado
-            //    listaProgramadores = userController.GetProgramadores();
-            //    cbProgramador.DataSource = listaProgramadores;
-            //    listaTipoTarefas = tarefaController.GetTipoTarefas();
-            //    cbTipoTarefa.DataSource = listaTipoTarefas;
-
-            //    txtId.Text = tarefa.Id.ToString();
-            //    txtEstado.Text = tarefa.EstadoAtual.ToString();
-            //    txtDataCriacao.Text = tarefa.DataCriacao.ToString();
-            //    txtDesc.Text = tarefa.Descricao;
-            //    txtOrdem.Text = tarefa.OrdemExecucao.ToString();
-            //    txtStoryPoints.Text = tarefa.StoryPoints.ToString();
-            //    dtInicio.Value = tarefa.DataPrevistaInicio;
-            //    dtFim.Value = tarefa.DataPrevistaFim;
-            //    cbTipoTarefa.SelectedItem = tarefa.TipoTarefa;
-            //    cbProgramador.SelectedItem = tarefa.Programador;  
-            
         }
 
         private void colocaEnable()

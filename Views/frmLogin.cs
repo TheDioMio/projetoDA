@@ -23,26 +23,26 @@ namespace iTasks
 
             InitializeComponent();
 
+            // -----------------------------para criar o primeiro utilizador de todos ----------- descomentar as linhas seguintes
+
+            List<Gestor> gestores = contexto.GetGestores();
+            if (gestores.Count==0)
+            {
+                Gestor user1 = new Gestor
+                {
+                    Nome = "Admin",
+                    Password = "Admin",
+                    Username = "Admin",
+                };
+                user1.gereUtilizadores = true;
+                Contexto.Utilizadores.Add(user1);
+                Contexto.SaveChanges();
+            }
+
         }
 
         private void btLogin_Click(object sender, EventArgs e)
         {
-
-            //TipoTarefa tarefa1 = new TipoTarefa("TESTE1");
-            //Contexto.TiposTarefa.Add(tarefa1);
-
-            //Gestor user1 = new Gestor
-            //{
-            //    Nome = "Admin",
-            //    Password = "Admin",
-            //    Username = "Admin",
-            //};
-            //user1.gereUtilizadores = true;
-            //Contexto.Utilizadores.Add(user1);
-            //Contexto.SaveChanges();
-            //txtPassword.Text = "Admin";
-            //txtUsername.Text = "Admin";
-
             string username = txtUsername.Text.Trim();
             string password = txtPassword.Text;
 
