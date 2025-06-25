@@ -35,8 +35,8 @@ namespace iTasks.Views
 
         private void AtualizarTempoPrevisto()
         {
-            //double tempoPrevisto = controller.CalcularTempoTotalPrevistoParaToDo();
-            //txtPrevisao.Text = tempoPrevisto.ToString("0.##") + " horas";
+            double tempoPrevisto = controller.CalcularTempoTotalPrevistoParaToDo();
+            txtPrevisao.Text = tempoPrevisto.ToString("0.##") + " horas";
         }
 
     

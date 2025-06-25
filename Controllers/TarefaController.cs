@@ -385,6 +385,31 @@ namespace iTasks.Controllers
             return new List<object>();
         }
 
+        public List<object> ObterResumoTarefasNaoConcluidas(Utilizador utilizador)
+        {
+            var gestor = utilizador as Gestor;
+            if (gestor == null)
+                return new List<object>();
+
+            var hoje = DateTime.Now.Date;
+
+            var tarefas = Contexto.Tarefas
+                .Include(t => t.Programador)
+                .Where(t => t.Gestor.Id == gestor.Id && t.EstadoAtual != EstadoAtual.Done)
+                .ToList(); // <-- importante: para evitar erro de cálculo no SQL
+
+            return tarefas
+                .Select(t => new
+                {
+                    t.Descricao,
+                    Estado = t.EstadoAtual.ToString(),
+                    DataPrevistaFim = t.DataPrevistaFim,
+                    DiasRestantes = Math.Round((t.DataPrevistaFim - hoje).TotalDays, 2)
+                })
+                .ToList<object>();
+        }
+
+
 
     }
 }

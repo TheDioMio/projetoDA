@@ -373,7 +373,7 @@ namespace iTasks
 
         private void tarefasEmCursoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmConsultaTarefasEmCurso frm = new frmConsultaTarefasEmCurso();
+            var frm = new frmConsultaTarefasEmCurso(_user);
 
             frm.ShowDialog();
         }
