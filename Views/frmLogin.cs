@@ -25,19 +25,19 @@ namespace iTasks
 
             // -----------------------------para criar o primeiro utilizador de todos ----------- descomentar as linhas seguintes
 
-            List<Gestor> gestores = contexto.GetGestores();
-            if (gestores.Count==0)
-            {
-                Gestor user1 = new Gestor
-                {
-                    Nome = "Admin",
-                    Password = "Admin",
-                    Username = "Admin",
-                };
-                user1.gereUtilizadores = true;
-                Contexto.Utilizadores.Add(user1);
-                Contexto.SaveChanges();
-            }
+            //List<Gestor> gestores = contexto.GetGestores();
+            //if (gestores.Count == 0)
+            //{
+            //    Gestor user1 = new Gestor
+            //    {
+            //        Nome = "Admin",
+            //        Password = "Admin",
+            //        Username = "Admin",
+            //    };
+            //    user1.gereUtilizadores = true;
+            //    Contexto.Utilizadores.Add(user1);
+            //    Contexto.SaveChanges();
+            //}
 
         }
 

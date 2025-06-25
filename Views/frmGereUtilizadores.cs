@@ -28,11 +28,12 @@ namespace iTasks
         public UtilizadorController userController = new UtilizadorController();
         private List<Gestor> listaGestores;
         private List<Programador> listaProgramadores;
+        public Utilizador _user;
 
-        public frmGereUtilizadores()
+        public frmGereUtilizadores(Utilizador userLogado)
         {
-            
             InitializeComponent();
+            _user = userLogado;
             cbDepartamento.DataSource = Enum.GetValues(typeof(Departamento));
             cbNivelProg.DataSource = Enum.GetValues(typeof(NivelExperiencia));
             updateListGestores();
@@ -262,31 +263,37 @@ namespace iTasks
                 Gestor user = listaGestores[lstListaGestores.SelectedIndex];
                 if (user != null)
                 {
-                    List<Programador> programadoresDeGestor = userController.ObterProgramadoresDeGestor(listaGestores[lstListaGestores.SelectedIndex]);
-                    if (programadoresDeGestor.Count>0)
+                    if(user.Id == _user.Id)
                     {
-                        MessageBox.Show("Não é possivel apagar o Gestor, pois tem Programadores associados!");
-                        return;
-                    }
+                        MessageBox.Show("Não é possível apagar a sua própria conta.");
+                    } else
+                    {
+                        List<Programador> programadoresDeGestor = userController.ObterProgramadoresDeGestor(listaGestores[lstListaGestores.SelectedIndex]);
+                        if (programadoresDeGestor.Count > 0)
+                        {
+                            MessageBox.Show("Não é possivel apagar o Gestor, pois tem Programadores associados!");
+                            return;
+                        }
 
-                    List<Tarefa> tarefasDeGestor = userController.ObterTarefasDeGestor(listaGestores[lstListaGestores.SelectedIndex]);
-                    if (tarefasDeGestor.Count>0)
-                    {
-                        MessageBox.Show("Não é possivel apagar o Gestor, pois tem Tarefas associadas!");
-                        return;
-                    }
+                        List<Tarefa> tarefasDeGestor = userController.ObterTarefasDeGestor(listaGestores[lstListaGestores.SelectedIndex]);
+                        if (tarefasDeGestor.Count > 0)
+                        {
+                            MessageBox.Show("Não é possivel apagar o Gestor, pois tem Tarefas associadas!");
+                            return;
+                        }
 
-                    DialogResult resultado = MessageBox.Show("Deseja apagar o utilizador selecionado?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                        DialogResult resultado = MessageBox.Show("Deseja apagar o utilizador selecionado?", "Confirmação", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
-                    if (resultado == DialogResult.Yes)
-                    {
-                        userController.Eliminar(user.Id);
-                        updateListGestores();
-                        limparCampos();
-                    }
-                    else
-                    {
-                        return;
+                        if (resultado == DialogResult.Yes)
+                        {
+                            userController.Eliminar(user.Id);
+                            updateListGestores();
+                            limparCampos();
+                        }
+                        else
+                        {
+                            return;
+                        }
                     }
                 }
             }

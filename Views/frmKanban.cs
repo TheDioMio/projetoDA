@@ -47,7 +47,7 @@ namespace iTasks
                 exportarParaCSVToolStripMenuItem.Enabled = false;
                 btApagarTarefa.Enabled = false;
             }
-            labelBemVindo.Text = $"Bem-vindo, {userLogado.Nome}"; // alterei para mostrar nome em vez de username ( MP - 15/06/2025)
+            labelBemVindo.Text = $"Bem-vindo, {userLogado.Nome}";
             CarregarTarefas();
         }
 
@@ -80,7 +80,7 @@ namespace iTasks
                                 }
                                 else
                                 {
-                                    MessageBox.Show("ERRO: Ordem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show("ERRO: Tarefa não é a próxima na lista de ordem.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     //não é a tarefa menor, logo não pode ser mudada
                                     return;
                                 }
@@ -88,14 +88,14 @@ namespace iTasks
                             }
                             else
                             {
-                                MessageBox.Show("ERRO: 2 Tarefas", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("ERRO: Não pode ter mais que duas (2) tarefas em Doing.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 //já tem 2 tarefas no doing
                                 return;
                             }
                         }
                         else
                         {
-                            MessageBox.Show("ERRO: User", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show("ERRO: Esta tarefa não lhe está atribuída.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             //não é o user que está logado
                             return;
                         }
@@ -199,7 +199,7 @@ namespace iTasks
                             }
                             else
                             {
-                                MessageBox.Show("ERRO: Ordem", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("ERRO: Tarefa não é a próxima na lista de ordem.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 //não é a próxima tarefa, logo não pode ser finalizada
                                 return;
                             }
@@ -269,7 +269,7 @@ namespace iTasks
 
         private void gerirUtilizadoresToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmGereUtilizadores gereUtilizadores = new frmGereUtilizadores();
+            frmGereUtilizadores gereUtilizadores = new frmGereUtilizadores(_user);
             gereUtilizadores.ShowDialog();
         }
 
@@ -326,7 +326,6 @@ namespace iTasks
             if (!(_user is Gestor))
             {
                 btPrevisao.Visible = false;
-
             }
 
 
@@ -412,13 +411,6 @@ namespace iTasks
         {
             DialogResult = DialogResult.Cancel;
             this.Close();
-        }
-
-        private void sairToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-
-            this.Close();
-            Application.Exit();
         }
 
         private void AtualizarListaTarefasToDo()
